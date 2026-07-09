@@ -1,4 +1,5 @@
 <!doctype html>
+<!-- Inselman Digital mobile fixes v2: reliable SMS prefill + clean mobile hero | 2026-07-09 -->
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -728,10 +729,14 @@
       .brand-mark { width: 44px; }
       .brand-text strong { font-size: 15px; }
       .brand-text span { margin-top: 4px; font-size: 8px; letter-spacing: .08em; }
-      .hero-inner { padding-top: 32px; gap: 22px; }
+      .hero-inner { padding-top: 32px; padding-bottom: 64px; gap: 22px; }
+      .hero::after { display: none; }
       .patch-card.brand-showcase { width: min(78vw, 320px); }
       .patch-card.brand-showcase img { max-width: 320px; }
-      .mini-stats { width: min(100%, 340px); }
+      .hero-visual, .mini-stats { position: relative; z-index: 3; }
+      .mini-stats { width: min(100%, 340px); margin-bottom: 0; }
+      .mini-stat { background: #06182b; border-color: rgba(255,255,255,.24); box-shadow: 0 12px 28px rgba(0,0,0,.24); }
+      .mini-stat strong, .mini-stat span { color: #fff; }
       .work-preview { min-height: 180px; padding: 14px; }
       .site-mockup { min-height: 150px; }
       .site-mockup-body { min-height: 123px; padding: 18px; }
@@ -954,7 +959,7 @@
           <button class="button button-primary desktop-contact-action" type="button" data-contact-open>Contact Now</button>
           <div class="contact-actions mobile-contact-actions">
             <a class="button button-primary" href="tel:+15804654804">Call</a>
-            <a class="button button-secondary" href="sms:+15804654804">Text</a>
+            <a class="button button-secondary" href="sms:+15804654804&body=Hi%2C%20I%27m%20interested%20in%20a%20website%20for%20my%20business%20and%20would%20like%20to%20learn%20more." data-sms-link data-phone="+15804654804" data-sms-message="Hi, I'm interested in a website for my business and would like to learn more.">Text</a>
           </div>
         </div>
       </div>
@@ -992,6 +997,20 @@
         });
       });
     }
+
+    document.querySelectorAll("[data-sms-link]").forEach((smsLink) => {
+      const phone = smsLink.dataset.phone || "+15804654804";
+      const message = encodeURIComponent(smsLink.dataset.smsMessage || "");
+      const isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+        (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+      const smsUrl = `sms:${phone}${isiOS ? "&" : "?"}body=${message}`;
+
+      smsLink.href = smsUrl;
+      smsLink.addEventListener("click", (event) => {
+        event.preventDefault();
+        window.location.href = smsUrl;
+      });
+    });
 
     const contactModal = document.querySelector("#contactModal");
     const openContactButtons = document.querySelectorAll("[data-contact-open]");
