@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- Inselman Digital mobile fixes v2: reliable SMS prefill + clean mobile hero | 2026-07-09 -->
+<!-- Inselman Digital: updated pricing explanation + business email | 2026-07-09 -->
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -21,7 +21,6 @@
   <link rel="canonical" href="https://inselmandigital.com/">
   <link rel="icon" type="image/png" href="https://inselmandigital.com/assets/header-emblem-full.png">
   <link rel="apple-touch-icon" href="https://inselmandigital.com/assets/header-emblem-full.png">
-
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Inselman Digital">
   <meta property="og:title" content="Inselman Digital | Websites for Hardworking Small Businesses">
@@ -31,7 +30,6 @@
   <meta property="og:image:secure_url" content="https://inselmandigital.com/assets/hero-emblem-full.png">
   <meta property="og:image:type" content="image/png">
   <meta property="og:image:alt" content="Inselman Digital logo">
-
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Inselman Digital | Websites for Hardworking Small Businesses">
   <meta name="twitter:description" content="Professional websites, Google Business Profiles, local SEO, hosting, and analytics for hardworking small businesses.">
@@ -54,7 +52,6 @@
       --shadow: 0 18px 50px rgba(7, 29, 51, .12);
       --shadow-strong: 0 26px 70px rgba(7, 29, 51, .22);
       --radius: 18px;
-      --radius-sm: 12px;
       --max: 1160px;
     }
 
@@ -75,116 +72,86 @@
       position: sticky;
       top: 0;
       z-index: 40;
-      border-bottom: 1px solid rgba(255, 255, 255, .12);
-      background: rgba(7, 29, 51, .92);
       color: #fff;
+      background: rgba(7, 29, 51, .94);
+      border-bottom: 1px solid rgba(255,255,255,.12);
       backdrop-filter: blur(14px);
     }
     .nav {
-      width: min(var(--max), calc(100% - 32px));
-      min-height: 78px;
+      width: min(var(--max), calc(100% - 36px));
+      min-height: 84px;
       margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 18px;
+      gap: 16px;
     }
     .brand {
       display: inline-flex;
       align-items: center;
-      gap: 12px;
+      gap: 11px;
       min-width: 0;
-      font-weight: 950;
-      letter-spacing: -.03em;
+      flex: 0 0 auto;
     }
     .brand-mark {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      object-fit: cover;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, .24);
+      width: 56px;
+      height: auto;
+      flex: 0 0 auto;
+      object-fit: contain;
+      filter: drop-shadow(0 8px 14px rgba(0,0,0,.24));
     }
-    .brand-text { display: grid; line-height: 1.05; }
-    .brand-text strong { font-size: 18px; }
-    .brand-text span {
-      color: rgba(255, 255, 255, .72);
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: .08em;
+    .brand-text { display: flex; flex-direction: column; justify-content: center; line-height: 1; }
+    .brand-text strong {
+      color: #e7e0d5;
+      background: linear-gradient(180deg, #fff 0%, #d8d0c3 46%, #9e968a 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 2px 8px rgba(0,0,0,.26);
+      font-size: 19px;
+      font-weight: 950;
+      letter-spacing: .025em;
       text-transform: uppercase;
+      white-space: nowrap;
     }
-    .nav-links { display: flex; align-items: center; gap: 3px; }
+    .brand-text span {
+      margin-top: 6px;
+      color: #ff9b32;
+      background: linear-gradient(180deg, #ffc274 0%, #f47b16 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 1px 7px rgba(233,121,25,.28);
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .135em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .nav-links { display: flex; align-items: center; gap: 2px; margin-left: auto; }
     .nav-links a {
-      padding: 10px 12px;
-      border-radius: 999px;
-      color: rgba(255,255,255,.78);
+      position: relative;
+      padding: 10px;
+      color: rgba(255,255,255,.82);
       font-size: 14px;
       font-weight: 850;
+      border-radius: 999px;
     }
-    .nav-links a:hover, .nav-links a:focus-visible {
-      color: #fff;
-      background: rgba(255,255,255,.1);
-      outline: none;
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 10px;
+      right: 10px;
+      bottom: 5px;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--orange-2);
+      opacity: 0;
+      transform: scaleX(.5);
+      transition: opacity .18s ease, transform .18s ease;
     }
-
-
-    .brand-logo {
-      width: min(300px, 62vw);
-      max-height: 58px;
-      filter: drop-shadow(0 6px 10px rgba(8, 25, 44, .10));
-    }
-
-    .nav {
-      min-height: 82px;
-    }
-
-    .nav-links {
-      gap: 2px;
-      margin-left: auto;
-    }
-
-    .nav-links a {
-      padding: 10px 10px;
-      font-size: 14px;
-    }
-
-    .nav-cta {
-      margin-left: 14px;
-      min-height: 46px;
-      padding: 13px 20px;
-      border-radius: 10px;
-      font-size: 14px;
-      font-weight: 950;
-      white-space: nowrap;
-      box-shadow: 0 12px 26px rgba(245, 158, 11, .28);
-    }
-
-    .nav-cta:hover,
-    .nav-cta:focus-visible {
-      box-shadow: 0 16px 34px rgba(245, 158, 11, .36);
-    }
-
-    @media (max-width: 920px) {
-      .brand-logo {
-        width: min(250px, 58vw);
-        max-height: 52px;
-      }
-
-      .nav {
-        min-height: 76px;
-      }
-
-      .nav-cta {
-        display: none;
-      }
-    }
-
-    @media (max-width: 650px) {
-      .brand-logo {
-        width: min(220px, 64vw);
-      }
-    }
-
+    .nav-links a:hover::after,
+    .nav-links a:focus-visible::after { opacity: 1; transform: scaleX(1); }
     .menu-toggle {
       display: none;
       border: 1px solid rgba(255,255,255,.18);
@@ -195,31 +162,6 @@
       font-weight: 900;
     }
 
-
-    .nav-links a {
-      position: relative;
-    }
-
-    .nav-links a::after {
-      content: "";
-      position: absolute;
-      left: 10px;
-      right: 10px;
-      bottom: 5px;
-      height: 2px;
-      border-radius: 999px;
-      background: var(--orange, #f59e0b);
-      opacity: 0;
-      transform: scaleX(.5);
-      transition: opacity .18s ease, transform .18s ease;
-    }
-
-    .nav-links a:hover::after,
-    .nav-links a:focus-visible::after {
-      opacity: 1;
-      transform: scaleX(1);
-    }
-
     .button {
       display: inline-flex;
       align-items: center;
@@ -228,25 +170,26 @@
       padding: 13px 19px;
       border: 0;
       border-radius: 999px;
+      font: inherit;
       font-weight: 950;
-      font-family: inherit;
       line-height: 1;
       cursor: pointer;
       transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
     }
     .button:hover, .button:focus-visible { transform: translateY(-1px); outline: none; }
-    .button-primary { color: #111; background: var(--orange-2); box-shadow: 0 14px 28px rgba(233, 121, 25, .28); }
+    .button-primary { color: #111; background: var(--orange-2); box-shadow: 0 14px 28px rgba(233,121,25,.28); }
     .button-primary:hover { background: #ffad56; }
     .button-secondary { color: #fff; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.18); }
     .button-light { color: var(--navy); background: #fff; border: 1px solid var(--line); }
+    .nav-cta { min-height: 46px; margin-left: 10px; padding: 13px 18px; border-radius: 10px; white-space: nowrap; }
 
     .hero {
       position: relative;
       overflow: hidden;
       color: #fff;
       background:
-        radial-gradient(circle at 82% 12%, rgba(233, 121, 25, .26), transparent 30%),
-        radial-gradient(circle at 12% 24%, rgba(31, 90, 134, .44), transparent 28%),
+        radial-gradient(circle at 82% 12%, rgba(233,121,25,.26), transparent 30%),
+        radial-gradient(circle at 12% 24%, rgba(31,90,134,.44), transparent 28%),
         linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 72%, #11283d 100%);
     }
     .hero::after {
@@ -265,9 +208,9 @@
       margin: 0 auto;
       padding: 78px 0 106px;
       display: grid;
-      grid-template-columns: minmax(0, 1.08fr) minmax(300px, .92fr);
-      gap: 48px;
-      align-items: center;
+      grid-template-columns: minmax(0, 1.08fr) minmax(320px, 470px);
+      gap: 34px;
+      align-items: start;
     }
     .eyebrow {
       display: inline-flex;
@@ -280,13 +223,7 @@
       letter-spacing: .12em;
       text-transform: uppercase;
     }
-    .eyebrow::before {
-      content: "";
-      width: 34px;
-      height: 3px;
-      border-radius: 99px;
-      background: var(--orange-2);
-    }
+    .eyebrow::before { content: ""; width: 34px; height: 3px; border-radius: 99px; background: var(--orange-2); }
     h1 {
       max-width: 820px;
       margin-bottom: 18px;
@@ -294,20 +231,8 @@
       line-height: .94;
       letter-spacing: -.055em;
     }
-    .hero-tagline {
-      margin: 0 0 18px;
-      color: var(--cream);
-      font-size: clamp(21px, 2.4vw, 30px);
-      font-weight: 950;
-      line-height: 1.08;
-    }
-    .lead {
-      max-width: 760px;
-      margin-bottom: 0;
-      color: rgba(255,255,255,.92);
-      font-size: clamp(18px, 2vw, 22px);
-      font-weight: 650;
-    }
+    .hero-tagline { margin: 0 0 18px; color: var(--cream); font-size: clamp(21px, 2.4vw, 30px); font-weight: 950; line-height: 1.08; }
+    .lead { max-width: 760px; margin-bottom: 0; color: rgba(255,255,255,.92); font-size: clamp(18px,2vw,22px); font-weight: 650; }
     .hero-actions { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 12px; }
     .hero-points {
       margin: 32px 0 0;
@@ -315,7 +240,7 @@
       display: grid;
       gap: 13px;
       list-style: none;
-      color: #ffffff;
+      color: #fff;
       font-weight: 850;
       background: #06182b;
       border: 1px solid rgba(255,255,255,.18);
@@ -323,104 +248,60 @@
       border-radius: 20px;
       box-shadow: 0 22px 58px rgba(0,0,0,.34);
     }
-    .hero-points li { display: grid; grid-template-columns: 18px 1fr; gap: 11px; align-items: start; color: #ffffff; text-shadow: 0 1px 1px rgba(0,0,0,.22); }
-    .hero-points li::before {
-      content: "";
-      width: 9px;
-      height: 9px;
-      margin-top: 8px;
-      border-radius: 50%;
-      background: var(--orange-2);
-      box-shadow: 0 0 0 5px rgba(233, 121, 25, .18);
-    }
-    .hero-visual { display: grid; gap: 16px; justify-items: center; }
-    .patch-card {
-      width: min(100%, 440px);
-      padding: 18px;
-      border: 1px solid rgba(255,255,255,.14);
-      border-radius: 28px;
-      background: rgba(255,255,255,.08);
-      box-shadow: var(--shadow-strong);
-      backdrop-filter: blur(10px);
-    }
-    .patch-card img { border-radius: 22px; }
-    .mini-stats {
-      width: min(100%, 440px);
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-    }
-    .mini-stat {
-      padding: 14px 12px;
-      border: 1px solid rgba(255,255,255,.13);
-      border-radius: 16px;
-      background: rgba(255,255,255,.07);
-      text-align: center;
-    }
+    .hero-points li { display: grid; grid-template-columns: 18px 1fr; gap: 11px; align-items: start; }
+    .hero-points li::before { content: ""; width: 9px; height: 9px; margin-top: 8px; border-radius: 50%; background: var(--orange-2); box-shadow: 0 0 0 5px rgba(233,121,25,.18); }
+    .hero-visual { width: 100%; display: grid; gap: 16px; justify-items: center; margin-top: 4px; }
+    .brand-showcase { position: relative; width: 100%; max-width: 470px; }
+    .brand-showcase::before { content: ""; position: absolute; inset: 17% 14% 16%; z-index: -1; background: radial-gradient(circle at 50% 58%, rgba(255,163,59,.13), transparent 56%); filter: blur(26px); }
+    .brand-showcase img { width: 100%; max-width: 470px; margin: 0 auto; filter: drop-shadow(0 20px 30px rgba(0,0,0,.22)); }
+    .mini-stats { width: 100%; max-width: 440px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .mini-stat { padding: 14px 12px; border: 1px solid rgba(255,255,255,.13); border-radius: 16px; background: rgba(255,255,255,.07); text-align: center; }
     .mini-stat strong { display: block; color: #fff; font-size: 18px; line-height: 1; }
     .mini-stat span { display: block; margin-top: 6px; color: rgba(255,255,255,.82); font-size: 12px; font-weight: 800; }
 
     .section { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; padding: 82px 0; }
     .section-header { max-width: 800px; margin-bottom: 32px; }
-    .section-header h2 { margin-bottom: 10px; color: var(--navy); font-size: clamp(31px, 4vw, 52px); line-height: 1.02; letter-spacing: -.04em; }
+    .section-header h2 { margin-bottom: 10px; color: var(--navy); font-size: clamp(31px,4vw,52px); line-height: 1.02; letter-spacing: -.04em; }
     .section-header p { margin-bottom: 0; color: var(--muted); font-size: 18px; font-weight: 650; }
     .grid { display: grid; gap: 18px; }
-    .offer-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .offer-grid { grid-template-columns: repeat(3,minmax(0,1fr)); }
     .card {
       position: relative;
       padding: 25px;
+      overflow: hidden;
       border: 1px solid var(--line);
       border-radius: var(--radius);
       background: var(--paper);
-      box-shadow: 0 12px 34px rgba(7, 29, 51, .07);
-      overflow: hidden;
+      box-shadow: 0 12px 34px rgba(7,29,51,.07);
     }
-    .card::before {
-      content: "";
-      position: absolute;
-      inset: 0 0 auto 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--orange), var(--blue));
-    }
-    .card-kicker {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 40px;
-      height: 40px;
-      margin-bottom: 18px;
-      border-radius: 12px;
-      background: rgba(233, 121, 25, .12);
-      color: var(--orange);
-      font-weight: 950;
-    }
+    .card::before { content: ""; position: absolute; inset: 0 0 auto; height: 4px; background: linear-gradient(90deg,var(--orange),var(--blue)); }
+    .card-kicker { display: inline-flex; align-items: center; justify-content: center; min-width: 40px; height: 40px; margin-bottom: 18px; border-radius: 12px; background: rgba(233,121,25,.12); color: var(--orange); font-weight: 950; }
     .card h3 { margin-bottom: 8px; color: var(--navy); font-size: 23px; line-height: 1.14; }
     .card p { margin-bottom: 0; color: var(--muted); font-weight: 625; }
-
     .band { background: var(--soft); border-block: 1px solid var(--line); }
-    .process-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .process-grid { grid-template-columns: repeat(4,minmax(0,1fr)); }
     .process-card { background: #fff; }
 
     .pricing-section { background: var(--navy); color: #fff; }
-    .pricing-section .section-header h2, .pricing-section .section-header p { color: #fff; }
-    .pricing-section .eyebrow { color: var(--orange-2); }
-    .pricing-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: stretch; }
+    .pricing-section .section-header h2,
+    .pricing-section .section-header p { color: #fff; }
+    .pricing-grid { grid-template-columns: repeat(3,minmax(0,1fr)); align-items: stretch; }
     .price-card {
       position: relative;
       padding: 27px;
-      border-radius: var(--radius);
-      border: 1px solid rgba(255, 255, 255, .15);
-      background: rgba(255, 255, 255, .065);
       display: flex;
       flex-direction: column;
       gap: 18px;
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.065);
     }
-    .price-card.featured { background: #fff; color: var(--ink); border-color: transparent; box-shadow: 0 22px 55px rgba(0,0,0,.25); transform: translateY(-10px); }
+    .price-card.featured { color: var(--ink); background: #fff; border-color: transparent; box-shadow: 0 22px 55px rgba(0,0,0,.25); transform: translateY(-10px); }
     .popular-badge { width: fit-content; padding: 7px 11px; border-radius: 999px; background: rgba(233,121,25,.15); color: #9a4705; font-size: 12px; font-weight: 950; letter-spacing: .08em; text-transform: uppercase; }
     .tier { margin: 0; color: rgba(255,255,255,.64); font-size: 13px; font-weight: 950; letter-spacing: .1em; text-transform: uppercase; }
     .featured .tier { color: var(--blue); }
     .price-card h3 { margin: 0; color: inherit; font-size: 25px; line-height: 1.12; }
-    .price { color: var(--orange-2); font-size: clamp(28px, 3vw, 36px); font-weight: 950; line-height: 1.05; }
+    .price { color: var(--orange-2); font-size: clamp(28px,3vw,36px); font-weight: 950; line-height: 1.05; }
     .price small { display: block; margin-top: 4px; color: inherit; font-size: 14px; font-weight: 850; opacity: .78; }
     .price-card ul { display: grid; gap: 11px; margin: 0; padding: 0; list-style: none; }
     .price-card li { display: grid; grid-template-columns: 18px 1fr; gap: 10px; color: rgba(255,255,255,.8); font-weight: 650; }
@@ -428,354 +309,91 @@
     .price-card li::before { content: ""; width: 8px; height: 8px; margin-top: 9px; border-radius: 50%; background: var(--orange-2); }
     .pricing-note { margin: 24px 0 0; color: rgba(255,255,255,.84); font-size: 17px; font-weight: 750; text-align: center; }
     .why-prices { margin-top: 28px; padding: 28px; border: 1px solid rgba(255,255,255,.16); border-radius: var(--radius); background: rgba(255,255,255,.08); }
-    .why-prices h3 { margin-bottom: 10px; color: #fff; font-size: clamp(26px, 3vw, 38px); letter-spacing: -.035em; }
+    .why-prices h3 { margin-bottom: 10px; color: #fff; font-size: clamp(26px,3vw,38px); letter-spacing: -.035em; }
     .why-prices p { max-width: 940px; margin-bottom: 0; color: rgba(255,255,255,.84); font-size: 18px; font-weight: 650; }
 
-    .work-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .work-card { overflow: hidden; border-radius: var(--radius); border: 1px solid var(--line); background: var(--paper); box-shadow: 0 14px 34px rgba(7,29,51,.07); }
-    .work-preview { min-height: 170px; padding: 26px; display: grid; align-content: end; color: #fff; background: linear-gradient(135deg, rgba(7,29,51,.94), rgba(14,49,79,.86)), radial-gradient(circle at 88% 12%, rgba(233,121,25,.62), transparent 28%); }
-    .work-preview strong { max-width: 430px; font-size: 29px; line-height: 1.05; }
+    .work-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+    .work-card { overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper); box-shadow: 0 14px 34px rgba(7,29,51,.07); }
+    .work-preview { min-height: 205px; padding: 20px; display: grid; align-content: stretch; background: linear-gradient(145deg,#071d33 0%,#0e314f 72%,#173f5f 100%); }
+    .site-mockup { width: 100%; min-height: 165px; overflow: hidden; border: 1px solid rgba(255,255,255,.18); border-radius: 14px; background: #fff; box-shadow: 0 18px 36px rgba(0,0,0,.28); }
+    .site-mockup-bar { height: 27px; display: flex; align-items: center; gap: 6px; padding: 0 10px; background: #e7edf2; border-bottom: 1px solid #d5dfe8; }
+    .site-mockup-bar i { width: 7px; height: 7px; border-radius: 50%; background: #9aa8b5; }
+    .site-mockup-body { min-height: 138px; padding: 22px; display: grid; align-content: end; background: radial-gradient(circle at 88% 18%,rgba(233,121,25,.55),transparent 25%),linear-gradient(135deg,rgba(7,29,51,.98),rgba(14,49,79,.9)); }
+    .site-mockup-body strong { max-width: 360px; color: #fff; font-size: 25px; line-height: 1.05; }
+    .site-mockup-body span { margin-top: 8px; color: rgba(255,255,255,.74); font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
     .work-body { padding: 24px; }
     .work-body h3 { margin-bottom: 8px; color: var(--navy); font-size: 24px; }
     .work-body p { color: var(--muted); font-weight: 650; }
     .text-link { display: inline-flex; color: var(--blue); font-weight: 950; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
 
     .about-wrap { display: grid; grid-template-columns: .82fr 1.18fr; gap: 24px; align-items: stretch; }
-    .about-side { padding: 24px; border-radius: var(--radius); background: var(--cream); border: 1px solid var(--line); }
-    .about-logo { width: min(360px, 100%); height: auto; margin: 0 auto 20px; border-radius: 22px; }
+    .about-side { padding: 24px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; border: 1px solid var(--line); border-radius: var(--radius); background: linear-gradient(180deg,#fffaf0 0%,#f4ebdb 100%); }
+    .about-logo { width: min(180px,100%); margin: 0 auto 20px; filter: drop-shadow(0 10px 16px rgba(7,29,51,.15)); }
     .about-side strong { display: block; color: var(--navy); font-size: 31px; line-height: 1.05; letter-spacing: -.035em; }
-    .about-copy { padding: 30px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--paper); box-shadow: var(--shadow); }
+    .about-copy { padding: 30px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper); box-shadow: var(--shadow); }
     .about-copy p { color: #435367; font-size: 18px; font-weight: 650; }
     .about-copy p:last-child { margin-bottom: 0; }
 
     .contact { padding-top: 0; padding-bottom: 90px; }
-    .contact-panel { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; padding: 34px; border-radius: 24px; color: #fff; background: radial-gradient(circle at 90% 10%, rgba(233,121,25,.42), transparent 24%), linear-gradient(135deg, var(--navy), var(--navy-2)); box-shadow: var(--shadow); }
-    .contact-panel h2 { margin-bottom: 8px; font-size: clamp(31px, 4vw, 52px); line-height: 1.04; letter-spacing: -.04em; }
+    .contact-panel { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; padding: 34px; border-radius: 24px; color: #fff; background: radial-gradient(circle at 90% 10%,rgba(233,121,25,.42),transparent 24%),linear-gradient(135deg,var(--navy),var(--navy-2)); box-shadow: var(--shadow); }
+    .contact-panel h2 { margin-bottom: 8px; font-size: clamp(31px,4vw,52px); line-height: 1.04; letter-spacing: -.04em; }
     .contact-panel p { max-width: 760px; margin-bottom: 0; color: rgba(255,255,255,.82); font-size: 18px; font-weight: 650; }
     .contact-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 12px; }
     .mobile-contact-actions { display: none; }
 
     .contact-modal { position: fixed; inset: 0; z-index: 60; display: none; align-items: center; justify-content: center; padding: 20px; background: rgba(7,29,51,.62); backdrop-filter: blur(5px); }
     .contact-modal.is-open { display: flex; }
-    .contact-modal-card { width: min(100%, 470px); padding: 28px; border-radius: 24px; background: #fff; color: var(--ink); box-shadow: 0 24px 70px rgba(0,0,0,.28); }
+    .contact-modal-card { width: min(100%,470px); padding: 28px; border-radius: 24px; background: #fff; color: var(--ink); box-shadow: 0 24px 70px rgba(0,0,0,.28); }
     .contact-modal-card h3 { margin-bottom: 8px; font-size: 30px; letter-spacing: -.035em; }
     .contact-modal-card p { margin-bottom: 18px; color: var(--muted); }
     .contact-modal-links { display: grid; gap: 10px; }
     .contact-modal-close { width: 100%; margin-top: 12px; background: transparent; color: var(--muted); box-shadow: none; }
-
     footer { padding: 30px 16px; color: rgba(255,255,255,.72); background: #061626; text-align: center; font-weight: 750; }
     footer strong { color: #fff; }
-
-    @media (max-width: 950px) {
-      .menu-toggle { display: inline-flex; }
-      .nav-links { position: absolute; top: 86px; left: 16px; right: 16px; display: none; padding: 10px; border: 1px solid rgba(255,255,255,.12); border-radius: 18px; background: var(--navy); box-shadow: var(--shadow-strong); }
-      .nav-links.is-open { display: grid; }
-      .hero-inner, .about-wrap, .contact-panel { grid-template-columns: 1fr; }
-      .hero-inner { padding-top: 48px; }
-      .offer-grid, .pricing-grid, .process-grid { grid-template-columns: 1fr; }
-      .price-card.featured { transform: none; }
-      .nav-cta { display: none; }
-    }
-    @media (max-width: 650px) {
-      .brand-text span { display: none; }
-      h1 { font-size: clamp(42px, 14vw, 62px); }
-      .button, .hero-actions { width: 100%; }
-      .mini-stats, .work-grid { grid-template-columns: 1fr; }
-      .section { padding: 58px 0; }
-      .card, .price-card, .work-body, .about-side, .about-copy, .contact-panel { padding: 21px; }
-      .desktop-contact-action { display: none; }
-      .mobile-contact-actions { display: grid; width: 100%; grid-template-columns: 1fr 1fr; }
-    }
-  
-    /* Final polished brand and responsive layout */
-    .nav {
-      min-height: 84px;
-      width: min(var(--max), calc(100% - 36px));
-      gap: 16px;
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 11px;
-      min-width: 0;
-      flex: 0 0 auto;
-    }
-
-    .brand-mark {
-      width: 56px;
-      height: auto;
-      flex: 0 0 auto;
-      object-fit: contain;
-      padding: 0;
-      border: 0;
-      border-radius: 0;
-      background: transparent;
-      box-shadow: none;
-      filter: drop-shadow(0 8px 14px rgba(0,0,0,.24));
-    }
-
-    .brand-text {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      line-height: 1;
-    }
-
-    .brand-text strong {
-      display: inline-block;
-      color: #e7e0d5;
-      background: linear-gradient(180deg, #fff 0%, #d8d0c3 46%, #9e968a 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 2px 8px rgba(0,0,0,.26);
-      font-size: 19px;
-      font-weight: 950;
-      letter-spacing: .025em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .brand-text span {
-      display: inline-block;
-      margin-top: 6px;
-      color: #ff9b32;
-      background: linear-gradient(180deg, #ffc274 0%, #f47b16 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 1px 7px rgba(233,121,25,.28);
-      font-size: 10px;
-      font-weight: 900;
-      letter-spacing: .135em;
-      text-transform: uppercase;
-      white-space: nowrap;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 2px;
-      margin-left: auto;
-    }
-
-    .nav-links a {
-      padding: 10px 10px;
-      color: rgba(255,255,255,.82);
-      font-size: 14px;
-      font-weight: 850;
-    }
-
-    .nav-cta {
-      min-height: 46px;
-      margin-left: 10px;
-      padding: 13px 18px;
-      border-radius: 10px;
-      white-space: nowrap;
-      box-shadow: 0 12px 26px rgba(245,158,11,.25);
-    }
-
-    .hero-inner {
-      grid-template-columns: minmax(0, 1.08fr) minmax(320px, 470px);
-      gap: 34px;
-      align-items: start;
-    }
-
-    .hero-visual {
-      width: 100%;
-      align-self: start;
-      justify-items: center;
-      margin-top: 4px;
-    }
-
-    .patch-card.brand-showcase {
-      position: relative;
-      width: 100%;
-      max-width: 470px;
-      padding: 0;
-      border: 0;
-      border-radius: 0;
-      background: transparent;
-      box-shadow: none;
-      backdrop-filter: none;
-      isolation: isolate;
-    }
-
-    .patch-card.brand-showcase::before {
-      content: "";
-      position: absolute;
-      inset: 17% 14% 16%;
-      z-index: -1;
-      background: radial-gradient(circle at 50% 58%, rgba(255,163,59,.13), transparent 56%);
-      filter: blur(26px);
-      opacity: .52;
-      pointer-events: none;
-    }
-
-    .patch-card.brand-showcase img {
-      display: block;
-      width: 100%;
-      max-width: 470px;
-      height: auto;
-      margin: 0 auto;
-      border-radius: 0;
-      background: transparent;
-      box-shadow: none;
-      filter: drop-shadow(0 20px 30px rgba(0,0,0,.22));
-    }
-
-    .mini-stats {
-      width: 100%;
-      max-width: 440px;
-      margin-top: 6px;
-      gap: 10px;
-    }
-
-    .mini-stat {
-      background: rgba(255,255,255,.065);
-      border: 1px solid rgba(255,255,255,.12);
-      box-shadow: 0 10px 24px rgba(0,0,0,.10);
-    }
-
-    .work-preview {
-      min-height: 205px;
-      padding: 20px;
-      align-content: stretch;
-      background: linear-gradient(145deg, #071d33 0%, #0e314f 72%, #173f5f 100%);
-    }
-
-    .site-mockup {
-      width: 100%;
-      min-height: 165px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,.18);
-      border-radius: 14px;
-      background: #fff;
-      box-shadow: 0 18px 36px rgba(0,0,0,.28);
-    }
-
-    .site-mockup-bar {
-      height: 27px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 0 10px;
-      background: #e7edf2;
-      border-bottom: 1px solid #d5dfe8;
-    }
-
-    .site-mockup-bar i {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #9aa8b5;
-    }
-
-    .site-mockup-body {
-      min-height: 138px;
-      padding: 22px;
-      display: grid;
-      align-content: end;
-      background:
-        radial-gradient(circle at 88% 18%, rgba(233,121,25,.55), transparent 25%),
-        linear-gradient(135deg, rgba(7,29,51,.98), rgba(14,49,79,.90));
-    }
-
-    .site-mockup-body strong {
-      max-width: 360px;
-      color: #fff;
-      font-size: 25px;
-      line-height: 1.05;
-    }
-
-    .site-mockup-body span {
-      margin-top: 8px;
-      color: rgba(255,255,255,.74);
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-
-    .about-side {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      background: linear-gradient(180deg, #fffaf0 0%, #f4ebdb 100%);
-    }
-
-    .about-logo {
-      width: min(180px, 100%);
-      height: auto;
-      margin: 0 auto 20px;
-      padding: 0;
-      border-radius: 0;
-      background: transparent;
-      box-shadow: none;
-      filter: drop-shadow(0 10px 16px rgba(7,29,51,.15));
-    }
 
     @media (max-width: 1100px) {
       .brand-mark { width: 52px; }
       .brand-text strong { font-size: 17px; }
       .brand-text span { font-size: 9px; letter-spacing: .11em; }
-      .hero-inner { grid-template-columns: minmax(0, 1fr) minmax(300px, 420px); gap: 28px; }
-      .patch-card.brand-showcase, .patch-card.brand-showcase img { max-width: 420px; }
+      .hero-inner { grid-template-columns: minmax(0,1fr) minmax(300px,420px); gap: 28px; }
+      .brand-showcase, .brand-showcase img { max-width: 420px; }
       .mini-stats { max-width: 400px; }
     }
-
     @media (max-width: 950px) {
-      .nav { width: min(var(--max), calc(100% - 24px)); }
+      .nav { width: min(var(--max),calc(100% - 24px)); }
       .menu-toggle { display: inline-flex; }
-      .nav-links {
-        position: absolute;
-        top: 82px;
-        left: 12px;
-        right: 12px;
-        display: none;
-        padding: 10px;
-        border: 1px solid rgba(255,255,255,.12);
-        border-radius: 18px;
-        background: var(--navy);
-        box-shadow: var(--shadow-strong);
-      }
+      .nav-links { position: absolute; top: 82px; left: 12px; right: 12px; display: none; padding: 10px; border: 1px solid rgba(255,255,255,.12); border-radius: 18px; background: var(--navy); box-shadow: var(--shadow-strong); }
       .nav-links.is-open { display: grid; }
       .nav-cta { display: none; }
-      .hero-inner { grid-template-columns: 1fr; gap: 30px; padding-top: 44px; }
-      .hero-visual { margin-top: 0; }
-      .patch-card.brand-showcase, .patch-card.brand-showcase img { max-width: 390px; }
+      .hero-inner, .about-wrap, .contact-panel { grid-template-columns: 1fr; }
+      .hero-inner { gap: 30px; padding-top: 44px; }
+      .brand-showcase, .brand-showcase img { max-width: 390px; }
       .mini-stats { max-width: 390px; }
       .offer-grid, .pricing-grid, .process-grid { grid-template-columns: 1fr; }
       .price-card.featured { transform: none; }
-      .about-wrap, .contact-panel { grid-template-columns: 1fr; }
     }
-
     @media (max-width: 650px) {
       .nav { min-height: 74px; }
       .brand { gap: 9px; }
       .brand-mark { width: 44px; }
       .brand-text strong { font-size: 15px; }
       .brand-text span { margin-top: 4px; font-size: 8px; letter-spacing: .08em; }
-      .hero-inner { padding-top: 32px; padding-bottom: 64px; gap: 22px; }
-      .hero::after { display: none; }
-      .patch-card.brand-showcase { width: min(78vw, 320px); }
-      .patch-card.brand-showcase img { max-width: 320px; }
-      .hero-visual, .mini-stats { position: relative; z-index: 3; }
-      .mini-stats { width: min(100%, 340px); margin-bottom: 0; }
-      .mini-stat { background: #06182b; border-color: rgba(255,255,255,.24); box-shadow: 0 12px 28px rgba(0,0,0,.24); }
-      .mini-stat strong, .mini-stat span { color: #fff; }
+      h1 { font-size: clamp(42px,14vw,62px); }
+      .hero-inner { padding-top: 32px; gap: 22px; }
+      .button, .hero-actions { width: 100%; }
+      .brand-showcase { width: min(78vw,320px); }
+      .brand-showcase img { max-width: 320px; }
+      .mini-stats, .work-grid { width: min(100%,340px); grid-template-columns: 1fr; }
+      .section { padding: 58px 0; }
+      .card, .price-card, .work-body, .about-side, .about-copy, .contact-panel { padding: 21px; }
       .work-preview { min-height: 180px; padding: 14px; }
       .site-mockup { min-height: 150px; }
       .site-mockup-body { min-height: 123px; padding: 18px; }
       .site-mockup-body strong { font-size: 21px; }
-      .about-logo { width: min(150px, 100%); }
+      .about-logo { width: min(150px,100%); }
       .desktop-contact-action { display: none; }
       .mobile-contact-actions { display: grid; width: 100%; grid-template-columns: 1fr 1fr; }
     }
-
   </style>
 
   <!-- Microsoft Clarity -->
@@ -826,9 +444,7 @@
           </ul>
         </div>
         <div class="hero-visual" aria-label="Inselman Digital logo and highlights">
-          <div class="patch-card brand-showcase">
-            <img src="assets/hero-emblem-full.png" alt="Inselman Digital brand logo">
-          </div>
+          <div class="brand-showcase"><img src="assets/hero-emblem-full.png" alt="Inselman Digital brand logo"></div>
           <div class="mini-stats" aria-label="Highlights">
             <div class="mini-stat"><strong>Fast</strong><span>Mobile-first sites</span></div>
             <div class="mini-stat"><strong>Local</strong><span>Google focused</span></div>
@@ -845,42 +461,30 @@
         <p>I focus on the basics that actually matter: a professional first impression, clear service information, easy contact buttons, and a Google presence that helps local customers find you.</p>
       </div>
       <div class="grid offer-grid">
-        <article class="card">
-          <div class="card-kicker">01</div>
-          <h3>Simple Business Websites</h3>
-          <p>Clean one-page or small websites with service info, photos, trust points, and call/text buttons that work great on mobile.</p>
-        </article>
-        <article class="card">
-          <div class="card-kicker">02</div>
-          <h3>Google + Local SEO</h3>
-          <p>Google Business Profile setup or cleanup with services, business descriptions, photos, service areas, contact info, and basic local SEO.</p>
-        </article>
-        <article class="card">
-          <div class="card-kicker">03</div>
-          <h3>Managed Support</h3>
-          <p>Hosting, small updates, analytics checks, and simple monthly reports for owners who do not want to mess with the backend.</p>
-        </article>
+        <article class="card"><span class="card-kicker">01</span><h3>Simple Business Websites</h3><p>Clean one-page or small websites with service info, photos, trust points, and call/text buttons that work great on mobile.</p></article>
+        <article class="card"><span class="card-kicker">02</span><h3>Google + Local SEO</h3><p>Google Business Profile setup or cleanup with services, business descriptions, photos, service areas, contact info, and basic local SEO.</p></article>
+        <article class="card"><span class="card-kicker">03</span><h3>Managed Support</h3><p>Hosting, small updates, analytics checks, and simple monthly reports for owners who do not want to mess with the backend.</p></article>
       </div>
     </section>
 
-    <section class="band">
-      <div class="section">
+    <div class="band">
+      <section class="section">
         <div class="section-header">
           <p class="eyebrow">How It Works</p>
           <h2>A simple build process from start to launch.</h2>
           <p>No giant meetings, no confusing dashboards, and no mystery pricing. You send the details, I organize the message, and we get your business looking professional online.</p>
         </div>
         <div class="grid process-grid">
-          <article class="card process-card"><div class="card-kicker">1</div><h3>Gather</h3><p>Business name, services, service area, photos, logo, and the best phone or email for customers.</p></article>
-          <article class="card process-card"><div class="card-kicker">2</div><h3>Build</h3><p>I write the structure, design the page, set up contact buttons, and make it work cleanly on phones.</p></article>
-          <article class="card process-card"><div class="card-kicker">3</div><h3>Launch</h3><p>We connect your domain, publish the site, and get your basic Google tools pointed the right direction.</p></article>
-          <article class="card process-card"><div class="card-kicker">4</div><h3>Maintain</h3><p>Choose the managed plan if you want hosting, small updates, and monthly performance reports handled.</p></article>
+          <article class="card process-card"><span class="card-kicker">1</span><h3>Gather</h3><p>Business name, services, service area, photos, logo, and the best phone or email for customers.</p></article>
+          <article class="card process-card"><span class="card-kicker">2</span><h3>Build</h3><p>I write the structure, design the page, set up contact buttons, and make it work cleanly on phones.</p></article>
+          <article class="card process-card"><span class="card-kicker">3</span><h3>Launch</h3><p>We connect your domain, publish the site, and get your basic Google tools pointed the right direction.</p></article>
+          <article class="card process-card"><span class="card-kicker">4</span><h3>Maintain</h3><p>Choose the managed plan if you want hosting, small updates, and monthly performance reports handled.</p></article>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
 
-    <section class="pricing-section" id="pricing">
-      <div class="section">
+    <div class="pricing-section" id="pricing">
+      <section class="section">
         <div class="section-header">
           <p class="eyebrow">Pricing</p>
           <h2>Simple. Professional. Clear.</h2>
@@ -932,11 +536,11 @@
         </div>
         <p class="pricing-note">Need something different? Every business is unique. Contact me for a custom quote.</p>
         <div class="why-prices">
-          <h3>Why My Prices Are Lower</h3>
-          <p>I am a fellow small business owner, not a large marketing agency with a big payroll and bloated packages. I build websites in the evenings and focus on giving hardworking local businesses a professional online presence without charging agency prices. The goal is not to be the cheapest option. It is to give you real value, honest guidance, and personal service from someone who understands what it takes to earn local customers.</p>
+          <h3>Why My Prices Make Sense</h3>
+          <p>Inselman Digital operates with low overhead and without the bloated costs of a large agency. That allows me to provide professional websites, honest guidance and personal service at prices designed for hardworking local businesses.</p>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
 
     <section class="section" id="work">
       <div class="section-header">
@@ -946,40 +550,19 @@
       </div>
       <div class="grid work-grid">
         <article class="work-card">
-          <div class="work-preview">
-            <div class="site-mockup" aria-hidden="true">
-              <div class="site-mockup-bar"><i></i><i></i><i></i></div>
-              <div class="site-mockup-body"><strong>CarPET Friendly Solutions</strong><span>Local service website</span></div>
-            </div>
-          </div>
-          <div class="work-body">
-            <h3>CarPET Friendly Solutions</h3>
-            <p>A local carpet cleaning website built to explain services clearly, show proof, and make booking easy from a phone.</p>
-            <a class="text-link" href="https://carpetfriendlysolutions.com/" target="_blank" rel="noopener">View example</a>
-          </div>
+          <div class="work-preview"><div class="site-mockup" aria-hidden="true"><div class="site-mockup-bar"><i></i><i></i><i></i></div><div class="site-mockup-body"><strong>CarPET Friendly Solutions</strong><span>Local service website</span></div></div></div>
+          <div class="work-body"><h3>CarPET Friendly Solutions</h3><p>A local carpet cleaning website built to explain services clearly, show proof, and make booking easy from a phone.</p><a class="text-link" href="https://carpetfriendlysolutions.com/" target="_blank" rel="noopener">View example</a></div>
         </article>
         <article class="work-card">
-          <div class="work-preview">
-            <div class="site-mockup" aria-hidden="true">
-              <div class="site-mockup-bar"><i></i><i></i><i></i></div>
-              <div class="site-mockup-body"><strong>Silverback Spray Foam</strong><span>Website in progress</span></div>
-            </div>
-          </div>
-          <div class="work-body">
-            <h3>Silverback Spray Foam</h3>
-            <p>This spray foam contractor website is currently under construction and will be added here when it goes live.</p>
-            <span class="text-link">Website Currently Under Construction</span>
-          </div>
+          <div class="work-preview"><div class="site-mockup" aria-hidden="true"><div class="site-mockup-bar"><i></i><i></i><i></i></div><div class="site-mockup-body"><strong>Silverback Spray Foam</strong><span>Website in progress</span></div></div></div>
+          <div class="work-body"><h3>Silverback Spray Foam</h3><p>This spray foam contractor website is currently under construction and will be added here when it goes live.</p><span class="text-link">Website Currently Under Construction</span></div>
         </article>
       </div>
     </section>
 
     <section class="section" id="about">
       <div class="about-wrap">
-        <div class="about-side">
-          <img class="about-logo" src="assets/about-emblem-full.png" alt="Inselman Digital brand logo">
-          <strong>Built by a small business owner.</strong>
-        </div>
+        <div class="about-side"><img class="about-logo" src="assets/about-emblem-full.png" alt="Inselman Digital brand logo"><strong>Built by a small business owner.</strong></div>
         <div class="about-copy">
           <p>I am not a big marketing agency. I am a small business owner too, so I understand what actually matters: customers need to find you, trust you, and know how to reach you fast.</p>
           <p>Inselman Digital is built for owners who want their online presence handled clearly and practically. Clean website, clear message, solid Google setup, and simple updates when you need them.</p>
@@ -990,10 +573,7 @@
 
     <section class="section contact" id="contact">
       <div class="contact-panel">
-        <div>
-          <h2>Ready to look professional online?</h2>
-          <p>Send me your business name, services, service area, and a few photos. I will help you figure out the simplest way to get online and start getting found.</p>
-        </div>
+        <div><h2>Ready to look professional online?</h2><p>Send me your business name, services, service area, and a few photos. I will help you figure out the simplest way to get online and start getting found.</p></div>
         <div class="contact-actions">
           <button class="button button-primary desktop-contact-action" type="button" data-contact-open>Contact Now</button>
           <div class="contact-actions mobile-contact-actions">
@@ -1010,16 +590,14 @@
       <h3 id="contactModalTitle">Let's build your online presence.</h3>
       <p>Email me your business info or call/text me directly. I will keep it simple and help you figure out the right next step.</p>
       <div class="contact-modal-links">
-        <a class="button button-primary" href="mailto:wjinselman@gmail.com">Email wjinselman@gmail.com</a>
+        <a class="button button-primary" href="mailto:william@inselmandigital.com">Email william@inselmandigital.com</a>
         <a class="button button-light" href="tel:+15804654804">Call 580-465-4804</a>
       </div>
       <button class="button contact-modal-close" type="button" data-contact-close>Close</button>
     </div>
   </div>
 
-  <footer>
-    <strong>Inselman Digital</strong> | Building Your Online Presence | Websites • Google • Local SEO
-  </footer>
+  <footer><strong>Inselman Digital</strong> | Building Your Online Presence | Websites • Google • Local SEO</footer>
 
   <script>
     const menuButton = document.querySelector(".menu-toggle");
@@ -1040,43 +618,33 @@
     document.querySelectorAll("[data-sms-link]").forEach((smsLink) => {
       const phone = smsLink.dataset.phone || "+15804654804";
       const message = encodeURIComponent(smsLink.dataset.smsMessage || "");
-      const isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent) ||
-        (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
-      const smsUrl = `sms:${phone}${isiOS ? "&" : "?"}body=${message}`;
-
-      smsLink.href = smsUrl;
-      smsLink.addEventListener("click", (event) => {
-        event.preventDefault();
-        window.location.href = smsUrl;
-      });
+      const isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+      smsLink.href = `sms:${phone}${isiOS ? "&" : "?"}body=${message}`;
     });
 
     const contactModal = document.querySelector("#contactModal");
     const openContactButtons = document.querySelectorAll("[data-contact-open]");
     const closeContactButtons = document.querySelectorAll("[data-contact-close]");
-    openContactButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        contactModal.classList.add("is-open");
-        contactModal.setAttribute("aria-hidden", "false");
-      });
-    });
-    closeContactButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        contactModal.classList.remove("is-open");
-        contactModal.setAttribute("aria-hidden", "true");
-      });
-    });
-    contactModal.addEventListener("click", (event) => {
-      if (event.target === contactModal) {
-        contactModal.classList.remove("is-open");
-        contactModal.setAttribute("aria-hidden", "true");
-      }
+    const openModal = () => {
+      if (!contactModal) return;
+      contactModal.classList.add("is-open");
+      contactModal.setAttribute("aria-hidden", "false");
+    };
+    const closeModal = () => {
+      if (!contactModal) return;
+      contactModal.classList.remove("is-open");
+      contactModal.setAttribute("aria-hidden", "true");
+    };
+    openContactButtons.forEach((button) => button.addEventListener("click", (event) => {
+      event.preventDefault();
+      openModal();
+    }));
+    closeContactButtons.forEach((button) => button.addEventListener("click", closeModal));
+    contactModal?.addEventListener("click", (event) => {
+      if (event.target === contactModal) closeModal();
     });
     document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && contactModal.classList.contains("is-open")) {
-        contactModal.classList.remove("is-open");
-        contactModal.setAttribute("aria-hidden", "true");
-      }
+      if (event.key === "Escape") closeModal();
     });
   </script>
 </body>
