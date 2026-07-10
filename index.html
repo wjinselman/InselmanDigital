@@ -347,7 +347,36 @@
     .contact-modal-card h3 { margin-bottom: 8px; font-size: 30px; letter-spacing: -.035em; }
     .contact-modal-card p { margin-bottom: 18px; color: var(--muted); }
     .contact-modal-links { display: grid; gap: 10px; }
-    .contact-modal-close { width: 100%; margin-top: 12px; background: transparent; color: var(--muted); box-shadow: none; }
+    .contact-copy-row {
+      display: grid;
+      grid-template-columns: minmax(0,1fr) auto;
+      gap: 14px;
+      align-items: center;
+      padding: 15px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--soft);
+    }
+    .contact-copy-row span {
+      display: block;
+      margin-bottom: 3px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .contact-copy-row strong {
+      display: block;
+      overflow-wrap: anywhere;
+      color: var(--navy);
+      font-size: 17px;
+      line-height: 1.25;
+    }
+    .contact-copy-row .button { min-height: 44px; padding: 11px 15px; white-space: nowrap; }
+    .copy-feedback { min-height: 24px; margin: 12px 0 0 !important; color: var(--blue) !important; font-size: 14px; font-weight: 850; text-align: center; }
+    .contact-modal-close { width: 100%; margin-top: 4px; background: transparent; color: var(--muted); box-shadow: none; }
+    body.modal-open { overflow: hidden; }
     footer { padding: 30px 16px; color: rgba(255,255,255,.72); background: #061626; text-align: center; font-weight: 750; }
     footer strong { color: #fff; }
 
@@ -395,6 +424,8 @@
       .about-logo { width: min(150px,100%); }
       .desktop-contact-action { display: none; }
       .mobile-contact-actions { display: grid; width: 100%; grid-template-columns: 1fr 1fr; }
+      .contact-copy-row { grid-template-columns: 1fr; }
+      .contact-copy-row .button { width: 100%; }
     }
   </style>
 
@@ -588,13 +619,20 @@
   </main>
 
   <div class="contact-modal" id="contactModal" aria-hidden="true">
-    <div class="contact-modal-card" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle">
+    <div class="contact-modal-card" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle" aria-describedby="contactModalDescription">
       <h3 id="contactModalTitle">Let's build your online presence.</h3>
-      <p>Email me your business info or call/text me directly. I will keep it simple and help you figure out the right next step.</p>
+      <p id="contactModalDescription">Copy my phone number or email address below, then contact me through the app you already use. No Windows app-selection prompt.</p>
       <div class="contact-modal-links">
-        <a class="button button-primary" href="mailto:william@inselmandigital.com">Email william@inselmandigital.com</a>
-        <a class="button button-light" href="tel:+15804654804">Call 580-465-4804</a>
+        <div class="contact-copy-row">
+          <div><span>Call or text</span><strong>580-465-4804</strong></div>
+          <button class="button button-primary" type="button" data-copy-value="580-465-4804" data-copy-name="Phone number">Copy Number</button>
+        </div>
+        <div class="contact-copy-row">
+          <div><span>Email</span><strong>william@inselmandigital.com</strong></div>
+          <button class="button button-light" type="button" data-copy-value="william@inselmandigital.com" data-copy-name="Email address">Copy Email</button>
+        </div>
       </div>
+      <p class="copy-feedback" id="copyFeedback" role="status" aria-live="polite"></p>
       <button class="button contact-modal-close" type="button" data-contact-close>Close</button>
     </div>
   </div>
@@ -627,20 +665,73 @@
     const contactModal = document.querySelector("#contactModal");
     const openContactButtons = document.querySelectorAll("[data-contact-open]");
     const closeContactButtons = document.querySelectorAll("[data-contact-close]");
+    const copyButtons = document.querySelectorAll("[data-copy-value]");
+    const copyFeedback = document.querySelector("#copyFeedback");
+    let lastFocusedElement = null;
+
     const openModal = () => {
       if (!contactModal) return;
+      lastFocusedElement = document.activeElement;
       contactModal.classList.add("is-open");
       contactModal.setAttribute("aria-hidden", "false");
+      document.body.classList.add("modal-open");
+      contactModal.querySelector("[data-copy-value]")?.focus();
     };
+
     const closeModal = () => {
       if (!contactModal) return;
       contactModal.classList.remove("is-open");
       contactModal.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("modal-open");
+      if (copyFeedback) copyFeedback.textContent = "";
+      lastFocusedElement?.focus?.();
     };
+
+    const copyToClipboard = async (value) => {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(value);
+        return;
+      }
+      const textArea = document.createElement("textarea");
+      textArea.value = value;
+      textArea.setAttribute("readonly", "");
+      textArea.style.position = "fixed";
+      textArea.style.opacity = "0";
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand("copy");
+      textArea.remove();
+    };
+
     openContactButtons.forEach((button) => button.addEventListener("click", (event) => {
       event.preventDefault();
       openModal();
     }));
+
+    copyButtons.forEach((button) => button.addEventListener("click", async () => {
+      const originalLabel = button.textContent;
+      const itemName = button.dataset.copyName || "Contact information";
+      try {
+        await copyToClipboard(button.dataset.copyValue || "");
+        button.textContent = "Copied!";
+        if (copyFeedback) copyFeedback.textContent = `${itemName} copied to your clipboard.`;
+      } catch (error) {
+        if (copyFeedback) copyFeedback.textContent = `Please select and copy the ${itemName.toLowerCase()} shown above.`;
+      }
+      window.setTimeout(() => { button.textContent = originalLabel; }, 1800);
+    }));
+
+    // Desktop computers should never be sent to Windows' phone/text app chooser.
+    // Mobile devices keep their normal native Call and Text behavior.
+    document.addEventListener("click", (event) => {
+      const contactLink = event.target.closest('a[href^="tel:"], a[href^="sms:"]');
+      const desktopPointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+      if (contactLink && desktopPointer) {
+        event.preventDefault();
+        openModal();
+      }
+    });
+
     closeContactButtons.forEach((button) => button.addEventListener("click", closeModal));
     contactModal?.addEventListener("click", (event) => {
       if (event.target === contactModal) closeModal();
