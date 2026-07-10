@@ -373,6 +373,8 @@
       .price-card.featured { transform: none; }
     }
     @media (max-width: 650px) {
+      /* Keep the stacked Fast / Local / Simple cards above the angled white transition. */
+      .hero::after { bottom: -230px; }
       .nav { min-height: 74px; }
       .brand { gap: 9px; }
       .brand-mark { width: 44px; }
