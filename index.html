@@ -308,6 +308,30 @@
     .featured li { color: var(--muted); }
     .price-card li::before { content: ""; width: 8px; height: 8px; margin-top: 9px; border-radius: 50%; background: var(--orange-2); }
     .pricing-note { margin: 24px 0 0; color: rgba(255,255,255,.84); font-size: 17px; font-weight: 750; text-align: center; }
+    .package-terms {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .package-terms div {
+      padding: 19px 20px;
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 15px;
+      background: rgba(255,255,255,.06);
+    }
+    .package-terms strong {
+      display: block;
+      margin-bottom: 5px;
+      color: #fff;
+      font-size: 15px;
+    }
+    .package-terms span {
+      display: block;
+      color: rgba(255,255,255,.76);
+      font-size: 14px;
+      line-height: 1.55;
+    }
     .why-prices { margin-top: 28px; padding: 28px; border: 1px solid rgba(255,255,255,.16); border-radius: var(--radius); background: rgba(255,255,255,.08); }
     .why-prices h3 { margin-bottom: 10px; color: #fff; font-size: clamp(26px,3vw,38px); letter-spacing: -.035em; }
     .why-prices p { max-width: 940px; margin-bottom: 0; color: rgba(255,255,255,.84); font-size: 18px; font-weight: 650; }
@@ -398,7 +422,7 @@
       .hero-inner { gap: 30px; padding-top: 44px; }
       .brand-showcase, .brand-showcase img { max-width: 390px; }
       .mini-stats { max-width: 390px; }
-      .offer-grid, .pricing-grid, .process-grid { grid-template-columns: 1fr; }
+      .offer-grid, .pricing-grid, .process-grid, .package-terms { grid-template-columns: 1fr; }
       .price-card.featured { transform: none; }
     }
     @media (max-width: 650px) {
@@ -437,6 +461,21 @@
       y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "xjyb7pg6fq");
   </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Inselman Digital",
+    "url": "https://inselmandigital.com/",
+    "telephone": "+1-580-465-4804",
+    "email": "william@inselmandigital.com",
+    "description": "Professional small-business websites, Google Business Profile setup, local SEO foundations, managed hosting, and analytics reporting.",
+    "areaServed": "Oklahoma",
+    "priceRange": "$795+"
+  }
+  </script>
+
 </head>
 
 <body>
@@ -465,7 +504,7 @@
           <p class="eyebrow">Websites • Google • Local SEO</p>
           <h1 id="heroTitle">Websites Built for Hardworking Small Businesses</h1>
           <p class="hero-tagline">Building Your Online Presence.</p>
-          <p class="lead">Inselman Digital builds clean websites, optimized Google Business Profiles, local SEO, hosting, and simple reporting for hardworking small businesses that need to look professional, get found, and make the phone ring.</p>
+          <p class="lead">Inselman Digital builds clean websites, optimized Google Business Profiles, local SEO foundations, hosting, and straightforward reporting for small businesses that need to look professional, be easier to find, and turn more visitors into calls.</p>
           <div class="hero-actions">
             <a class="button button-primary" href="#work">View My Work</a>
             <a class="button button-secondary" href="#pricing">See Pricing</a>
@@ -495,8 +534,8 @@
       </div>
       <div class="grid offer-grid">
         <article class="card"><span class="card-kicker">01</span><h3>Simple Business Websites</h3><p>Clean one-page or small websites with service info, photos, trust points, and call/text buttons that work great on mobile.</p></article>
-        <article class="card"><span class="card-kicker">02</span><h3>Google + Local SEO</h3><p>Google Business Profile setup or cleanup with services, business descriptions, photos, service areas, contact info, and basic local SEO.</p></article>
-        <article class="card"><span class="card-kicker">03</span><h3>Managed Support</h3><p>Hosting, small updates, analytics checks, and simple monthly reports for owners who do not want to mess with the backend.</p></article>
+        <article class="card"><span class="card-kicker">02</span><h3>Google + Local SEO</h3><p>Google Business Profile setup or cleanup with accurate services, descriptions, photos, service areas, contact details, and local search foundations.</p></article>
+        <article class="card"><span class="card-kicker">03</span><h3>Managed Support</h3><p>Managed hosting, defined small updates, uptime checks, backups, and monthly analytics summaries for owners who do not want to manage the website themselves.</p></article>
       </div>
     </section>
 
@@ -555,19 +594,25 @@
           <article class="price-card">
             <p class="tier">Tier 3</p>
             <h3>Managed Growth</h3>
-            <div class="price">$1,495 Setup <small>+ $59/month</small></div>
+            <div class="price">$1,495 Setup <small>+ $99/month</small></div>
             <ul>
               <li>Everything in Business Growth</li>
-              <li>Website hosting</li>
-              <li>Security monitoring</li>
-              <li>Backups and maintenance</li>
-              <li>Reasonable small text and image updates</li>
-              <li>Monthly analytics report with traffic, clicks, and performance</li>
-              <li>Priority support</li>
+              <li>Managed website hosting and SSL</li>
+              <li>Uptime checks and site-file backups</li>
+              <li>Routine technical maintenance</li>
+              <li>Up to 30 minutes of small text or image updates each month</li>
+              <li>Monthly analytics summary covering traffic, calls, texts, and popular pages</li>
+              <li>Priority email and text support</li>
             </ul>
           </article>
         </div>
         <p class="pricing-note">Need something different? Every business is unique. Contact me for a custom quote.</p>
+        <div class="package-terms" aria-label="Package details">
+          <div><strong>Clear project scope</strong><span>Standard packages cover a focused small-business website of up to five core pages or an equivalent one-page layout. Larger sites and advanced features are quoted separately.</span></div>
+          <div><strong>Two revision rounds</strong><span>Each build includes two organized rounds of revisions before launch. Additional redesigns or new scope are billed separately.</span></div>
+          <div><strong>Ownership and expenses</strong><span>You own the finished website after the project balance is paid. Domain registration, paid software, advertising spend, professional photography, and third-party fees are not included unless listed in writing.</span></div>
+          <div><strong>Payment schedule</strong><span>A 50% deposit reserves the project and the remaining balance is due before launch. Managed service is billed monthly and may be canceled before the next billing period.</span></div>
+        </div>
         <div class="why-prices">
           <h3>Why My Prices Make Sense</h3>
           <p>Inselman Digital operates with low overhead and without the bloated costs of a large agency. That allows me to provide professional websites, honest guidance and personal service at prices designed for hardworking local businesses.</p>
@@ -637,7 +682,7 @@
     </div>
   </div>
 
-  <footer><strong>Inselman Digital</strong> | Building Your Online Presence | Websites • Google • Local SEO</footer>
+  <footer>© 2026 <strong>Inselman Digital</strong> · Ardmore, Oklahoma · <a href="tel:+15804654804">580-465-4804</a> · <a href="mailto:william@inselmandigital.com">william@inselmandigital.com</a><br>Websites • Google Business Profiles • Local SEO Foundations</footer>
 
   <script>
     const menuButton = document.querySelector(".menu-toggle");
