@@ -452,6 +452,32 @@
     footer { padding: 30px 16px; color: rgba(255,255,255,.72); background: #061626; text-align: center; font-weight: 750; }
     footer strong { color: #fff; }
 
+
+    /* Premium refinement: cleaner hierarchy, less template-like, more editorial */
+    .hero-inner { align-items: center; padding-top: 92px; }
+    .hero-copy { max-width: 760px; }
+    .hero-tagline { max-width: 650px; font-size: clamp(19px,2vw,25px); font-weight: 800; color: rgba(255,255,255,.82); }
+    .lead { max-width: 690px; font-size: clamp(17px,1.7vw,20px); line-height: 1.65; color: rgba(255,255,255,.78); }
+    .hero-points { grid-template-columns: repeat(3,minmax(0,1fr)); gap: 0; padding: 0; border: 1px solid rgba(255,255,255,.14); border-left: 1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.055); backdrop-filter: blur(10px); }
+    .hero-points li { display: block; padding: 18px 20px; font-size: 14px; line-height: 1.45; }
+    .hero-points li + li { border-left: 1px solid rgba(255,255,255,.12); }
+    .hero-points li::before { display: none; }
+    .proof-strip { grid-template-columns: 1fr 1fr; max-width: 920px; }
+    .proof-item { justify-content: center; }
+    .section-header { margin-bottom: 40px; }
+    .section-header p { max-width: 720px; }
+    .offer-grid .card, .process-grid .card { box-shadow: none; background: transparent; border-color: rgba(7,29,51,.10); }
+    .offer-grid .card::before, .process-grid .card::before { height: 2px; opacity: .75; }
+    .work-card { border-radius: 24px; }
+    .work-preview { min-height: 250px; padding: 26px; }
+    .site-mockup { transform: perspective(1000px) rotateX(.8deg); }
+    .google-review-panel { margin-bottom: 26px; border-radius: 24px; background: linear-gradient(135deg,#fffaf2 0%,#fff 72%); box-shadow: 0 16px 42px rgba(7,29,51,.08); }
+    .about-copy { box-shadow: 0 18px 50px rgba(7,29,51,.08); }
+    .contact-panel { box-shadow: 0 24px 65px rgba(7,29,51,.18); }
+    .button { letter-spacing: -.01em; }
+    .button-outline { background: transparent; border: 1px solid rgba(7,29,51,.18); color: var(--navy); }
+    .button-outline:hover { background: var(--soft); }
+
     @media (max-width: 1100px) {
       .brand-mark { width: 52px; }
       .brand-text strong { font-size: 17px; }
@@ -470,8 +496,9 @@
       .hero-inner { gap: 30px; padding-top: 44px; }
       .brand-showcase, .brand-showcase img { max-width: 390px; }
       .mini-stats { max-width: 390px; }
-      .offer-grid, .pricing-grid, .process-grid, .package-terms, .proof-strip { grid-template-columns: 1fr; }
+      .offer-grid, .pricing-grid, .process-grid, .package-terms, .proof-strip, .hero-points { grid-template-columns: 1fr; }
       .proof-item + .proof-item { border-left: 0; border-top: 1px solid var(--line); }
+      .hero-points li + li { border-left: 0; border-top: 1px solid rgba(255,255,255,.12); }
       .price-card.featured { transform: none; }
     }
     @media (max-width: 650px) {
@@ -554,19 +581,19 @@
   <main id="top">
     <section class="hero" aria-labelledby="heroTitle">
       <div class="hero-inner">
-        <div>
+        <div class="hero-copy">
           <p class="eyebrow">Websites • Google • Local SEO</p>
-          <h1 id="heroTitle">Websites Built for Hardworking Small Businesses</h1>
-          <p class="hero-tagline">Building Your Online Presence.</p>
-          <p class="lead">Professional websites and Google setup for local businesses that need to look credible, get found, and turn more visitors into calls.</p>
+          <h1 id="heroTitle">Look established. Get found. Win more local work.</h1>
+          <p class="hero-tagline">Professional websites and Google foundations built for hardworking small businesses.</p>
+          <p class="lead">Inselman Digital gives local service companies a clear, trustworthy online presence designed to turn more visitors into calls, texts, and real customers.</p>
           <div class="hero-actions">
             <a class="button button-primary" href="#work" data-event="hero_view_work">See Real Results</a>
             <a class="button button-secondary" href="#contact" data-contact-open data-event="hero_free_quote">Get a Free Quote</a>
           </div>
-          <ul class="hero-points" aria-label="Who this is for">
-            <li>Made for contractors, carpet cleaners, roofers, plumbers, electricians, landscapers, spray foam companies, and local service pros.</li>
-            <li>Clear wording, strong calls-to-action, fast mobile layout, and no confusing tech talk.</li>
-            <li>Built by a small business owner who understands that the goal is simple: look legit, get found, and make the phone ring.</li>
+          <ul class="hero-points" aria-label="Core advantages">
+            <li><strong>Built for local service businesses</strong><br>Contractors, cleaners, trades, and hands-on companies.</li>
+            <li><strong>Designed to convert</strong><br>Clear wording, fast mobile layouts, and strong calls to action.</li>
+            <li><strong>Personal, practical service</strong><br>No agency maze, confusing dashboards, or unnecessary fluff.</li>
           </ul>
         </div>
         <div class="hero-visual" aria-label="Inselman Digital logo and highlights">
@@ -581,9 +608,8 @@
     </section>
 
     <aside class="proof-strip" aria-label="Business proof">
-      <div class="proof-item"><span class="proof-icon">01</span><div><strong>Built for a real local business</strong><span>Not a template-only demo project</span></div></div>
-      <div class="proof-item"><span class="proof-icon">02</span><div><strong><a href="https://carpetfriendlysolutions.com/" target="_blank" rel="noopener" data-event="proof_live_site">View the live website</a></strong><span>See the finished work in action</span></div></div>
-      <div class="proof-item"><span class="proof-icon">★</span><div><strong><a href="https://g.page/r/Cdd84dVuUOiGEAE/review" target="_blank" rel="noopener" data-event="inselman_google_profile">View Inselman Digital on Google</a></strong><span>Read our Google review and view the business profile</span></div></div>
+      <div class="proof-item"><span class="proof-icon">01</span><div><strong>Real local-business experience</strong><span>Built by an owner who understands what makes the phone ring</span></div></div>
+      <div class="proof-item"><span class="proof-icon">02</span><div><strong><a href="https://carpetfriendlysolutions.com/" target="_blank" rel="noopener" data-event="proof_live_site">View a live client website</a></strong><span>See the finished work operating in the real world</span></div></div>
     </aside>
 
     <section class="section" id="offer">
@@ -683,7 +709,7 @@
     <section class="section" id="work">
       <div class="section-header">
         <p class="eyebrow">Work</p>
-        <h2>Professional work built to earn trust and generate calls.</h2>
+        <h2>Work that makes a small business look established.</h2>
         <p>Real small-business projects designed around clear messaging, mobile performance, local visibility, and simple ways for customers to take action.</p>
       </div>
       <aside class="google-review-panel" aria-label="Inselman Digital Google reviews">
@@ -693,7 +719,7 @@
           <p>Visit the official Inselman Digital Google profile to read our latest review and verify the business.</p>
         </div>
         <div class="google-review-actions">
-          <a class="button button-primary" href="https://g.page/r/Cdd84dVuUOiGEAE" target="_blank" rel="noopener" data-event="inselman_google_reviews">Read Google Reviews</a>
+          <a class="button button-primary" href="https://g.page/r/Cdd84dVuUOiGEAE" target="_blank" rel="noopener" data-event="inselman_google_reviews">View Reviews on Google</a>
           <a class="button button-outline" href="https://g.page/r/Cdd84dVuUOiGEAE/review" target="_blank" rel="noopener" data-event="inselman_leave_review">Leave a Review</a>
         </div>
       </aside>
