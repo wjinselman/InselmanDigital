@@ -344,6 +344,35 @@
     .why-prices h3 { margin-bottom: 10px; color: #fff; font-size: clamp(26px,3vw,38px); letter-spacing: -.035em; }
     .why-prices p { max-width: 940px; margin-bottom: 0; color: rgba(255,255,255,.84); font-size: 18px; font-weight: 650; }
 
+
+    .google-review-panel {
+      margin: 0 0 24px;
+      padding: 24px 26px;
+      display: grid;
+      grid-template-columns: auto minmax(0,1fr) auto;
+      gap: 18px;
+      align-items: center;
+      border: 1px solid rgba(31,90,134,.2);
+      border-radius: var(--radius);
+      background: linear-gradient(135deg,#fff 0%,#f7fafc 100%);
+      box-shadow: 0 14px 36px rgba(7,29,51,.08);
+    }
+    .google-review-icon {
+      width: 54px;
+      height: 54px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      color: #fff;
+      background: linear-gradient(135deg,var(--orange),var(--orange-2));
+      box-shadow: 0 12px 24px rgba(233,121,25,.24);
+      font-size: 27px;
+      line-height: 1;
+    }
+    .google-review-copy h3 { margin: 0 0 5px; color: var(--navy); font-size: 23px; }
+    .google-review-copy p { margin: 0; color: var(--muted); font-weight: 650; }
+    .google-review-actions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-end; }
+
     .work-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
     .work-card { overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper); box-shadow: 0 14px 34px rgba(7,29,51,.07); }
     .work-preview { min-height: 205px; padding: 20px; display: grid; align-content: stretch; background: linear-gradient(145deg,#071d33 0%,#0e314f 72%,#173f5f 100%); }
@@ -460,6 +489,10 @@
       .brand-showcase { width: min(78vw,320px); }
       .brand-showcase img { max-width: 320px; }
       .mini-stats, .work-grid { width: min(100%,340px); grid-template-columns: 1fr; }
+      .google-review-panel { grid-template-columns: 1fr; text-align: center; justify-items: center; padding: 22px; }
+      .google-review-actions { width: 100%; justify-content: center; }
+      .google-review-actions .button { width: 100%; }
+
       .section { padding: 58px 0; }
       .card, .price-card, .work-body, .about-side, .about-copy, .contact-panel { padding: 21px; }
       .work-preview { min-height: 180px; padding: 14px; }
@@ -653,6 +686,17 @@
         <h2>Professional work built to earn trust and generate calls.</h2>
         <p>Real small-business projects designed around clear messaging, mobile performance, local visibility, and simple ways for customers to take action.</p>
       </div>
+      <aside class="google-review-panel" aria-label="Inselman Digital Google reviews">
+        <div class="google-review-icon" aria-hidden="true">★</div>
+        <div class="google-review-copy">
+          <h3>See What Clients Say About Inselman Digital</h3>
+          <p>Visit the official Inselman Digital Google profile to read our latest review and verify the business.</p>
+        </div>
+        <div class="google-review-actions">
+          <a class="button button-primary" href="https://g.page/r/Cdd84dVuUOiGEAE" target="_blank" rel="noopener" data-event="inselman_google_reviews">Read Google Reviews</a>
+          <a class="button button-outline" href="https://g.page/r/Cdd84dVuUOiGEAE/review" target="_blank" rel="noopener" data-event="inselman_leave_review">Leave a Review</a>
+        </div>
+      </aside>
       <div class="grid work-grid">
         <article class="work-card">
           <div class="work-preview"><div class="site-mockup" aria-hidden="true"><div class="site-mockup-bar"><i></i><i></i><i></i></div><div class="site-mockup-body"><strong>CarPET Friendly Solutions</strong><span>Local service website</span></div></div></div>
