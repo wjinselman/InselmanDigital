@@ -104,14 +104,14 @@ body:after{content:"";position:fixed;inset:0;z-index:-5;pointer-events:none;opac
 @media(prefers-reduced-motion:reduce){.scroll-progress-pulse{display:none}}
 
 /* Dual scroll navigation: top progress + desktop section rail */
-.scroll-rail{position:fixed;right:16px;top:50%;transform:translateY(-50%);z-index:70;display:flex;align-items:center;gap:10px;padding:12px 9px;border:1px solid rgba(255,196,126,.18);border-radius:999px;background:rgba(8,10,16,.58);backdrop-filter:blur(14px);box-shadow:0 18px 44px rgba(0,0,0,.26);transition:background .25s,border-color .25s,box-shadow .25s}
+.scroll-rail{position:fixed;left:16px;top:50%;transform:translateY(-50%);z-index:70;display:flex;align-items:center;gap:10px;padding:12px 9px;border:1px solid rgba(255,196,126,.18);border-radius:999px;background:rgba(8,10,16,.58);backdrop-filter:blur(14px);box-shadow:0 18px 44px rgba(0,0,0,.26);transition:background .25s,border-color .25s,box-shadow .25s}
 .scroll-rail:hover{background:rgba(8,10,16,.88);border-color:rgba(255,196,126,.32);box-shadow:0 22px 54px rgba(0,0,0,.34),0 0 24px rgba(255,132,72,.08)}
 .scroll-rail-track{position:relative;width:2px;height:220px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden}
 .scroll-rail-fill{position:absolute;left:0;right:0;top:0;height:100%;transform-origin:top;transform:scaleY(0);background:linear-gradient(180deg,var(--gold),var(--orange),var(--cyan));box-shadow:0 0 14px rgba(255,132,72,.5)}
 .scroll-rail-nav{display:grid;gap:11px}
-.scroll-rail-link{display:flex;align-items:center;justify-content:flex-end;gap:8px;color:#b8b1aa;font-size:10px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
-.scroll-rail-link span{max-width:0;opacity:0;overflow:hidden;transform:translateX(8px);transition:max-width .25s ease,opacity .2s ease,transform .25s ease}
-.scroll-rail:hover .scroll-rail-link span{max-width:90px;opacity:1;transform:none}
+.scroll-rail-link{display:flex;align-items:center;justify-content:flex-start;gap:8px;color:#b8b1aa;font-size:10px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+.scroll-rail-link span{max-width:90px;opacity:1;overflow:visible;transform:none;transition:color .2s ease,opacity .2s ease}
+.scroll-rail-link:hover span{color:#fff}
 .scroll-rail-link i{width:8px;height:8px;border-radius:50%;border:1px solid rgba(255,196,126,.38);background:#11141b;box-shadow:0 0 0 0 rgba(255,132,72,0);transition:.22s}
 .scroll-rail-link.active{color:#fff}.scroll-rail-link.active i{background:var(--orange);border-color:var(--gold);box-shadow:0 0 16px rgba(255,132,72,.75),0 0 0 4px rgba(255,132,72,.08)}
 @media(max-width:1100px){.scroll-rail{display:none}}
