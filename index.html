@@ -103,19 +103,61 @@ body:after{content:"";position:fixed;inset:0;z-index:-5;pointer-events:none;opac
 @media(max-width:620px){.scroll-progress{height:3px}.scroll-progress-pulse{width:24px;height:6px}}
 @media(prefers-reduced-motion:reduce){.scroll-progress-pulse{display:none}}
 
-/* Dual scroll navigation: top progress + desktop section rail */
-.scroll-rail{position:fixed;left:18px;top:50%;transform:translateY(-50%);z-index:70;display:flex;align-items:center;gap:10px;padding:12px 9px;border:1px solid rgba(255,196,126,.18);border-radius:999px;background:rgba(8,10,16,.58);backdrop-filter:blur(14px);box-shadow:0 18px 44px rgba(0,0,0,.26);transition:background .25s,border-color .25s,box-shadow .25s}
-.scroll-rail:hover{background:rgba(8,10,16,.88);border-color:rgba(255,196,126,.32);box-shadow:0 22px 54px rgba(0,0,0,.34),0 0 24px rgba(255,132,72,.08)}
-.scroll-rail-track{position:relative;width:2px;height:220px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden}
-.scroll-rail-fill{position:absolute;left:0;right:0;top:0;height:100%;transform-origin:top;transform:scaleY(0);background:linear-gradient(180deg,var(--gold),var(--orange),var(--cyan));box-shadow:0 0 14px rgba(255,132,72,.5)}
-.scroll-rail-nav{display:grid;gap:11px}
-.scroll-rail-link{display:flex;align-items:center;justify-content:flex-start;gap:8px;color:#b8b1aa;font-size:10px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
-.scroll-rail-link span{max-width:90px;opacity:1;overflow:hidden;transform:none;transition:color .2s ease,text-shadow .2s ease}
-.scroll-rail-link:hover span,.scroll-rail-link.active span{color:#fff;text-shadow:0 0 16px rgba(255,132,72,.34)}
-.scroll-rail-link i{order:-1;width:8px;height:8px;border-radius:50%;border:1px solid rgba(255,196,126,.38);background:#11141b;box-shadow:0 0 0 0 rgba(255,132,72,0);transition:.22s}
-.scroll-rail-link.active{color:#fff}.scroll-rail-link.active i{background:var(--orange);border-color:var(--gold);box-shadow:0 0 16px rgba(255,132,72,.75),0 0 0 4px rgba(255,132,72,.08)}
+/* Midnight Sunset section navigator — floating light spine */
+.scroll-rail{
+  position:fixed;left:18px;top:50%;transform:translateY(-50%);z-index:70;
+  width:116px;height:286px;padding:10px 0;
+  background:transparent;border:0;border-radius:0;box-shadow:none;overflow:visible;
+  backdrop-filter:none;
+}
+.scroll-rail:before,
+.scroll-rail:after{
+  content:"";position:absolute;left:19px;width:26px;height:1px;
+  background:linear-gradient(90deg,rgba(255,196,107,.78),transparent);
+  box-shadow:0 0 10px rgba(255,132,72,.28)
+}
+.scroll-rail:before{top:2px}.scroll-rail:after{bottom:2px}
+.scroll-rail-track{
+  position:absolute;left:19px;top:14px;bottom:14px;width:2px;
+  border-radius:999px;background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.025));
+  overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,.015),0 0 18px rgba(255,132,72,.04)
+}
+.scroll-rail-fill{
+  position:absolute;inset:0;height:100%;transform-origin:top;transform:scaleY(0);
+  background:linear-gradient(180deg,var(--gold) 0%,var(--orange) 58%,var(--cyan) 100%);
+  box-shadow:0 0 14px rgba(255,132,72,.7),0 0 28px rgba(104,217,223,.14);
+  will-change:transform
+}
+.scroll-rail-nav{
+  position:relative;z-index:1;height:100%;display:flex;flex-direction:column;justify-content:space-between
+}
+.scroll-rail-link{
+  position:relative;display:grid;grid-template-columns:14px auto;align-items:center;gap:10px;
+  min-height:24px;color:#8f8a85;font-size:9px;font-weight:900;letter-spacing:.13em;
+  text-transform:uppercase;white-space:nowrap;transition:color .2s ease,transform .2s ease,filter .2s ease
+}
+.scroll-rail-link span{
+  padding:3px 6px 3px 0;border-radius:8px;opacity:.82;
+  transition:opacity .2s ease,color .2s ease,text-shadow .2s ease,background .2s ease
+}
+.scroll-rail-link i{
+  order:-1;width:6px;height:6px;border-radius:50%;justify-self:center;
+  border:1px solid rgba(255,216,174,.42);background:#0b0d12;
+  box-shadow:0 0 0 4px rgba(8,10,16,.96);transition:.22s ease
+}
+.scroll-rail-link:hover{color:#efe7df;transform:translateX(2px)}
+.scroll-rail-link:hover span{opacity:1}
+.scroll-rail-link.active{color:#fff;filter:drop-shadow(0 0 8px rgba(255,132,72,.16))}
+.scroll-rail-link.active span{
+  opacity:1;color:#fff;text-shadow:0 0 14px rgba(255,132,72,.42)
+}
+.scroll-rail-link.active i{
+  width:9px;height:9px;background:linear-gradient(135deg,var(--gold),var(--orange));
+  border-color:rgba(255,236,211,.95);
+  box-shadow:0 0 0 4px rgba(8,10,16,.97),0 0 13px rgba(255,132,72,.95),0 0 24px rgba(255,132,72,.35)
+}
 @media(max-width:1100px){.scroll-rail{display:none}}
-@media(prefers-reduced-motion:reduce){.scroll-rail,.scroll-rail-link span,.scroll-rail-link i{transition:none!important}}
+@media(prefers-reduced-motion:reduce){.scroll-rail-link,.scroll-rail-link span,.scroll-rail-link i{transition:none!important}}
 
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Inselman Digital","url":"https://inselmandigital.com/","telephone":"+1-580-465-4804","email":"william@inselmandigital.com","description":"High-impact small-business websites, Google Business Profile support, local SEO foundations, managed hosting, and analytics reporting.","areaServed":"Oklahoma","priceRange":"$795+"}</script>
