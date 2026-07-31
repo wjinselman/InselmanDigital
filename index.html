@@ -96,17 +96,44 @@ body:after{content:"";position:fixed;inset:0;z-index:-5;pointer-events:none;opac
 
 
 /* unobtrusive scroll-progress tech */
-.scroll-progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:140;pointer-events:none;background:rgba(255,255,255,.035)}
+.scroll-progress{display:none;position:fixed;top:0;left:0;right:0;height:3px;z-index:140;pointer-events:none;background:rgba(255,255,255,.035)}
 .scroll-progress-bar{display:block;width:100%;height:100%;transform:scaleX(0);transform-origin:left center;background:linear-gradient(90deg,var(--orange),var(--gold),var(--cyan));box-shadow:0 0 14px rgba(255,132,72,.5);will-change:transform}
 .scroll-progress-pulse{position:absolute;top:50%;left:0;width:34px;height:7px;border-radius:999px;background:linear-gradient(90deg,transparent,var(--gold),transparent);filter:blur(2px);transform:translate(-50%,-50%);opacity:.8;will-change:left}
+@media(max-width:1100px){.scroll-progress{display:block}}
 @media(max-width:620px){.scroll-progress{height:3px}.scroll-progress-pulse{width:24px;height:6px}}
 @media(prefers-reduced-motion:reduce){.scroll-progress-pulse{display:none}}
+
+/* Dual scroll navigation: top progress + desktop section rail */
+.scroll-rail{position:fixed;right:16px;top:50%;transform:translateY(-50%);z-index:70;display:flex;align-items:center;gap:10px;padding:12px 9px;border:1px solid rgba(255,196,126,.18);border-radius:999px;background:rgba(8,10,16,.58);backdrop-filter:blur(14px);box-shadow:0 18px 44px rgba(0,0,0,.26);transition:background .25s,border-color .25s,box-shadow .25s}
+.scroll-rail:hover{background:rgba(8,10,16,.88);border-color:rgba(255,196,126,.32);box-shadow:0 22px 54px rgba(0,0,0,.34),0 0 24px rgba(255,132,72,.08)}
+.scroll-rail-track{position:relative;width:2px;height:220px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden}
+.scroll-rail-fill{position:absolute;left:0;right:0;top:0;height:100%;transform-origin:top;transform:scaleY(0);background:linear-gradient(180deg,var(--gold),var(--orange),var(--cyan));box-shadow:0 0 14px rgba(255,132,72,.5)}
+.scroll-rail-nav{display:grid;gap:11px}
+.scroll-rail-link{display:flex;align-items:center;justify-content:flex-end;gap:8px;color:#b8b1aa;font-size:10px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+.scroll-rail-link span{max-width:0;opacity:0;overflow:hidden;transform:translateX(8px);transition:max-width .25s ease,opacity .2s ease,transform .25s ease}
+.scroll-rail:hover .scroll-rail-link span{max-width:90px;opacity:1;transform:none}
+.scroll-rail-link i{width:8px;height:8px;border-radius:50%;border:1px solid rgba(255,196,126,.38);background:#11141b;box-shadow:0 0 0 0 rgba(255,132,72,0);transition:.22s}
+.scroll-rail-link.active{color:#fff}.scroll-rail-link.active i{background:var(--orange);border-color:var(--gold);box-shadow:0 0 16px rgba(255,132,72,.75),0 0 0 4px rgba(255,132,72,.08)}
+@media(max-width:1100px){.scroll-rail{display:none}}
+@media(prefers-reduced-motion:reduce){.scroll-rail,.scroll-rail-link span,.scroll-rail-link i{transition:none!important}}
 
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Inselman Digital","url":"https://inselmandigital.com/","telephone":"+1-580-465-4804","email":"william@inselmandigital.com","description":"High-impact small-business websites, Google Business Profile support, local SEO foundations, managed hosting, and analytics reporting.","areaServed":"Oklahoma","priceRange":"$795+"}</script>
 </head>
 <body>
 <div class="scroll-progress" aria-hidden="true"><span class="scroll-progress-bar"></span><span class="scroll-progress-pulse"></span></div>
+<div class="scroll-rail" aria-label="Page sections">
+  <div class="scroll-rail-track" aria-hidden="true"><span class="scroll-rail-fill"></span></div>
+  <nav class="scroll-rail-nav">
+    <a class="scroll-rail-link active" href="#top"><span>Top</span><i></i></a>
+    <a class="scroll-rail-link" href="#work"><span>Work</span><i></i></a>
+    <a class="scroll-rail-link" href="#services"><span>Services</span><i></i></a>
+    <a class="scroll-rail-link" href="#process"><span>Process</span><i></i></a>
+    <a class="scroll-rail-link" href="#pricing"><span>Pricing</span><i></i></a>
+    <a class="scroll-rail-link" href="#about"><span>About</span><i></i></a>
+  </nav>
+</div>
+
 
 <div class="glow one"></div><div class="glow two"></div><div class="cursor-aura" aria-hidden="true"></div>
 <header class="topbar"><div class="shell nav"><a class="brand" href="#top"><img src="assets/header-emblem-full.png" alt="Inselman Digital logo" width="50" height="50" decoding="async" fetchpriority="high"><span><strong>Inselman Digital</strong><span>Building Your Online Presence</span></span></a><button class="menu" aria-expanded="false" aria-controls="navlinks">Menu</button><nav class="navlinks" id="navlinks"><a href="#work">Work</a><a href="#services">Services</a><a href="#process">Process</a><a href="#pricing">Pricing</a><a href="#about">About</a></nav><button class="btn btn-primary nav-cta" data-contact>Free Quote</button></div></header>
@@ -143,6 +170,23 @@ function updateScrollProgress(){
 addEventListener('scroll',()=>{if(!scrollProgressTicking){scrollProgressTicking=true;requestAnimationFrame(updateScrollProgress)}},{passive:true});
 addEventListener('resize',updateScrollProgress,{passive:true});
 updateScrollProgress();
+
+
+const scrollRailFill=document.querySelector('.scroll-rail-fill');
+const scrollRailLinks=[...document.querySelectorAll('.scroll-rail-link')];
+const scrollRailSections=scrollRailLinks.map(link=>document.querySelector(link.getAttribute('href'))).filter(Boolean);
+function updateScrollRail(){
+  const max=Math.max(1,document.documentElement.scrollHeight-innerHeight);
+  const progress=Math.min(1,Math.max(0,scrollY/max));
+  scrollRailFill?.style.setProperty('transform',`scaleY(${progress})`);
+  const marker=scrollY+innerHeight*.38;
+  let activeIndex=0;
+  scrollRailSections.forEach((section,index)=>{if(section.offsetTop<=marker)activeIndex=index});
+  scrollRailLinks.forEach((link,index)=>link.classList.toggle('active',index===activeIndex));
+}
+addEventListener('scroll',updateScrollRail,{passive:true});
+addEventListener('resize',updateScrollRail,{passive:true});
+updateScrollRail();
 
 </script>
 </body></html>
