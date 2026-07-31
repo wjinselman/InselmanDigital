@@ -158,6 +158,19 @@ body:after{content:"";position:fixed;inset:0;z-index:-5;pointer-events:none;opac
 @media(max-width:1100px){.scroll-rail{display:none}}
 @media(prefers-reduced-motion:reduce){.scroll-rail-link,.scroll-rail-link span,.scroll-rail-link i{transition:none!important}}
 
+
+/* Final mobile About-logo proportion fix: preserve the artwork, do not squash it */
+@media(max-width:620px){
+  .about-logo{min-height:300px;padding:24px 18px}
+  .about-logo img{
+    width:auto!important;
+    height:auto!important;
+    max-width:min(300px,88%)!important;
+    max-height:none!important;
+    transform:none!important;
+    object-fit:contain;
+  }
+}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Inselman Digital","url":"https://inselmandigital.com/","telephone":"+1-580-465-4804","email":"william@inselmandigital.com","description":"High-impact small-business websites, Google Business Profile support, local SEO foundations, managed hosting, and analytics reporting.","areaServed":"Oklahoma","priceRange":"$795+"}</script>
 </head>
