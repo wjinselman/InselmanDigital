@@ -207,33 +207,26 @@ body:after{content:"";position:fixed;inset:0;z-index:-5;pointer-events:none;opac
 
 
 
-/* === INSELMAN DIGITAL CURSOR SPOTLIGHT — CLEAN CANVAS REBUILD === */
-#id-cursor-spotlight-canvas{
+/* === INSELMAN DIGITAL CURSOR SPOTLIGHT — RESTORED KNOWN-GOOD METHOD === */
+.cursor-aura{
   position:fixed;
-  inset:0;
-  width:100vw;
-  height:100vh;
+  width:130px;
+  height:130px;
+  border-radius:50%;
   pointer-events:none;
-  z-index:0;
-  display:block;
-  margin:0;
-  padding:0;
+  z-index:2;
+  left:-400px;
+  top:-400px;
+  transform:translate(-50%,-50%);
+  background:radial-gradient(circle,rgba(255,210,132,.24) 0%,rgba(255,161,86,.14) 28%,rgba(255,126,63,.055) 58%,rgba(255,110,50,0) 100%);
 }
-@media (pointer:fine) and (min-width:721px){
-  .glow,.hero:after{display:none!important}
-  header,main,footer,.scroll-progress,.scroll-rail{position:relative;z-index:1}
-  .topbar{position:sticky}
-  .modal{z-index:200!important}
-}
-@media (pointer:coarse),(max-width:720px){
-  #id-cursor-spotlight-canvas{display:none!important}
-}
+@media (pointer:coarse),(max-width:720px){.cursor-aura{display:none!important}}
 
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Inselman Digital","url":"https://inselmandigital.com/","telephone":"+1-580-465-4804","email":"william@inselmandigital.com","description":"High-impact small-business websites, custom web-based business apps, Google Business Profile support, local SEO foundations, managed hosting, and analytics reporting.","areaServed":"Oklahoma","priceRange":"$1,500+"}</script>
 </head>
-<body data-id-build="2026-08-15-spotlight-canvas-rebuilt">
-<canvas id="id-cursor-spotlight-canvas" aria-hidden="true"></canvas>
+<body data-id-build="2026-08-15-spotlight-known-good-restored">
+<div class="cursor-aura" aria-hidden="true"></div>
 <canvas id="click-lightning" aria-hidden="true"></canvas>
 <div class="scroll-progress" aria-hidden="true"><span class="scroll-progress-bar"></span><span class="scroll-progress-pulse"></span></div>
 <div class="scroll-rail" aria-label="Page sections">
@@ -488,45 +481,16 @@ updateViewportUI();
 </script>
 
 
-<script id="id-cursor-spotlight-canvas-script">
+<script id="id-cursor-spotlight-restored-script">
 (()=>{
-  const canvas=document.getElementById('id-cursor-spotlight-canvas');
-  if(!canvas||!matchMedia('(pointer:fine)').matches||innerWidth<=720)return;
-  const ctx=canvas.getContext('2d',{alpha:true});
-  if(!ctx)return;
-
-  const RADIUS=135; // CSS pixels: between the 100px-too-small and 160px-too-large versions
-  let x=-1000,y=-1000,raf=0,dpr=1;
-
-  function resize(){
-    dpr=Math.max(1,Math.min(window.devicePixelRatio||1,2));
-    canvas.width=Math.round(innerWidth*dpr);
-    canvas.height=Math.round(innerHeight*dpr);
-    canvas.style.width=innerWidth+'px';
-    canvas.style.height=innerHeight+'px';
-    ctx.setTransform(dpr,0,0,dpr,0,0);
-    draw();
-  }
-
-  function draw(){
-    raf=0;
-    ctx.clearRect(0,0,innerWidth,innerHeight);
-    if(x<0||y<0)return;
-    const g=ctx.createRadialGradient(x,y,0,x,y,RADIUS);
-    g.addColorStop(0,'rgba(255,210,132,.25)');
-    g.addColorStop(.24,'rgba(255,161,86,.16)');
-    g.addColorStop(.52,'rgba(255,126,63,.065)');
-    g.addColorStop(1,'rgba(255,110,50,0)');
-    ctx.fillStyle=g;
-    ctx.fillRect(x-RADIUS,y-RADIUS,RADIUS*2,RADIUS*2);
-  }
-
-  function queue(){ if(!raf)raf=requestAnimationFrame(draw); }
-  addEventListener('pointermove',e=>{x=e.clientX;y=e.clientY;queue()},{passive:true});
-  addEventListener('pointerleave',()=>{x=y=-1000;queue()},{passive:true});
-  addEventListener('blur',()=>{x=y=-1000;queue()},{passive:true});
-  addEventListener('resize',resize,{passive:true});
-  resize();
+  if(!matchMedia('(pointer:fine)').matches||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  const aura=document.querySelector('.cursor-aura');
+  if(!aura)return;
+  addEventListener('pointermove',e=>{
+    aura.style.left=e.clientX+'px';
+    aura.style.top=e.clientY+'px';
+  },{passive:true});
+  addEventListener('pointerleave',()=>{aura.style.left='-400px';aura.style.top='-400px'},{passive:true});
 })();
 </script>
 
