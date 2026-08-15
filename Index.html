@@ -240,6 +240,20 @@ body:after{content:"";position:fixed;inset:0;z-index:-5;pointer-events:none;opac
     contain:paint!important;
   }
 }
+
+/* === SINGLE-SOURCE DESKTOP CURSOR SPOTLIGHT === */
+@media (pointer:fine) and (min-width:721px){
+  .glow,.hero:after,.visual:before{display:none!important}
+  .cursor-aura{
+    display:block!important;position:fixed!important;left:0!important;top:0!important;right:auto!important;bottom:auto!important;inset:auto!important;
+    width:420px!important;height:420px!important;border-radius:50%!important;pointer-events:none!important;z-index:0!important;
+    background:radial-gradient(circle at 50% 50%,rgba(255,196,112,.30) 0%,rgba(255,142,72,.18) 28%,rgba(255,120,62,.07) 52%,transparent 72%)!important;
+    transform:translate3d(-1000px,-1000px,0) translate(-50%,-50%)!important;
+    will-change:transform!important;contain:layout paint style!important;
+  }
+  header,main,footer,.scroll-progress,.scroll-rail{position:relative;z-index:1}
+  .topbar{position:sticky}
+}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Inselman Digital","url":"https://inselmandigital.com/","telephone":"+1-580-465-4804","email":"william@inselmandigital.com","description":"High-impact small-business websites, custom web-based business apps, Google Business Profile support, local SEO foundations, managed hosting, and analytics reporting.","areaServed":"Oklahoma","priceRange":"$1,500+"}</script>
 </head>
@@ -344,15 +358,18 @@ if(!reduce){
 
 if(matchMedia('(pointer:fine)').matches&&!reduce){
   const aura=document.querySelector('.cursor-aura');
-  let pointerRaf=0,px=-400,py=-400;
+  let pointerRaf=0,px=-1000,py=-1000;
+  const paintAura=()=>{
+    aura.style.setProperty('transform',`translate3d(${px}px,${py}px,0) translate(-50%,-50%)`,'important');
+    pointerRaf=0;
+  };
   addEventListener('pointermove',e=>{
-    px=e.clientX;py=e.clientY;
-    if(pointerRaf)return;
-    pointerRaf=requestAnimationFrame(()=>{
-      aura.style.setProperty('--cursor-x',px+'px');
-      aura.style.setProperty('--cursor-y',py+'px');
-      pointerRaf=0;
-    });
+    px=e.clientX; py=e.clientY;
+    if(!pointerRaf) pointerRaf=requestAnimationFrame(paintAura);
+  },{passive:true});
+  addEventListener('pointerleave',()=>{
+    px=-1000; py=-1000;
+    if(!pointerRaf) pointerRaf=requestAnimationFrame(paintAura);
   },{passive:true});
   document.querySelectorAll('.service-card,.price-card,.step,.case-main,.case-side,.about-card').forEach(card=>card.addEventListener('pointermove',e=>{
     const r=card.getBoundingClientRect();
