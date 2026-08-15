@@ -159,7 +159,7 @@ body:after{content:"";position:fixed;inset:0;z-index:-5;pointer-events:none;opac
 @media(prefers-reduced-motion:reduce){.scroll-rail-link,.scroll-rail-link span,.scroll-rail-link i{transition:none!important}}
 
 
-.area-panel{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(320px,.75fr);gap:36px;align-items:center;padding:34px;border:1px solid rgba(255,255,255,.12);border-radius:24px;background:linear-gradient(135deg,rgba(255,255,255,.055),rgba(255,255,255,.018));box-shadow:0 24px 70px rgba(0,0,0,.18)}.area-copy h2{margin-bottom:12px}.area-copy p:last-child{max-width:720px}.area-directory{border:1px solid rgba(255,255,255,.13);border-radius:18px;background:rgba(2,10,20,.3);overflow:hidden}.area-directory summary{list-style:none;cursor:pointer;padding:19px 22px;display:flex;justify-content:space-between;align-items:center;font-weight:800}.area-directory summary::-webkit-details-marker{display:none}.area-directory summary span{font-size:1.35rem;transition:transform .2s ease}.area-directory[open] summary span{transform:rotate(45deg)}.area-groups{padding:0 22px 20px;display:grid;gap:16px}.area-groups>div{padding-top:15px;border-top:1px solid rgba(255,255,255,.09)}.area-groups strong{display:block;margin-bottom:8px;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:var(--orange-2)}.area-groups p{display:flex;flex-wrap:wrap;gap:8px;margin:0}.area-groups a{display:inline-flex;padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.09);text-decoration:none;color:inherit;font-size:.9rem}.area-groups a:hover{border-color:rgba(255,155,50,.55);transform:translateY(-1px)}@media(max-width:820px){.area-panel{grid-template-columns:1fr;padding:24px;gap:22px}.area-directory summary{padding:17px 18px}.area-groups{padding:0 18px 18px}}
+.area-panel{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(320px,.75fr);gap:36px;align-items:center;padding:34px;border:1px solid rgba(255,255,255,.12);border-radius:24px;background:linear-gradient(135deg,rgba(255,255,255,.055),rgba(255,255,255,.018));box-shadow:0 24px 70px rgba(0,0,0,.18)}.area-copy h2{margin-bottom:12px}.area-copy p:last-child{max-width:720px}.area-directory{border:1px solid rgba(255,255,255,.13);border-radius:18px;background:rgba(2,10,20,.3);overflow:hidden}.area-directory summary{list-style:none;cursor:pointer;padding:19px 22px;display:flex;justify-content:space-between;align-items:center;font-weight:800}.area-directory summary::-webkit-details-marker{display:none}.area-directory summary span{font-size:1.35rem;transition:transform .2s ease}.area-directory[open] summary span{transform:rotate(45deg)}.area-groups{padding:0 22px 20px;display:grid;gap:16px}.area-groups>div{padding-top:15px;border-top:1px solid rgba(255,255,255,.09)}.area-groups strong{display:block;margin-bottom:8px;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:var(--orange)}.area-groups p{display:flex;flex-wrap:wrap;gap:8px;margin:0}.area-groups a{display:inline-flex;padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.09);text-decoration:none;color:inherit;font-size:.9rem}.area-groups a:hover{border-color:rgba(255,155,50,.55);transform:translateY(-1px)}@media(max-width:820px){.area-panel{grid-template-columns:1fr;padding:24px;gap:22px}.area-directory summary{padding:17px 18px}.area-groups{padding:0 18px 18px}}
 
 /* Click lightning: lightweight canvas strike that never blocks the actual control. */
 #click-lightning{position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:99999;mix-blend-mode:screen}
@@ -181,6 +181,27 @@ body:after{content:"";position:fixed;inset:0;z-index:-5;pointer-events:none;opac
 .apps-note{font-size:12px!important;color:#85817c!important}
 @media(max-width:920px){.apps-showcase{grid-template-columns:1fr}.apps-art{max-width:720px;margin:auto}}
 @media(max-width:620px){.apps-showcase{gap:18px}.apps-art{border-radius:20px}.apps-copy h3{font-size:2.25rem}}
+
+
+/* === Mobile performance pass — preserves desktop spectacle, reduces phone paint cost === */
+@media (max-width: 720px), (pointer: coarse){
+  /* Fixed blended/noise layers are expensive on mobile compositors. */
+  body:after{display:none}
+  .glow{display:none}
+  .hero:after{filter:none;opacity:.30}
+  .visual:before{filter:none;opacity:.20;animation:none}
+  .topbar,.topbar.scrolled{backdrop-filter:none;-webkit-backdrop-filter:none}
+  .modal{backdrop-filter:none;-webkit-backdrop-filter:none}
+  .tech-bit{backdrop-filter:none;-webkit-backdrop-filter:none}
+  /* Keep the polished sweep, but don't animate it continuously on phones. */
+  .screen:after{animation:none;opacity:.16;transform:translateX(12%)}
+  .status-chip:before{animation:none}
+  /* Avoid promoting every large moving object to its own layer on phones. */
+  .device,.scroll-progress-bar{will-change:auto}
+  /* Mobile lightning uses a single canvas pulse; never filter the whole document. */
+  .lightning-hit{animation:none!important;filter:none!important}
+  #click-lightning{mix-blend-mode:normal}
+}
 
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Inselman Digital","url":"https://inselmandigital.com/","telephone":"+1-580-465-4804","email":"william@inselmandigital.com","description":"High-impact small-business websites, custom web-based business apps, Google Business Profile support, local SEO foundations, managed hosting, and analytics reporting.","areaServed":"Oklahoma","priceRange":"$1,500+"}</script>
@@ -222,148 +243,180 @@ body:after{content:"";position:fixed;inset:0;z-index:-5;pointer-events:none;opac
 <script>
 const menu=document.querySelector('.menu'),nav=document.querySelector('.navlinks');menu?.addEventListener('click',()=>{const o=nav.classList.toggle('open');menu.setAttribute('aria-expanded',o)});nav?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menu?.setAttribute('aria-expanded','false')}));
 const modal=document.getElementById('contactModal');document.querySelectorAll('[data-contact]').forEach(b=>b.addEventListener('click',()=>{modal.hidden=false;document.body.style.overflow='hidden'}));document.querySelector('[data-close]')?.addEventListener('click',()=>{modal.hidden=true;document.body.style.overflow=''});modal?.addEventListener('click',e=>{if(e.target===modal){modal.hidden=true;document.body.style.overflow=''}});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!modal.hidden){modal.hidden=true;document.body.style.overflow=''}});
-const topbar=document.querySelector('.topbar');addEventListener('scroll',()=>topbar?.classList.toggle('scrolled',scrollY>12),{passive:true});
+const topbar=document.querySelector('.topbar');
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-if(!reduce){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.08,rootMargin:'0px 0px -35px'});document.querySelectorAll('.section-head,.proof-grid,.case-main,.case-side,.service-card,.step,.price-card,.about-card,.cta').forEach((el,i)=>{el.classList.add('reveal');el.style.transitionDelay=(i%3)*70+'ms';io.observe(el)});}
-if(matchMedia('(pointer:fine)').matches&&!reduce){const aura=document.querySelector('.cursor-aura');addEventListener('pointermove',e=>{aura.style.left=e.clientX+'px';aura.style.top=e.clientY+'px'},{passive:true});document.querySelectorAll('.service-card,.price-card,.step,.case-main,.case-side,.about-card').forEach(card=>card.addEventListener('pointermove',e=>{const r=card.getBoundingClientRect();card.style.setProperty('--mx',e.clientX-r.left+'px');card.style.setProperty('--my',e.clientY-r.top+'px')}));}
+const coarsePointer=matchMedia('(pointer: coarse)').matches;
+const mobileLite=coarsePointer || innerWidth<=720;
+
+if(!reduce){
+  const io=new IntersectionObserver(es=>es.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}
+  }),{threshold:.08,rootMargin:'0px 0px -35px'});
+  document.querySelectorAll('.section-head,.proof-grid,.case-main,.case-side,.service-card,.step,.price-card,.about-card,.cta').forEach((el,i)=>{
+    el.classList.add('reveal');
+    el.style.transitionDelay=mobileLite?'0ms':(i%3)*70+'ms';
+    io.observe(el);
+  });
+}
+
+if(matchMedia('(pointer:fine)').matches&&!reduce){
+  const aura=document.querySelector('.cursor-aura');
+  let pointerRaf=0,px=-400,py=-400;
+  addEventListener('pointermove',e=>{
+    px=e.clientX;py=e.clientY;
+    if(pointerRaf)return;
+    pointerRaf=requestAnimationFrame(()=>{aura.style.transform=`translate(${px-140}px,${py-140}px)`;pointerRaf=0});
+  },{passive:true});
+  document.querySelectorAll('.service-card,.price-card,.step,.case-main,.case-side,.about-card').forEach(card=>card.addEventListener('pointermove',e=>{
+    const r=card.getBoundingClientRect();
+    card.style.setProperty('--mx',e.clientX-r.left+'px');
+    card.style.setProperty('--my',e.clientY-r.top+'px');
+  },{passive:true}));
+}
+
 document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',()=>history.replaceState(null,'',a.getAttribute('href'))));
 
 const scrollProgressBar=document.querySelector('.scroll-progress-bar');
-const scrollProgressPulse=document.querySelector('.scroll-progress-pulse');
-let scrollProgressTicking=false;
-function updateScrollProgress(){
-  const max=Math.max(1,document.documentElement.scrollHeight-innerHeight);
-  const progress=Math.min(1,Math.max(0,scrollY/max));
-  scrollProgressBar?.style.setProperty('transform',`scaleX(${progress})`);
-  scrollProgressPulse?.style.setProperty('left',`${progress*100}%`);
-  scrollProgressTicking=false;
-}
-addEventListener('scroll',()=>{if(!scrollProgressTicking){scrollProgressTicking=true;requestAnimationFrame(updateScrollProgress)}},{passive:true});
-addEventListener('resize',updateScrollProgress,{passive:true});
-updateScrollProgress();
-
-
 const scrollRailFill=document.querySelector('.scroll-rail-fill');
 const scrollRailLinks=[...document.querySelectorAll('.scroll-rail-link')];
 const scrollRailSections=scrollRailLinks.map(link=>document.querySelector(link.getAttribute('href'))).filter(Boolean);
-function updateScrollRail(){
+let scrollTicking=false;
+let railOffsets=[];
+
+function cacheRailOffsets(){railOffsets=scrollRailSections.map(section=>section.offsetTop)}
+function updateViewportUI(){
+  const y=scrollY;
   const max=Math.max(1,document.documentElement.scrollHeight-innerHeight);
-  const progress=Math.min(1,Math.max(0,scrollY/max));
-  scrollRailFill?.style.setProperty('transform',`scaleY(${progress})`);
-  const marker=scrollY+innerHeight*.38;
-  let activeIndex=0;
-  scrollRailSections.forEach((section,index)=>{if(section.offsetTop<=marker)activeIndex=index});
-  scrollRailLinks.forEach((link,index)=>link.classList.toggle('active',index===activeIndex));
+  const progress=Math.min(1,Math.max(0,y/max));
+  topbar?.classList.toggle('scrolled',y>12);
+  scrollProgressBar?.style.setProperty('transform',`scaleX(${progress})`);
+  if(!mobileLite&&scrollRailFill){
+    scrollRailFill.style.transform=`scaleY(${progress})`;
+    const marker=y+innerHeight*.38;
+    let activeIndex=0;
+    for(let i=0;i<railOffsets.length;i++){if(railOffsets[i]<=marker)activeIndex=i;else break}
+    scrollRailLinks.forEach((link,index)=>link.classList.toggle('active',index===activeIndex));
+  }
+  scrollTicking=false;
 }
-addEventListener('scroll',updateScrollRail,{passive:true});
-addEventListener('resize',updateScrollRail,{passive:true});
-updateScrollRail();
+function requestViewportUI(){if(!scrollTicking){scrollTicking=true;requestAnimationFrame(updateViewportUI)}}
+function handleResize(){cacheRailOffsets();requestViewportUI()}
+cacheRailOffsets();
+addEventListener('scroll',requestViewportUI,{passive:true});
+addEventListener('resize',handleResize,{passive:true});
+updateViewportUI();
 
-
-// Lightning strike on deliberate interactive clicks.
+// Lightning: full spectacle on desktop, reduced draw cost on phones/tablets.
 (() => {
-  if (reduce) return;
-  const canvas = document.getElementById('click-lightning');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d', { alpha: true });
-  let dpr = 1;
-  let raf = 0;
-  let strikeStart = 0;
-  let bolts = [];
-  let sparks = [];
-  let flash = 0;
+  if(reduce) return;
+  const canvas=document.getElementById('click-lightning');
+  if(!canvas) return;
+  const ctx=canvas.getContext('2d',{alpha:true,desynchronized:true}) || canvas.getContext('2d');
+  if(!ctx) return;
+  let dpr=1,raf=0,strikeStart=0,bolts=[],sparks=[],flash=0;
+  let resizeRaf=0;
 
   function resizeLightning(){
-    dpr = Math.min(2, window.devicePixelRatio || 1);
-    canvas.width = Math.round(innerWidth * dpr);
-    canvas.height = Math.round(innerHeight * dpr);
-    canvas.style.width = innerWidth + 'px';
-    canvas.style.height = innerHeight + 'px';
+    dpr=mobileLite?1:Math.min(1.6,window.devicePixelRatio||1);
+    canvas.width=Math.round(innerWidth*dpr);
+    canvas.height=Math.round(innerHeight*dpr);
+    canvas.style.width=innerWidth+'px';
+    canvas.style.height=innerHeight+'px';
     ctx.setTransform(dpr,0,0,dpr,0,0);
   }
+  function requestLightningResize(){
+    if(resizeRaf)return;
+    resizeRaf=requestAnimationFrame(()=>{resizeRaf=0;resizeLightning()});
+  }
   resizeLightning();
-  addEventListener('resize', resizeLightning, { passive:true });
+  addEventListener('resize',requestLightningResize,{passive:true});
 
-  function jaggedPath(x1,y1,x2,y2,segments=14,chaos=26){
+  function jaggedPath(x1,y1,x2,y2,segments,chaos){
     const pts=[{x:x1,y:y1}];
     for(let i=1;i<segments;i++){
-      const t=i/segments;
-      const taper=Math.sin(Math.PI*t);
-      pts.push({
-        x:x1+(x2-x1)*t+(Math.random()-.5)*chaos*taper,
-        y:y1+(y2-y1)*t+(Math.random()-.5)*chaos*.28
-      });
+      const t=i/segments,taper=Math.sin(Math.PI*t);
+      pts.push({x:x1+(x2-x1)*t+(Math.random()-.5)*chaos*taper,y:y1+(y2-y1)*t+(Math.random()-.5)*chaos*.28});
     }
     pts.push({x:x2,y:y2});
     return pts;
   }
 
   function makeStrike(x,y){
-    const sourceX=Math.max(20,Math.min(innerWidth-20,x+(Math.random()-.5)*innerWidth*.28));
-    bolts=[{pts:jaggedPath(sourceX,-18,x,y,18,42),width:3.1,alpha:1}];
-    for(let b=0;b<3;b++){
+    const sourceX=Math.max(20,Math.min(innerWidth-20,x+(Math.random()-.5)*innerWidth*(mobileLite?.16:.28)));
+    const mainSegments=mobileLite?11:18;
+    bolts=[{pts:jaggedPath(sourceX,-18,x,y,mainSegments,mobileLite?28:42),width:mobileLite?2.2:3.1,alpha:1}];
+    const branchCount=mobileLite?1:3;
+    for(let b=0;b<branchCount;b++){
       const parent=bolts[0].pts;
-      const startIndex=5+Math.floor(Math.random()*(parent.length-8));
-      const start=parent[startIndex];
-      const side=(Math.random()<.5?-1:1);
-      const end={x:start.x+side*(38+Math.random()*75),y:start.y+35+Math.random()*75};
-      bolts.push({pts:jaggedPath(start.x,start.y,end.x,end.y,7,24),width:1.25,alpha:.68});
+      const minIndex=Math.min(4,parent.length-3);
+      const span=Math.max(1,parent.length-minIndex-2);
+      const start=parent[minIndex+Math.floor(Math.random()*span)];
+      const side=Math.random()<.5?-1:1;
+      const end={x:start.x+side*(30+Math.random()*(mobileLite?45:75)),y:start.y+30+Math.random()*(mobileLite?45:75)};
+      bolts.push({pts:jaggedPath(start.x,start.y,end.x,end.y,mobileLite?5:7,mobileLite?17:24),width:mobileLite?.9:1.25,alpha:.62});
     }
-    sparks=Array.from({length:18},()=>{
-      const a=Math.random()*Math.PI*2, speed=45+Math.random()*150;
-      return {x,y,vx:Math.cos(a)*speed,vy:Math.sin(a)*speed,life:.22+Math.random()*.2,size:.8+Math.random()*2};
+    const sparkCount=mobileLite?6:18;
+    sparks=Array.from({length:sparkCount},()=>{
+      const a=Math.random()*Math.PI*2,speed=40+Math.random()*(mobileLite?90:150);
+      return{x,y,vx:Math.cos(a)*speed,vy:Math.sin(a)*speed,life:.18+Math.random()*(mobileLite?.12:.2),size:.8+Math.random()*(mobileLite?1.2:2)};
     });
-    flash=1;
+    flash=mobileLite?.45:1;
     strikeStart=performance.now();
-    document.documentElement.classList.remove('lightning-hit');
-    void document.documentElement.offsetWidth;
-    document.documentElement.classList.add('lightning-hit');
+    if(!mobileLite){
+      document.documentElement.classList.remove('lightning-hit');
+      void document.documentElement.offsetWidth;
+      document.documentElement.classList.add('lightning-hit');
+    }
     cancelAnimationFrame(raf);
     raf=requestAnimationFrame(drawLightning);
   }
 
   function strokeBolt(points,width,alpha){
-    ctx.beginPath();
-    ctx.moveTo(points[0].x,points[0].y);
-    for(let i=1;i<points.length;i++) ctx.lineTo(points[i].x,points[i].y);
+    ctx.beginPath();ctx.moveTo(points[0].x,points[0].y);
+    for(let i=1;i<points.length;i++)ctx.lineTo(points[i].x,points[i].y);
     ctx.lineJoin='round';ctx.lineCap='round';
-    ctx.shadowColor='rgba(105,225,255,.95)';ctx.shadowBlur=18;
-    ctx.strokeStyle=`rgba(92,211,255,${alpha*.62})`;ctx.lineWidth=width*4.2;ctx.stroke();
-    ctx.shadowBlur=8;ctx.strokeStyle=`rgba(170,241,255,${alpha*.9})`;ctx.lineWidth=width*1.9;ctx.stroke();
-    ctx.shadowBlur=2;ctx.strokeStyle=`rgba(255,255,255,${alpha})`;ctx.lineWidth=Math.max(.75,width*.62);ctx.stroke();
+    if(mobileLite){
+      ctx.shadowColor='rgba(105,225,255,.78)';ctx.shadowBlur=7;
+      ctx.strokeStyle=`rgba(160,238,255,${alpha*.92})`;ctx.lineWidth=width*1.8;ctx.stroke();
+      ctx.shadowBlur=0;ctx.strokeStyle=`rgba(255,255,255,${alpha})`;ctx.lineWidth=Math.max(.7,width*.58);ctx.stroke();
+      return;
+    }
+    ctx.shadowColor='rgba(105,225,255,.95)';ctx.shadowBlur=16;
+    ctx.strokeStyle=`rgba(92,211,255,${alpha*.62})`;ctx.lineWidth=width*4;ctx.stroke();
+    ctx.shadowBlur=7;ctx.strokeStyle=`rgba(170,241,255,${alpha*.9})`;ctx.lineWidth=width*1.8;ctx.stroke();
+    ctx.shadowBlur=1;ctx.strokeStyle=`rgba(255,255,255,${alpha})`;ctx.lineWidth=Math.max(.75,width*.62);ctx.stroke();
   }
 
   function drawLightning(now){
     const elapsed=(now-strikeStart)/1000;
     ctx.clearRect(0,0,innerWidth,innerHeight);
-    const boltAlpha=Math.max(0,1-elapsed/.34);
+    const duration=mobileLite?.28:.42;
+    const boltAlpha=Math.max(0,1-elapsed/(mobileLite?.22:.34));
     if(flash>0){
-      ctx.fillStyle=`rgba(145,225,255,${Math.max(0,flash)*.1})`;
+      ctx.fillStyle=`rgba(145,225,255,${Math.max(0,flash)*(mobileLite?.055:.1)})`;
       ctx.fillRect(0,0,innerWidth,innerHeight);
-      flash-=.22;
+      flash-=mobileLite?.26:.22;
     }
-    if(elapsed<.22){
-      bolts.forEach((b,i)=>strokeBolt(b.pts,b.width,b.alpha*boltAlpha*(i?1:.96)));
-    }
+    if(elapsed<(mobileLite?.16:.22))bolts.forEach((b,i)=>strokeBolt(b.pts,b.width,b.alpha*boltAlpha*(i?1:.96)));
     sparks.forEach(s=>{
-      const t=Math.min(elapsed,s.life);
-      const life=Math.max(0,1-elapsed/s.life);
+      const t=Math.min(elapsed,s.life),life=Math.max(0,1-elapsed/s.life);
       if(life<=0)return;
-      const sx=s.x+s.vx*t, sy=s.y+s.vy*t+150*t*t;
+      const sx=s.x+s.vx*t,sy=s.y+s.vy*t+130*t*t;
       ctx.beginPath();ctx.arc(sx,sy,s.size*life,0,Math.PI*2);
-      ctx.shadowColor='rgba(108,232,255,.95)';ctx.shadowBlur=10;
+      ctx.shadowColor='rgba(108,232,255,.85)';ctx.shadowBlur=mobileLite?4:9;
       ctx.fillStyle=`rgba(225,250,255,${life})`;ctx.fill();
     });
-    if(elapsed<.48) raf=requestAnimationFrame(drawLightning);
-    else ctx.clearRect(0,0,innerWidth,innerHeight);
+    if(elapsed<duration)raf=requestAnimationFrame(drawLightning);
+    else{ctx.clearRect(0,0,innerWidth,innerHeight);ctx.shadowBlur=0}
   }
 
-  document.addEventListener('pointerdown', e => {
-    if(e.button !== undefined && e.button !== 0) return;
-    const hit=e.target.closest('a,button,summary,[role="button"]');
-    if(!hit || hit.disabled) return;
+  document.addEventListener('pointerdown',e=>{
+    if(e.button!==undefined&&e.button!==0)return;
+    const target=e.target instanceof Element?e.target:null;
+    const hit=target?.closest('a,button,summary,[role="button"]');
+    if(!hit||hit.matches(':disabled,[aria-disabled="true"]'))return;
     makeStrike(e.clientX,e.clientY);
-  }, { passive:true, capture:true });
+  },{passive:true,capture:true});
 })();
 
 </script>
