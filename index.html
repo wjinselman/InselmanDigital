@@ -41,9 +41,9 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:999;ba
 .screen{position:relative;overflow:hidden}.screen:after{content:"";position:absolute;inset:-40% -80%;background:linear-gradient(110deg,transparent 42%,rgba(255,255,255,.12) 49%,transparent 56%);transform:translateX(-45%);animation:screenSweep 6.5s ease-in-out infinite;pointer-events:none}@keyframes screenSweep{55%,100%{transform:translateX(45%)}}
 .tech-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:24px}.tech-bit{padding:13px 14px;border:1px solid var(--line);border-radius:15px;background:rgba(255,255,255,.028);backdrop-filter:blur(10px)}.tech-bit strong{display:block;color:#fff;font-size:12px}.tech-bit span{display:block;color:#7f90b5;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em}
 .section,.proof,.final{content-visibility:auto;contain-intrinsic-size:1px 760px}.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1)}.reveal.in{opacity:1;transform:none}.service-card,.price-card,.step,.case-main,.case-side,.about-card{position:relative;overflow:hidden}.service-card:before,.price-card:before,.step:before,.case-main:before,.case-side:before,.about-card:before{content:"";position:absolute;inset:0;background:radial-gradient(500px circle at var(--mx,50%) var(--my,50%),rgba(108,232,255,.09),transparent 38%);opacity:0;transition:opacity .25s;pointer-events:none}.service-card:hover:before,.price-card:hover:before,.step:hover:before,.case-main:hover:before,.case-side:hover:before,.about-card:hover:before{opacity:1}
-.cursor-aura{position:fixed;width:280px;height:280px;border-radius:50%;pointer-events:none;z-index:-1;background:radial-gradient(circle,rgba(98,134,255,.12),transparent 68%);transform:translate(-50%,-50%);left:-400px;top:-400px}.live-line{position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);box-shadow:0 0 18px rgba(108,232,255,.8);animation:scan 5.5s linear infinite;opacity:.4}@keyframes scan{to{transform:translateY(510px)}}
+.live-line{position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);box-shadow:0 0 18px rgba(108,232,255,.8);animation:scan 5.5s linear infinite;opacity:.4}@keyframes scan{to{transform:translateY(510px)}}
 @media(max-width:920px){.tech-strip{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:620px){body:before{display:none}.glow{filter:blur(55px);opacity:.18}.glow.one{width:250px;height:250px}.hero-copy{text-align:left}.tech-strip{grid-template-columns:1fr 1fr;margin-top:18px}.tech-bit:last-child{grid-column:1/-1}.visual{min-height:355px}.visual:before{filter:blur(10px)}.desktop,.phone{animation:none}.screen:after{animation-duration:9s}.floating-card{backdrop-filter:none}.section,.proof,.final{contain-intrinsic-size:1px 620px}.cursor-aura{display:none}.live-line{display:none}.topbar{backdrop-filter:blur(12px)}.hero-note{line-height:1.45}}
+@media(max-width:620px){body:before{display:none}.glow{filter:blur(55px);opacity:.18}.glow.one{width:250px;height:250px}.hero-copy{text-align:left}.tech-strip{grid-template-columns:1fr 1fr;margin-top:18px}.tech-bit:last-child{grid-column:1/-1}.visual{min-height:355px}.visual:before{filter:blur(10px)}.desktop,.phone{animation:none}.screen:after{animation-duration:9s}.floating-card{backdrop-filter:none}.section,.proof,.final{contain-intrinsic-size:1px 620px}.live-line{display:none}.topbar{backdrop-filter:blur(12px)}.hero-note{line-height:1.45}}
 @media(max-width:420px){h1{font-size:clamp(2.85rem,14.5vw,4rem)}.visual{min-height:330px}.desktop{width:95%}.float-one{right:0}.floating-card strong{font-size:12px}.floating-card span{font-size:9px}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 
@@ -86,7 +86,7 @@ body:after{content:"";position:fixed;inset:0;z-index:-5;pointer-events:none;opac
 .about-logo{background:radial-gradient(circle at 50% 35%,rgba(255,132,72,.22),transparent 38%),linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.015))}
 .cta{border-color:rgba(255,177,103,.26);background:radial-gradient(circle at 92% 8%,rgba(255,196,107,.18),transparent 25%),linear-gradient(135deg,rgba(255,132,72,.13),rgba(104,217,223,.045));box-shadow:0 32px 100px rgba(0,0,0,.4)}.cta:after{border-color:rgba(255,190,120,.24);box-shadow:0 0 70px rgba(255,132,72,.13)}
 .modal{background:rgba(5,6,10,.82)}.modal-card{background:#11141b;border-color:rgba(255,211,165,.17)}
-.cursor-aura{background:radial-gradient(circle,rgba(255,150,78,.14),transparent 64%)}
+
 @media(max-width:620px){.hero:after{width:470px;height:470px;right:-53%;top:-10%;opacity:.38}.glow.one{right:-160px}.tech-strip{background:rgba(255,132,72,.035)}.about-logo img{width:min(320px,94%);max-height:190px;transform:scaleX(1.1) scaleY(.95)}}
 
 
@@ -198,10 +198,35 @@ body:after{content:"";position:fixed;inset:0;z-index:-5;pointer-events:none;opac
   #click-lightning{mix-blend-mode:normal}
 }
 
+
+/* Flagship Cattle Handler hero CTA */
+.flagship-cta{display:flex;align-items:center;gap:14px;margin:0 0 20px;padding:15px 17px;border:1px solid rgba(255,196,126,.32);border-radius:18px;background:linear-gradient(135deg,rgba(255,155,50,.14),rgba(108,232,255,.07));box-shadow:0 16px 44px rgba(0,0,0,.2);text-decoration:none;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease}.flagship-cta:hover{transform:translateY(-2px);border-color:rgba(255,196,126,.62);box-shadow:0 20px 52px rgba(0,0,0,.28)}.flagship-cta-badge{display:grid;place-items:center;min-width:54px;height:54px;padding:0 10px;border-radius:14px;background:linear-gradient(135deg,var(--orange),var(--gold));color:#0a0b0f;font-size:11px;font-weight:950;letter-spacing:.08em;text-align:center;text-transform:uppercase;line-height:1.05}.flagship-cta-copy{min-width:0;flex:1}.flagship-cta-copy small{display:block;margin-bottom:3px;color:var(--gold);font-size:10px;font-weight:950;letter-spacing:.13em;text-transform:uppercase}.flagship-cta-copy strong{display:block;color:#fff;font-size:clamp(18px,2vw,24px);line-height:1.05}.flagship-cta-copy span{display:block;margin-top:4px;color:#aaa7a3;font-size:13px}.flagship-cta-arrow{color:var(--gold);font-size:28px;font-weight:700}.navlinks a[href="cattle-handler.html"]{color:#fff;border:1px solid rgba(255,196,126,.28);background:rgba(255,155,50,.08);border-radius:999px;padding:9px 12px}.navlinks a[href="cattle-handler.html"]:hover{border-color:rgba(255,196,126,.58);background:rgba(255,155,50,.14)}
+@media(max-width:620px){.flagship-cta{padding:13px 14px;gap:11px}.flagship-cta-badge{min-width:48px;height:48px;font-size:9px}.flagship-cta-copy span{font-size:12px}.flagship-cta-arrow{font-size:23px}}
+
+
+
+
+
+/* === INSELMAN DIGITAL CURSOR SPOTLIGHT — RESTORED KNOWN-GOOD METHOD === */
+.cursor-aura{
+  position:fixed;
+  width:130px;
+  height:130px;
+  border-radius:50%;
+  pointer-events:none;
+  z-index:2;
+  left:-400px;
+  top:-400px;
+  transform:translate(-50%,-50%);
+  background:radial-gradient(circle,rgba(255,210,132,.24) 0%,rgba(255,161,86,.14) 28%,rgba(255,126,63,.055) 58%,rgba(255,110,50,0) 100%);
+}
+@media (pointer:coarse),(max-width:720px){.cursor-aura{display:none!important}}
+
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Inselman Digital","url":"https://inselmandigital.com/","telephone":"+1-580-465-4804","email":"william@inselmandigital.com","description":"High-impact small-business websites, custom web-based business apps, Google Business Profile support, local SEO foundations, managed hosting, and analytics reporting.","areaServed":"Oklahoma","priceRange":"$1,500+"}</script>
 </head>
-<body>
+<body data-id-build="2026-08-15-spotlight-known-good-restored">
+<div class="cursor-aura" aria-hidden="true"></div>
 <canvas id="click-lightning" aria-hidden="true"></canvas>
 <div class="scroll-progress" aria-hidden="true"><span class="scroll-progress-bar"></span><span class="scroll-progress-pulse"></span></div>
 <div class="scroll-rail" aria-label="Page sections">
@@ -217,10 +242,10 @@ body:after{content:"";position:fixed;inset:0;z-index:-5;pointer-events:none;opac
 </div>
 
 
-<div class="glow one"></div><div class="glow two"></div><div class="cursor-aura" aria-hidden="true"></div>
+<div class="glow one"></div><div class="glow two"></div>
 <header class="topbar"><div class="shell nav"><a class="brand" href="#top"><img src="assets/header-emblem-full.png" alt="Inselman Digital logo" decoding="async" fetchpriority="high"><span><strong>Inselman Digital</strong><span>Business Apps + Web Presence</span></span></a><button class="menu" aria-expanded="false" aria-controls="navlinks">Menu</button><nav class="navlinks" id="navlinks"><a href="#work">Work</a><a href="cattle-handler.html">Cattle Handler</a><a href="#apps">Web Apps</a><a href="#services">Services</a><a href="#areas">Areas</a><a href="#process">Process</a><a href="#pricing">Pricing</a><a href="#about">About</a></nav><button class="btn btn-primary nav-cta" data-contact>Free Quote</button></div></header>
 <main id="top">
-<section class="hero"><div class="shell hero-grid"><div class="hero-copy"><p class="eyebrow">Custom business apps + websites</p><h1>Look local. <span class="gradient-text">Run smarter.</span></h1><p class="hero-lead">I build custom web-based business apps that simplify day-to-day operations—and advanced-looking websites that help small businesses get found and trusted.</p><div class="hero-status"><span class="status-chip">Performance tuned</span><span class="status-chip">Mobile engineered</span><span class="status-chip">Custom web apps</span><span class="status-chip">Built by a business owner</span></div><div class="hero-actions"><button class="btn btn-primary" data-contact>Start Your Project</button><a class="btn btn-ghost" href="#work">See Real Work</a></div><p class="hero-note">Based in Ardmore, Oklahoma · Personal service · You own the finished website</p><div class="tech-strip"><div class="tech-bit"><strong>Zero page-builder bloat</strong><span>Lean custom code</span></div><div class="tech-bit"><strong>Instant customer paths</strong><span>Call · Text · Convert</span></div><div class="tech-bit"><strong>Desktop-level polish</strong><span>Built mobile first</span></div></div></div><div class="visual" aria-label="Responsive website design preview"><div class="orbit"></div><div class="orbit two"></div><div class="live-line"></div><div class="device desktop"><div class="browser"><i></i><i></i><i></i></div><div class="screen"><small>CarPET Friendly Solutions</small><h3>Clean carpet without the all-day wait.</h3><p>Fast-drying local service built around mobile customers.</p><span class="fakebtn">Text Photos</span></div></div><div class="device phone"><div class="browser"></div><div class="screen"><small>Mobile first</small><h3>Fast. Local. Simple.</h3><p>Clear calls to action where customers need them.</p></div></div><div class="floating-card float-one"><strong>Mobile-first</strong><span>Designed to convert</span></div><div class="floating-card float-two"><strong>Google-ready</strong><span>Built to be found</span></div></div></div></section>
+<section class="hero"><div class="shell hero-grid"><div class="hero-copy"><p class="eyebrow">Custom business apps + websites</p><h1>Look local. <span class="gradient-text">Run smarter.</span></h1><p class="hero-lead">I build custom web-based business apps that simplify day-to-day operations—and advanced-looking websites that help small businesses get found and trusted.</p><div class="hero-status"><span class="status-chip">Performance tuned</span><span class="status-chip">Mobile engineered</span><span class="status-chip">Custom web apps</span><span class="status-chip">Built by a business owner</span></div><a class="flagship-cta" href="cattle-handler.html" aria-label="Explore Cattle Handler, Inselman Digital flagship product"><span class="flagship-cta-badge">Flagship</span><span class="flagship-cta-copy"><small>Inselman Digital flagship product</small><strong>Explore Cattle Handler</strong><span>Mobile-first cattle treatment & pen management software</span></span><span class="flagship-cta-arrow" aria-hidden="true">→</span></a><div class="hero-actions"><button class="btn btn-primary" data-contact>Start Your Project</button><a class="btn btn-ghost" href="#work">See Real Work</a></div><p class="hero-note">Based in Ardmore, Oklahoma · Personal service · You own the finished website</p><div class="tech-strip"><div class="tech-bit"><strong>Zero page-builder bloat</strong><span>Lean custom code</span></div><div class="tech-bit"><strong>Instant customer paths</strong><span>Call · Text · Convert</span></div><div class="tech-bit"><strong>Desktop-level polish</strong><span>Built mobile first</span></div></div></div><div class="visual" aria-label="Responsive website design preview"><div class="orbit"></div><div class="orbit two"></div><div class="live-line"></div><div class="device desktop"><div class="browser"><i></i><i></i><i></i></div><div class="screen"><small>CarPET Friendly Solutions</small><h3>Clean carpet without the all-day wait.</h3><p>Fast-drying local service built around mobile customers.</p><span class="fakebtn">Text Photos</span></div></div><div class="device phone"><div class="browser"></div><div class="screen"><small>Mobile first</small><h3>Fast. Local. Simple.</h3><p>Clear calls to action where customers need them.</p></div></div><div class="floating-card float-one"><strong>Mobile-first</strong><span>Designed to convert</span></div><div class="floating-card float-two"><strong>Google-ready</strong><span>Built to be found</span></div></div></div></section>
 <section class="proof"><div class="shell proof-grid"><div class="proof-item"><strong>Real Business Problems</strong><span>Tools built around actual day-to-day work</span></div><div class="proof-item"><strong>Direct Access</strong><span>No account-manager maze</span></div><div class="proof-item"><strong>Custom-Built</strong><span>Apps and websites shaped around the business</span></div><div class="proof-item"><strong>Clear Scope</strong><span>No mystery agency process</span></div></div></section>
 <section class="section" id="work"><div class="shell"><div class="section-head"><p class="eyebrow">Featured transformation</p><h2>Not a concept. A real local business rebuilt to compete.</h2><p>CarPET Friendly Solutions became the proving ground for a faster, clearer, more professional local-service website.</p></div><div class="showcase"><article class="case-main"><div class="case-window"><div class="browser"><i></i><i></i><i></i></div><div class="screen"><small>CarPET Friendly Solutions</small><h3>Carpet cleaning in Ardmore without soaked carpets.</h3><p>Trust, proof, pricing, service areas, reviews, and mobile actions—working together.</p><a class="fakebtn" href="https://carpetfriendlysolutions.com" target="_blank" rel="noopener" aria-label="Visit the live CarPET Friendly Solutions website">View the live site</a></div></div><div class="case-copy"><h3>CarPET Friendly Solutions</h3><p>A complete mobile-first redesign for a real family-owned service business, supported by local landing pages, reviews, pricing, analytics, and clear customer actions.</p><div class="tags"><span>Mobile-first</span><span>Local SEO structure</span><span>Analytics</span><span>Conversion-focused</span></div><a class="btn btn-ghost" href="https://carpetfriendlysolutions.com" target="_blank" rel="noopener">Visit Live Website</a></div></article><aside class="case-side"><div><p class="eyebrow">Built for outcomes</p><div class="metric"><strong>Fast</strong><span>Lightweight static architecture with no bloated page builder.</span></div><div class="metric"><strong>Local</strong><span>Dedicated service and town pages for Southern Oklahoma searches.</span></div><div class="metric"><strong>Simple</strong><span>Calls, texts, pricing, proof, and policies are easy to find.</span></div></div><div class="founder-statement"><small>Inselman Digital philosophy</small><p>Built by a small business owner who understands the goal: look legit, get found, and make the phone ring.</p></div></aside></div></div></section>
 
@@ -301,13 +326,6 @@ if(!reduce){
 }
 
 if(matchMedia('(pointer:fine)').matches&&!reduce){
-  const aura=document.querySelector('.cursor-aura');
-  let pointerRaf=0,px=-400,py=-400;
-  addEventListener('pointermove',e=>{
-    px=e.clientX;py=e.clientY;
-    if(pointerRaf)return;
-    pointerRaf=requestAnimationFrame(()=>{aura.style.transform=`translate(${px-140}px,${py-140}px)`;pointerRaf=0});
-  },{passive:true});
   document.querySelectorAll('.service-card,.price-card,.step,.case-main,.case-side,.about-card').forEach(card=>card.addEventListener('pointermove',e=>{
     const r=card.getBoundingClientRect();
     card.style.setProperty('--mx',e.clientX-r.left+'px');
@@ -461,4 +479,19 @@ updateViewportUI();
 })();
 
 </script>
+
+
+<script id="id-cursor-spotlight-restored-script">
+(()=>{
+  if(!matchMedia('(pointer:fine)').matches||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  const aura=document.querySelector('.cursor-aura');
+  if(!aura)return;
+  addEventListener('pointermove',e=>{
+    aura.style.left=e.clientX+'px';
+    aura.style.top=e.clientY+'px';
+  },{passive:true});
+  addEventListener('pointerleave',()=>{aura.style.left='-400px';aura.style.top='-400px'},{passive:true});
+})();
+</script>
+
 </body></html>
