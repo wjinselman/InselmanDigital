@@ -207,25 +207,33 @@ body:after{content:"";position:fixed;inset:0;z-index:-5;pointer-events:none;opac
 
 
 
-/* === INSELMAN DIGITAL CURSOR SPOTLIGHT — ORIGINAL VISUAL, FIXED TRACKING === */
+/* === INSELMAN DIGITAL CURSOR SPOTLIGHT — PREMIUM SOFT BLOOM === */
 .cursor-aura{
   position:fixed;
-  width:280px;
-  height:280px;
+  width:230px;
+  height:230px;
   border-radius:50%;
   pointer-events:none;
-  z-index:-1;
+  z-index:1;
   left:-400px;
   top:-400px;
   transform:translate(-50%,-50%);
-  background:radial-gradient(circle,rgba(255,150,78,.14),transparent 64%);
+  opacity:.78;
+  mix-blend-mode:screen;
+  filter:blur(7px);
+  background:radial-gradient(circle,
+    rgba(255,236,214,.10) 0%,
+    rgba(255,197,145,.075) 18%,
+    rgba(255,145,82,.045) 38%,
+    rgba(255,132,72,.018) 58%,
+    rgba(255,132,72,0) 76%);
 }
 @media (pointer:coarse),(max-width:720px){.cursor-aura{display:none!important}}
 
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Inselman Digital","url":"https://inselmandigital.com/","telephone":"+1-580-465-4804","email":"william@inselmandigital.com","description":"High-impact small-business websites, custom web-based business apps, Google Business Profile support, local SEO foundations, managed hosting, and analytics reporting.","areaServed":"Oklahoma","priceRange":"$1,500+"}</script>
 </head>
-<body data-id-build="2026-08-15-spotlight-original-look-fixed">
+<body data-id-build="2026-08-15-spotlight-premium-soft-bloom">
 <div class="cursor-aura" aria-hidden="true"></div>
 <canvas id="click-lightning" aria-hidden="true"></canvas>
 <div class="scroll-progress" aria-hidden="true"><span class="scroll-progress-bar"></span><span class="scroll-progress-pulse"></span></div>
