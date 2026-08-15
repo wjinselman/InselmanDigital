@@ -230,10 +230,54 @@ body:after{content:"";position:fixed;inset:0;z-index:-5;pointer-events:none;opac
 }
 @media (pointer:coarse),(max-width:720px){.cursor-aura{display:none!important}}
 
+
+/* === 2026-08-15 FINAL VISUAL SMOOTHING ===
+   Remove scanline segmentation, soften section transitions, keep cursor warm. */
+body:before{display:none!important}
+
+/* Make full-width sections flow into one another instead of reading as stacked bands. */
+.band{
+  border-block:0!important;
+  background:linear-gradient(180deg,
+    rgba(255,132,72,0) 0%,
+    rgba(255,132,72,.018) 18%,
+    rgba(255,132,72,.026) 50%,
+    rgba(255,132,72,.018) 82%,
+    rgba(255,132,72,0) 100%)!important;
+}
+.pricing{
+  border:0!important;
+  background:
+    radial-gradient(circle at 50% 16%,rgba(255,132,72,.075),transparent 36%),
+    linear-gradient(180deg,
+      rgba(8,10,16,0) 0%,
+      rgba(10,12,18,.78) 12%,
+      rgba(10,12,18,.92) 30%,
+      rgba(10,12,18,.92) 70%,
+      rgba(10,12,18,.78) 88%,
+      rgba(8,10,16,0) 100%)!important;
+}
+
+/* Premium amber cursor bloom: no white center, no blend mode color shifting. */
+.cursor-aura{
+  width:220px!important;
+  height:220px!important;
+  opacity:.92!important;
+  mix-blend-mode:normal!important;
+  filter:blur(6px)!important;
+  background:radial-gradient(circle,
+    rgba(255,184,101,.18) 0%,
+    rgba(255,151,76,.135) 18%,
+    rgba(255,126,61,.082) 37%,
+    rgba(255,118,52,.038) 57%,
+    rgba(255,110,45,.012) 72%,
+    rgba(255,110,45,0) 86%)!important;
+}
+
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Inselman Digital","url":"https://inselmandigital.com/","telephone":"+1-580-465-4804","email":"william@inselmandigital.com","description":"High-impact small-business websites, custom web-based business apps, Google Business Profile support, local SEO foundations, managed hosting, and analytics reporting.","areaServed":"Oklahoma","priceRange":"$1,500+"}</script>
 </head>
-<body data-id-build="2026-08-15-spotlight-premium-soft-bloom">
+<body data-id-build="2026-08-15-smooth-amber-final">
 <div class="cursor-aura" aria-hidden="true"></div>
 <canvas id="click-lightning" aria-hidden="true"></canvas>
 <div class="scroll-progress" aria-hidden="true"><span class="scroll-progress-bar"></span><span class="scroll-progress-pulse"></span></div>
