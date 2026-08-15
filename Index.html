@@ -269,10 +269,26 @@ body:after{content:"";position:fixed;inset:0;z-index:-5;pointer-events:none;opac
   }
 }
 @media (pointer:coarse),(max-width:720px){#id-mouse-spotlight{display:none!important}}
+
+/* === ID SPOTLIGHT DIRECT-COORDINATE FIX 2026-08-15 === */
+@media (pointer:fine) and (min-width:721px){
+  .legacy-cursor-aura{display:none!important}
+  #id-mouse-spotlight{
+    display:block!important;position:fixed!important;
+    left:-1000px!important;top:-1000px!important;
+    width:130px!important;height:130px!important;
+    margin:0!important;padding:0!important;border:0!important;border-radius:50%!important;
+    pointer-events:none!important;z-index:2147483000!important;
+    background:radial-gradient(circle at center,rgba(255,204,122,.25) 0%,rgba(255,145,73,.14) 28%,rgba(255,116,57,.05) 50%,transparent 70%)!important;
+    transform:translate(-50%,-50%)!important;
+    will-change:left,top!important;contain:strict!important;mix-blend-mode:screen!important;
+  }
+}
+@media (pointer:coarse),(max-width:720px){#id-mouse-spotlight{display:none!important}}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Inselman Digital","url":"https://inselmandigital.com/","telephone":"+1-580-465-4804","email":"william@inselmandigital.com","description":"High-impact small-business websites, custom web-based business apps, Google Business Profile support, local SEO foundations, managed hosting, and analytics reporting.","areaServed":"Oklahoma","priceRange":"$1,500+"}</script>
 </head>
-<body data-id-build="2026-08-15-spotlight-100px">
+<body data-id-build="2026-08-15-spotlight-direct-130px">
 <div id="id-mouse-spotlight" aria-hidden="true"></div>
 <canvas id="click-lightning" aria-hidden="true"></canvas>
 <div class="scroll-progress" aria-hidden="true"><span class="scroll-progress-bar"></span><span class="scroll-progress-pulse"></span></div>
@@ -541,14 +557,26 @@ updateViewportUI();
 
 </script>
 
-<script id="id-spotlight-clean-reset">
+<script id="id-spotlight-clean-reset-disabled">/* superseded by direct-coordinate spotlight */</script>
+
+<script id="id-spotlight-direct-coordinate">
 (()=>{
   const el=document.getElementById('id-mouse-spotlight');
   if(!el||!matchMedia('(pointer:fine)').matches||innerWidth<=720)return;
-  let x=-1000,y=-1000,raf=0;
-  const draw=()=>{el.style.setProperty('transform',`translate3d(${x}px,${y}px,0) translate(-50%,-50%)`,'important');raf=0};
-  window.addEventListener('pointermove',e=>{x=e.clientX;y=e.clientY;if(!raf)raf=requestAnimationFrame(draw)},{passive:true});
-  document.addEventListener('mouseleave',()=>{x=-1000;y=-1000;if(!raf)raf=requestAnimationFrame(draw)},{passive:true});
+  let raf=0,lastX=-1000,lastY=-1000;
+  const paint=()=>{
+    el.style.setProperty('left',lastX+'px','important');
+    el.style.setProperty('top',lastY+'px','important');
+    raf=0;
+  };
+  window.addEventListener('pointermove',e=>{
+    lastX=e.clientX; lastY=e.clientY;
+    if(!raf)raf=requestAnimationFrame(paint);
+  },{passive:true});
+  document.addEventListener('mouseleave',()=>{
+    lastX=-1000; lastY=-1000;
+    if(!raf)raf=requestAnimationFrame(paint);
+  },{passive:true});
 })();
 </script>
 </body></html>
