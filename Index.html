@@ -41,7 +41,7 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:999;ba
 .screen{position:relative;overflow:hidden}.screen:after{content:"";position:absolute;inset:-40% -80%;background:linear-gradient(110deg,transparent 42%,rgba(255,255,255,.12) 49%,transparent 56%);transform:translateX(-45%);animation:screenSweep 6.5s ease-in-out infinite;pointer-events:none}@keyframes screenSweep{55%,100%{transform:translateX(45%)}}
 .tech-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:24px}.tech-bit{padding:13px 14px;border:1px solid var(--line);border-radius:15px;background:rgba(255,255,255,.028);backdrop-filter:blur(10px)}.tech-bit strong{display:block;color:#fff;font-size:12px}.tech-bit span{display:block;color:#7f90b5;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em}
 .section,.proof,.final{content-visibility:auto;contain-intrinsic-size:1px 760px}.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1)}.reveal.in{opacity:1;transform:none}.service-card,.price-card,.step,.case-main,.case-side,.about-card{position:relative;overflow:hidden}.service-card:before,.price-card:before,.step:before,.case-main:before,.case-side:before,.about-card:before{content:"";position:absolute;inset:0;background:radial-gradient(500px circle at var(--mx,50%) var(--my,50%),rgba(108,232,255,.09),transparent 38%);opacity:0;transition:opacity .25s;pointer-events:none}.service-card:hover:before,.price-card:hover:before,.step:hover:before,.case-main:hover:before,.case-side:hover:before,.about-card:hover:before{opacity:1}
-.cursor-aura{position:fixed;width:280px;height:280px;border-radius:50%;pointer-events:none;z-index:-1;background:radial-gradient(circle,rgba(98,134,255,.12),transparent 68%);left:0;top:0;transform:translate3d(-400px,-400px,0);will-change:transform;contain:layout paint}.live-line{position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);box-shadow:0 0 18px rgba(108,232,255,.8);animation:scan 5.5s linear infinite;opacity:.4}@keyframes scan{to{transform:translateY(510px)}}
+.cursor-aura{position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(circle 140px at var(--cursor-x,-400px) var(--cursor-y,-400px),rgba(98,134,255,.12),transparent 68%);will-change:background;contain:paint}.live-line{position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);box-shadow:0 0 18px rgba(108,232,255,.8);animation:scan 5.5s linear infinite;opacity:.4}@keyframes scan{to{transform:translateY(510px)}}
 @media(max-width:920px){.tech-strip{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:620px){body:before{display:none}.glow{filter:blur(55px);opacity:.18}.glow.one{width:250px;height:250px}.hero-copy{text-align:left}.tech-strip{grid-template-columns:1fr 1fr;margin-top:18px}.tech-bit:last-child{grid-column:1/-1}.visual{min-height:355px}.visual:before{filter:blur(10px)}.desktop,.phone{animation:none}.screen:after{animation-duration:9s}.floating-card{backdrop-filter:none}.section,.proof,.final{contain-intrinsic-size:1px 620px}.cursor-aura{display:none}.live-line{display:none}.topbar{backdrop-filter:blur(12px)}.hero-note{line-height:1.45}}
 @media(max-width:420px){h1{font-size:clamp(2.85rem,14.5vw,4rem)}.visual{min-height:330px}.desktop{width:95%}.float-one{right:0}.floating-card strong{font-size:12px}.floating-card span{font-size:9px}}
@@ -311,7 +311,11 @@ if(matchMedia('(pointer:fine)').matches&&!reduce){
   addEventListener('pointermove',e=>{
     px=e.clientX;py=e.clientY;
     if(pointerRaf)return;
-    pointerRaf=requestAnimationFrame(()=>{aura.style.transform=`translate3d(${px-140}px,${py-140}px,0)`;pointerRaf=0});
+    pointerRaf=requestAnimationFrame(()=>{
+      aura.style.setProperty('--cursor-x',px+'px');
+      aura.style.setProperty('--cursor-y',py+'px');
+      pointerRaf=0;
+    });
   },{passive:true});
   document.querySelectorAll('.service-card,.price-card,.step,.case-main,.case-side,.about-card').forEach(card=>card.addEventListener('pointermove',e=>{
     const r=card.getBoundingClientRect();
