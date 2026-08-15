@@ -41,9 +41,9 @@ body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:999;ba
 .screen{position:relative;overflow:hidden}.screen:after{content:"";position:absolute;inset:-40% -80%;background:linear-gradient(110deg,transparent 42%,rgba(255,255,255,.12) 49%,transparent 56%);transform:translateX(-45%);animation:screenSweep 6.5s ease-in-out infinite;pointer-events:none}@keyframes screenSweep{55%,100%{transform:translateX(45%)}}
 .tech-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:24px}.tech-bit{padding:13px 14px;border:1px solid var(--line);border-radius:15px;background:rgba(255,255,255,.028);backdrop-filter:blur(10px)}.tech-bit strong{display:block;color:#fff;font-size:12px}.tech-bit span{display:block;color:#7f90b5;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em}
 .section,.proof,.final{content-visibility:auto;contain-intrinsic-size:1px 760px}.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1)}.reveal.in{opacity:1;transform:none}.service-card,.price-card,.step,.case-main,.case-side,.about-card{position:relative;overflow:hidden}.service-card:before,.price-card:before,.step:before,.case-main:before,.case-side:before,.about-card:before{content:"";position:absolute;inset:0;background:radial-gradient(500px circle at var(--mx,50%) var(--my,50%),rgba(108,232,255,.09),transparent 38%);opacity:0;transition:opacity .25s;pointer-events:none}.service-card:hover:before,.price-card:hover:before,.step:hover:before,.case-main:hover:before,.case-side:hover:before,.about-card:hover:before{opacity:1}
-.legacy-cursor-aura{position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(circle 140px at var(--cursor-x,-400px) var(--cursor-y,-400px),rgba(98,134,255,.12),transparent 68%);will-change:background;contain:paint}.live-line{position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);box-shadow:0 0 18px rgba(108,232,255,.8);animation:scan 5.5s linear infinite;opacity:.4}@keyframes scan{to{transform:translateY(510px)}}
+.live-line{position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);box-shadow:0 0 18px rgba(108,232,255,.8);animation:scan 5.5s linear infinite;opacity:.4}@keyframes scan{to{transform:translateY(510px)}}
 @media(max-width:920px){.tech-strip{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:620px){body:before{display:none}.glow{filter:blur(55px);opacity:.18}.glow.one{width:250px;height:250px}.hero-copy{text-align:left}.tech-strip{grid-template-columns:1fr 1fr;margin-top:18px}.tech-bit:last-child{grid-column:1/-1}.visual{min-height:355px}.visual:before{filter:blur(10px)}.desktop,.phone{animation:none}.screen:after{animation-duration:9s}.floating-card{backdrop-filter:none}.section,.proof,.final{contain-intrinsic-size:1px 620px}.legacy-cursor-aura{display:none}.live-line{display:none}.topbar{backdrop-filter:blur(12px)}.hero-note{line-height:1.45}}
+@media(max-width:620px){body:before{display:none}.glow{filter:blur(55px);opacity:.18}.glow.one{width:250px;height:250px}.hero-copy{text-align:left}.tech-strip{grid-template-columns:1fr 1fr;margin-top:18px}.tech-bit:last-child{grid-column:1/-1}.visual{min-height:355px}.visual:before{filter:blur(10px)}.desktop,.phone{animation:none}.screen:after{animation-duration:9s}.floating-card{backdrop-filter:none}.section,.proof,.final{contain-intrinsic-size:1px 620px}.live-line{display:none}.topbar{backdrop-filter:blur(12px)}.hero-note{line-height:1.45}}
 @media(max-width:420px){h1{font-size:clamp(2.85rem,14.5vw,4rem)}.visual{min-height:330px}.desktop{width:95%}.float-one{right:0}.floating-card strong{font-size:12px}.floating-card span{font-size:9px}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
 
@@ -86,7 +86,7 @@ body:after{content:"";position:fixed;inset:0;z-index:-5;pointer-events:none;opac
 .about-logo{background:radial-gradient(circle at 50% 35%,rgba(255,132,72,.22),transparent 38%),linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.015))}
 .cta{border-color:rgba(255,177,103,.26);background:radial-gradient(circle at 92% 8%,rgba(255,196,107,.18),transparent 25%),linear-gradient(135deg,rgba(255,132,72,.13),rgba(104,217,223,.045));box-shadow:0 32px 100px rgba(0,0,0,.4)}.cta:after{border-color:rgba(255,190,120,.24);box-shadow:0 0 70px rgba(255,132,72,.13)}
 .modal{background:rgba(5,6,10,.82)}.modal-card{background:#11141b;border-color:rgba(255,211,165,.17)}
-.legacy-cursor-aura{background:radial-gradient(circle 140px at var(--cursor-x,-400px) var(--cursor-y,-400px),rgba(255,150,78,.14),transparent 64%)}
+
 @media(max-width:620px){.hero:after{width:470px;height:470px;right:-53%;top:-10%;opacity:.38}.glow.one{right:-160px}.tech-strip{background:rgba(255,132,72,.035)}.about-logo img{width:min(320px,94%);max-height:190px;transform:scaleX(1.1) scaleY(.95)}}
 
 
@@ -204,92 +204,36 @@ body:after{content:"";position:fixed;inset:0;z-index:-5;pointer-events:none;opac
 @media(max-width:620px){.flagship-cta{padding:13px 14px;gap:11px}.flagship-cta-badge{min-width:48px;height:48px;font-size:9px}.flagship-cta-copy span{font-size:12px}.flagship-cta-arrow{font-size:23px}}
 
 
-/* === Cursor spotlight final fix: visible exact pointer tracking === */
+
+
+
+/* === INSELMAN DIGITAL CURSOR SPOTLIGHT — CLEAN CANVAS REBUILD === */
+#id-cursor-spotlight-canvas{
+  position:fixed;
+  inset:0;
+  width:100vw;
+  height:100vh;
+  pointer-events:none;
+  z-index:0;
+  display:block;
+  margin:0;
+  padding:0;
+}
 @media (pointer:fine) and (min-width:721px){
-  .glow.one,.glow.two{display:none!important}
-  .legacy-cursor-aura{
-    display:block!important;
-    position:fixed!important;
-    inset:0!important;
-    z-index:0!important;
-    pointer-events:none!important;
-    background:radial-gradient(circle 170px at var(--cursor-x,-500px) var(--cursor-y,-500px),rgba(255,150,78,.20) 0%,rgba(255,132,72,.10) 38%,transparent 72%)!important;
-    will-change:background!important;
-    contain:strict!important;
-  }
+  .glow,.hero:after{display:none!important}
   header,main,footer,.scroll-progress,.scroll-rail{position:relative;z-index:1}
   .topbar{position:sticky}
   .modal{z-index:200!important}
 }
-
-/* === ACTUAL mouse spotlight fix: eliminate static orange impostors on desktop === */
-@media (pointer:fine) and (min-width:721px){
-  .hero:after{display:none!important}
-  body{
-    background:
-      radial-gradient(circle at 15% 32%,rgba(104,217,223,.045),transparent 25rem),
-      linear-gradient(180deg,#080a10 0%,#0a0d14 48%,#080a10 100%)!important;
-  }
-  .legacy-cursor-aura{
-    display:block!important;
-    position:fixed!important;
-    inset:0!important;
-    z-index:0!important;
-    pointer-events:none!important;
-    background:radial-gradient(circle 190px at var(--cursor-x,-500px) var(--cursor-y,-500px),rgba(255,186,105,.28) 0%,rgba(255,132,72,.17) 34%,rgba(255,132,72,.07) 56%,transparent 76%)!important;
-    contain:paint!important;
-  }
+@media (pointer:coarse),(max-width:720px){
+  #id-cursor-spotlight-canvas{display:none!important}
 }
 
-/* === SINGLE-SOURCE DESKTOP CURSOR SPOTLIGHT === */
-@media (pointer:fine) and (min-width:721px){
-  .glow,.hero:after,.visual:before{display:none!important}
-  .legacy-cursor-aura{
-    display:block!important;position:fixed!important;left:0!important;top:0!important;right:auto!important;bottom:auto!important;inset:auto!important;
-    width:420px!important;height:420px!important;border-radius:50%!important;pointer-events:none!important;z-index:0!important;
-    background:radial-gradient(circle at 50% 50%,rgba(255,196,112,.30) 0%,rgba(255,142,72,.18) 28%,rgba(255,120,62,.07) 52%,transparent 72%)!important;
-    transform:translate3d(-1000px,-1000px,0) translate(-50%,-50%)!important;
-    will-change:transform!important;contain:layout paint style!important;
-  }
-  header,main,footer,.scroll-progress,.scroll-rail{position:relative;z-index:1}
-  .topbar{position:sticky}
-}
-
-/* === ID BUILD 2026-08-15 SPOTLIGHT CLEAN RESET === */
-@media (pointer:fine) and (min-width:721px){
-  .glow,.hero:after,.visual:before{display:none!important}
-  #id-mouse-spotlight{
-    position:fixed!important;left:0!important;top:0!important;width:100px!important;height:100px!important;
-    margin:0!important;padding:0!important;border:0!important;border-radius:50%!important;
-    pointer-events:none!important;z-index:2147483000!important;
-    background:radial-gradient(circle at center,rgba(255,204,122,.22) 0%,rgba(255,145,73,.13) 26%,rgba(255,116,57,.045) 48%,transparent 68%)!important;
-    transform:translate3d(-1000px,-1000px,0) translate(-50%,-50%)!important;
-    will-change:transform!important;contain:strict!important;
-    mix-blend-mode:screen!important;
-  }
-}
-@media (pointer:coarse),(max-width:720px){#id-mouse-spotlight{display:none!important}}
-
-/* === ID SPOTLIGHT DIRECT-COORDINATE FIX 2026-08-15 === */
-@media (pointer:fine) and (min-width:721px){
-  .legacy-cursor-aura{display:none!important}
-  #id-mouse-spotlight{
-    display:block!important;position:fixed!important;
-    left:-1000px!important;top:-1000px!important;
-    width:130px!important;height:130px!important;
-    margin:0!important;padding:0!important;border:0!important;border-radius:50%!important;
-    pointer-events:none!important;z-index:2147483000!important;
-    background:radial-gradient(circle at center,rgba(255,204,122,.25) 0%,rgba(255,145,73,.14) 28%,rgba(255,116,57,.05) 50%,transparent 70%)!important;
-    transform:translate(-50%,-50%)!important;
-    will-change:left,top!important;contain:strict!important;mix-blend-mode:screen!important;
-  }
-}
-@media (pointer:coarse),(max-width:720px){#id-mouse-spotlight{display:none!important}}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Inselman Digital","url":"https://inselmandigital.com/","telephone":"+1-580-465-4804","email":"william@inselmandigital.com","description":"High-impact small-business websites, custom web-based business apps, Google Business Profile support, local SEO foundations, managed hosting, and analytics reporting.","areaServed":"Oklahoma","priceRange":"$1,500+"}</script>
 </head>
-<body data-id-build="2026-08-15-spotlight-direct-130px">
-<div id="id-mouse-spotlight" aria-hidden="true"></div>
+<body data-id-build="2026-08-15-spotlight-canvas-rebuilt">
+<canvas id="id-cursor-spotlight-canvas" aria-hidden="true"></canvas>
 <canvas id="click-lightning" aria-hidden="true"></canvas>
 <div class="scroll-progress" aria-hidden="true"><span class="scroll-progress-bar"></span><span class="scroll-progress-pulse"></span></div>
 <div class="scroll-rail" aria-label="Page sections">
@@ -305,7 +249,7 @@ body:after{content:"";position:fixed;inset:0;z-index:-5;pointer-events:none;opac
 </div>
 
 
-<div class="glow one"></div><div class="glow two"></div><div class="legacy-cursor-aura" aria-hidden="true"></div>
+<div class="glow one"></div><div class="glow two"></div>
 <header class="topbar"><div class="shell nav"><a class="brand" href="#top"><img src="assets/header-emblem-full.png" alt="Inselman Digital logo" decoding="async" fetchpriority="high"><span><strong>Inselman Digital</strong><span>Business Apps + Web Presence</span></span></a><button class="menu" aria-expanded="false" aria-controls="navlinks">Menu</button><nav class="navlinks" id="navlinks"><a href="#work">Work</a><a href="cattle-handler.html">Cattle Handler</a><a href="#apps">Web Apps</a><a href="#services">Services</a><a href="#areas">Areas</a><a href="#process">Process</a><a href="#pricing">Pricing</a><a href="#about">About</a></nav><button class="btn btn-primary nav-cta" data-contact>Free Quote</button></div></header>
 <main id="top">
 <section class="hero"><div class="shell hero-grid"><div class="hero-copy"><p class="eyebrow">Custom business apps + websites</p><h1>Look local. <span class="gradient-text">Run smarter.</span></h1><p class="hero-lead">I build custom web-based business apps that simplify day-to-day operations—and advanced-looking websites that help small businesses get found and trusted.</p><div class="hero-status"><span class="status-chip">Performance tuned</span><span class="status-chip">Mobile engineered</span><span class="status-chip">Custom web apps</span><span class="status-chip">Built by a business owner</span></div><a class="flagship-cta" href="cattle-handler.html" aria-label="Explore Cattle Handler, Inselman Digital flagship product"><span class="flagship-cta-badge">Flagship</span><span class="flagship-cta-copy"><small>Inselman Digital flagship product</small><strong>Explore Cattle Handler</strong><span>Mobile-first cattle treatment & pen management software</span></span><span class="flagship-cta-arrow" aria-hidden="true">→</span></a><div class="hero-actions"><button class="btn btn-primary" data-contact>Start Your Project</button><a class="btn btn-ghost" href="#work">See Real Work</a></div><p class="hero-note">Based in Ardmore, Oklahoma · Personal service · You own the finished website</p><div class="tech-strip"><div class="tech-bit"><strong>Zero page-builder bloat</strong><span>Lean custom code</span></div><div class="tech-bit"><strong>Instant customer paths</strong><span>Call · Text · Convert</span></div><div class="tech-bit"><strong>Desktop-level polish</strong><span>Built mobile first</span></div></div></div><div class="visual" aria-label="Responsive website design preview"><div class="orbit"></div><div class="orbit two"></div><div class="live-line"></div><div class="device desktop"><div class="browser"><i></i><i></i><i></i></div><div class="screen"><small>CarPET Friendly Solutions</small><h3>Clean carpet without the all-day wait.</h3><p>Fast-drying local service built around mobile customers.</p><span class="fakebtn">Text Photos</span></div></div><div class="device phone"><div class="browser"></div><div class="screen"><small>Mobile first</small><h3>Fast. Local. Simple.</h3><p>Clear calls to action where customers need them.</p></div></div><div class="floating-card float-one"><strong>Mobile-first</strong><span>Designed to convert</span></div><div class="floating-card float-two"><strong>Google-ready</strong><span>Built to be found</span></div></div></div></section>
@@ -389,20 +333,6 @@ if(!reduce){
 }
 
 if(matchMedia('(pointer:fine)').matches&&!reduce){
-  const aura=document.querySelector('.legacy-cursor-aura');
-  let pointerRaf=0,px=-1000,py=-1000;
-  const paintAura=()=>{
-    aura.style.setProperty('transform',`translate3d(${px}px,${py}px,0) translate(-50%,-50%)`,'important');
-    pointerRaf=0;
-  };
-  addEventListener('pointermove',e=>{
-    px=e.clientX; py=e.clientY;
-    if(!pointerRaf) pointerRaf=requestAnimationFrame(paintAura);
-  },{passive:true});
-  addEventListener('pointerleave',()=>{
-    px=-1000; py=-1000;
-    if(!pointerRaf) pointerRaf=requestAnimationFrame(paintAura);
-  },{passive:true});
   document.querySelectorAll('.service-card,.price-card,.step,.case-main,.case-side,.about-card').forEach(card=>card.addEventListener('pointermove',e=>{
     const r=card.getBoundingClientRect();
     card.style.setProperty('--mx',e.clientX-r.left+'px');
@@ -557,26 +487,47 @@ updateViewportUI();
 
 </script>
 
-<script id="id-spotlight-clean-reset-disabled">/* superseded by direct-coordinate spotlight */</script>
 
-<script id="id-spotlight-direct-coordinate">
+<script id="id-cursor-spotlight-canvas-script">
 (()=>{
-  const el=document.getElementById('id-mouse-spotlight');
-  if(!el||!matchMedia('(pointer:fine)').matches||innerWidth<=720)return;
-  let raf=0,lastX=-1000,lastY=-1000;
-  const paint=()=>{
-    el.style.setProperty('left',lastX+'px','important');
-    el.style.setProperty('top',lastY+'px','important');
+  const canvas=document.getElementById('id-cursor-spotlight-canvas');
+  if(!canvas||!matchMedia('(pointer:fine)').matches||innerWidth<=720)return;
+  const ctx=canvas.getContext('2d',{alpha:true});
+  if(!ctx)return;
+
+  const RADIUS=135; // CSS pixels: between the 100px-too-small and 160px-too-large versions
+  let x=-1000,y=-1000,raf=0,dpr=1;
+
+  function resize(){
+    dpr=Math.max(1,Math.min(window.devicePixelRatio||1,2));
+    canvas.width=Math.round(innerWidth*dpr);
+    canvas.height=Math.round(innerHeight*dpr);
+    canvas.style.width=innerWidth+'px';
+    canvas.style.height=innerHeight+'px';
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    draw();
+  }
+
+  function draw(){
     raf=0;
-  };
-  window.addEventListener('pointermove',e=>{
-    lastX=e.clientX; lastY=e.clientY;
-    if(!raf)raf=requestAnimationFrame(paint);
-  },{passive:true});
-  document.addEventListener('mouseleave',()=>{
-    lastX=-1000; lastY=-1000;
-    if(!raf)raf=requestAnimationFrame(paint);
-  },{passive:true});
+    ctx.clearRect(0,0,innerWidth,innerHeight);
+    if(x<0||y<0)return;
+    const g=ctx.createRadialGradient(x,y,0,x,y,RADIUS);
+    g.addColorStop(0,'rgba(255,210,132,.25)');
+    g.addColorStop(.24,'rgba(255,161,86,.16)');
+    g.addColorStop(.52,'rgba(255,126,63,.065)');
+    g.addColorStop(1,'rgba(255,110,50,0)');
+    ctx.fillStyle=g;
+    ctx.fillRect(x-RADIUS,y-RADIUS,RADIUS*2,RADIUS*2);
+  }
+
+  function queue(){ if(!raf)raf=requestAnimationFrame(draw); }
+  addEventListener('pointermove',e=>{x=e.clientX;y=e.clientY;queue()},{passive:true});
+  addEventListener('pointerleave',()=>{x=y=-1000;queue()},{passive:true});
+  addEventListener('blur',()=>{x=y=-1000;queue()},{passive:true});
+  addEventListener('resize',resize,{passive:true});
+  resize();
 })();
 </script>
+
 </body></html>
