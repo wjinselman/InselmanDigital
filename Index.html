@@ -221,6 +221,25 @@ body:after{content:"";position:fixed;inset:0;z-index:-5;pointer-events:none;opac
   .topbar{position:sticky}
   .modal{z-index:200!important}
 }
+
+/* === ACTUAL mouse spotlight fix: eliminate static orange impostors on desktop === */
+@media (pointer:fine) and (min-width:721px){
+  .hero:after{display:none!important}
+  body{
+    background:
+      radial-gradient(circle at 15% 32%,rgba(104,217,223,.045),transparent 25rem),
+      linear-gradient(180deg,#080a10 0%,#0a0d14 48%,#080a10 100%)!important;
+  }
+  .cursor-aura{
+    display:block!important;
+    position:fixed!important;
+    inset:0!important;
+    z-index:0!important;
+    pointer-events:none!important;
+    background:radial-gradient(circle 190px at var(--cursor-x,-500px) var(--cursor-y,-500px),rgba(255,186,105,.28) 0%,rgba(255,132,72,.17) 34%,rgba(255,132,72,.07) 56%,transparent 76%)!important;
+    contain:paint!important;
+  }
+}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"Inselman Digital","url":"https://inselmandigital.com/","telephone":"+1-580-465-4804","email":"william@inselmandigital.com","description":"High-impact small-business websites, custom web-based business apps, Google Business Profile support, local SEO foundations, managed hosting, and analytics reporting.","areaServed":"Oklahoma","priceRange":"$1,500+"}</script>
 </head>
