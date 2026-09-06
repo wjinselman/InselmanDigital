@@ -35,10 +35,11 @@ footer{background:#07080a;padding:26px 0 16px}.footgrid{display:grid;grid-templa
   .links.open a:last-child{border-bottom:0}
 
   .hero{min-height:0;overflow:visible;background:#070809;padding:0}
-  .hero-photo{position:absolute;left:0;right:0;top:0;height:248px;background-position:62% 32%;background-size:cover}
-  .hero-photo:after{background:linear-gradient(180deg,rgba(7,8,9,.04) 0%,rgba(7,8,9,.08) 52%,rgba(7,8,9,.95) 100%)}
-  .hero-dark{height:248px;bottom:auto;background:linear-gradient(90deg,rgba(7,8,9,.18),rgba(7,8,9,0) 58%),linear-gradient(180deg,rgba(7,8,9,.04),rgba(7,8,9,.10) 55%,#070809 100%)}
-  .hero .wrap{min-height:0;display:block;padding:225px 0 34px}
+  /* Mobile hero: bias the crop toward the cowboy's hands/tablet and keep the device out of the dark fade. */
+  .hero-photo{position:absolute;left:0;right:0;top:0;height:292px;background-position:70% 44%;background-size:cover}
+  .hero-photo:after{background:linear-gradient(180deg,rgba(7,8,9,.02) 0%,rgba(7,8,9,.04) 60%,rgba(7,8,9,.24) 82%,rgba(7,8,9,.94) 100%)}
+  .hero-dark{height:292px;bottom:auto;background:linear-gradient(90deg,rgba(7,8,9,.16) 0%,rgba(7,8,9,.03) 42%,rgba(7,8,9,0) 68%),linear-gradient(180deg,rgba(7,8,9,.02) 0%,rgba(7,8,9,.04) 66%,rgba(7,8,9,.28) 84%,#070809 100%)}
+  .hero .wrap{min-height:0;display:block;padding:266px 0 34px}
   .hero-copy{width:100%;padding:0}
   .kicker{font-size:9px;margin-bottom:8px}
   .hero h1{font-size:clamp(3.05rem,14.5vw,3.7rem);line-height:.89;letter-spacing:-.055em;margin-bottom:14px;max-width:100%}
@@ -100,8 +101,9 @@ footer{background:#07080a;padding:26px 0 16px}.footgrid{display:grid;grid-templa
 }
 @media(max-width:390px){
   .brand img{height:42px;width:auto;max-width:68px}
-  .hero-photo,.hero-dark{height:230px}
-  .hero .wrap{padding-top:210px}
+  .hero-photo,.hero-dark{height:272px}
+  .hero-photo{background-position:72% 46%}
+  .hero .wrap{padding-top:248px}
   .hero h1{font-size:3rem}
   .actions{grid-template-columns:1fr}
   .trust strong{font-size:9px}
@@ -112,7 +114,7 @@ footer{background:#07080a;padding:26px 0 16px}.footgrid{display:grid;grid-templa
 }
 
 </style>
-<!-- build: ACTUAL-HTML-FIX-V5-mobile-rebuild -->
+<!-- build: ACTUAL-HTML-FIX-V6-mobile-tablet-focus -->
 </head>
 <body>
 <header><div class="wrap nav"><a class="brand" href="#top"><img src="assets/inselman-digital-logo.png" alt="Inselman Digital"></a><nav class="links" id="navlinks"><a href="#top">Home</a><a href="#work">Work</a><a href="#services">Services</a><a href="websites.html">Websites</a><a href="#process">Process</a><a href="#about">About</a><a href="cattle-handler.html">Cattle Handler</a></nav><button class="menu" id="menu">Menu</button><button class="navcta" data-contact>Start a Conversation →</button></div></header>
