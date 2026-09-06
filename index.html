@@ -20,8 +20,99 @@ header{height:var(--header);position:sticky;top:0;z-index:100;background:rgba(7,
 footer{background:#07080a;padding:26px 0 16px}.footgrid{display:grid;grid-template-columns:1.2fr .7fr .95fr .85fr;gap:30px}.footgrid img{width:215px}.footgrid p,.footgrid li{font-size:11px;line-height:1.6;color:#a7a198}.footgrid h4{margin:0 0 8px;font-size:11px;text-transform:uppercase;letter-spacing:.12em}.footgrid ul{list-style:none;padding:0;margin:0}.footbottom{display:flex;justify-content:space-between;gap:15px;margin-top:20px;padding-top:13px;border-top:1px solid rgba(255,255,255,.08);font-size:10px;color:#746f69}.modal[hidden]{display:none}.modal{position:fixed;inset:0;z-index:200;display:grid;place-items:center;padding:20px;background:rgba(0,0,0,.74)}.modal-card{width:min(540px,100%);background:#0e1115;border:1px solid rgba(255,255,255,.13);border-radius:16px;padding:26px}.modal-card h3{font-size:28px;margin:0 0 7px}.modal-card p{color:#aaa49b}.contact-list{display:grid;gap:8px;margin:18px 0}.contact-list a{padding:11px;border:1px solid rgba(255,255,255,.12);border-radius:9px}
 @media(max-width:1050px){.hero{min-height:650px}.hero .wrap{min-height:650px;padding-bottom:120px}.work{margin-top:-12px}.links{display:none}.menu{display:block}.links.open{position:absolute;display:flex;flex-direction:column;align-items:stretch;right:18px;top:58px;background:#0d1014;border:1px solid var(--line);padding:10px;border-radius:12px;width:210px}.hero-photo{left:25%;background-position:58% center}.hero-copy{width:min(560px,61vw)}.hero-quote{right:24px;width:190px;font-size:17px}.cards{grid-template-columns:repeat(2,1fr)}.process-grid,.people-inner{grid-template-columns:1fr}.quote{justify-self:start}.footgrid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:700px){.wrap{width:min(var(--max),calc(100% - 24px))}.brand img{width:205px}.navcta{display:none}.hero{min-height:650px}.hero-photo{left:0;background-position:57% 16%}.hero-dark{background:linear-gradient(180deg,rgba(7,8,9,.08) 0%,rgba(7,8,9,.36) 34%,rgba(7,8,9,.93) 67%,#070809 100%),linear-gradient(90deg,rgba(7,8,9,.65),rgba(7,8,9,.04))}.hero .wrap{min-height:650px;align-items:flex-end;padding-top:0;padding-bottom:0}.hero-copy{width:100%;padding:220px 0 116px}.hero h1{font-size:clamp(3.1rem,15vw,4.7rem)}.hero p.copy{font-size:14px}.trust{grid-template-columns:1fr;gap:9px}.trust div{grid-template-columns:30px 1fr}.hero-quote{display:none}.work{margin-top:0}.cards{grid-template-columns:1fr}.media{height:165px}.process-grid{gap:28px}.steps{grid-template-columns:1fr 1fr}.step:not(:last-child):after{display:none}.people-inner{padding:40px 0}.cta .wrap{grid-template-columns:1fr}.footgrid{grid-template-columns:1fr}.footbottom{flex-direction:column}}
+
+/* Mobile rebuild V5 — purposefully separate the photo and copy instead of stacking text over the image */
+@media(max-width:700px){
+  :root{--header:58px}
+  html{scroll-padding-top:66px}
+  .wrap{width:calc(100% - 28px)}
+  header{height:58px}
+  .nav{gap:10px}
+  .brand img{width:168px}
+  .menu{display:block;padding:7px 10px;font-size:12px;font-weight:800}
+  .links.open{position:fixed;left:14px;right:14px;top:66px;width:auto;max-height:calc(100vh - 82px);overflow:auto;padding:10px;background:rgba(11,13,16,.98);box-shadow:0 18px 50px rgba(0,0,0,.5)}
+  .links.open a{padding:13px 12px;font-size:14px;border-bottom:1px solid rgba(255,255,255,.06)}
+  .links.open a:last-child{border-bottom:0}
+
+  .hero{min-height:0;overflow:visible;background:#070809;padding:0}
+  .hero-photo{position:absolute;left:0;right:0;top:0;height:248px;background-position:62% 32%;background-size:cover}
+  .hero-photo:after{background:linear-gradient(180deg,rgba(7,8,9,.04) 0%,rgba(7,8,9,.08) 52%,rgba(7,8,9,.95) 100%)}
+  .hero-dark{height:248px;bottom:auto;background:linear-gradient(90deg,rgba(7,8,9,.18),rgba(7,8,9,0) 58%),linear-gradient(180deg,rgba(7,8,9,.04),rgba(7,8,9,.10) 55%,#070809 100%)}
+  .hero .wrap{min-height:0;display:block;padding:225px 0 34px}
+  .hero-copy{width:100%;padding:0}
+  .kicker{font-size:9px;margin-bottom:8px}
+  .hero h1{font-size:clamp(3.05rem,14.5vw,3.7rem);line-height:.89;letter-spacing:-.055em;margin-bottom:14px;max-width:100%}
+  .hero p.copy{font-size:13.5px;line-height:1.48;max-width:none;color:#cfc8bf}
+  .actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:17px}
+  .btn{min-height:44px;padding:0 12px;font-size:12px;white-space:nowrap}
+  .trust{grid-template-columns:repeat(3,1fr);gap:7px;margin-top:17px;max-width:none}
+  .trust div{display:flex;min-width:0;align-items:center;justify-content:center;gap:5px;padding:9px 5px;border:1px solid rgba(255,255,255,.09);border-radius:9px;background:rgba(255,255,255,.025);text-align:center}
+  .trust i{font-size:15px;line-height:1;flex:0 0 auto}
+  .trust span{font-size:0!important;margin:0!important;line-height:1!important;min-width:0}
+  .trust strong{font-size:9.5px;line-height:1.1;white-space:normal}
+  .hero-quote{display:none}
+
+  .work{margin-top:0;padding:8px 0 28px;background:linear-gradient(180deg,#070809 0%,#090b0d 100%)}
+  .cards{grid-template-columns:1fr;gap:10px}
+  .card{display:grid;grid-template-columns:39% 61%;min-height:132px;border-radius:12px}
+  .media{height:auto;min-height:132px;border-bottom:0;border-right:1px solid rgba(255,255,255,.08)}
+  .card:nth-child(1) .media{background-position:52% 25%}
+  .card:nth-child(2) .media{background-position:48% 35%}
+  .card:nth-child(3) .media{background-position:58% 58%}
+  .card:nth-child(4) .media{background-position:56% 42%}
+  .body{padding:12px 12px 11px;display:flex;flex-direction:column;justify-content:center;min-width:0}
+  .body h3{font-size:15px;line-height:1.05;margin-bottom:5px}
+  .body p{font-size:10.2px;line-height:1.36}
+  .learn{font-size:8.7px;margin-top:8px}
+
+  .process{padding:32px 0 34px}
+  .process:before{opacity:.022;inset:-20% -20%}
+  .process-grid{grid-template-columns:1fr;gap:24px}
+  .process h2{font-size:2.35rem;line-height:.94;margin-bottom:9px}
+  .process .intro{font-size:12px;line-height:1.45}
+  .steps{grid-template-columns:1fr 1fr;gap:18px 12px}
+  .icon{width:46px;height:46px;font-size:17px;margin-bottom:7px}
+  .step h3{font-size:13px}
+  .step p{font-size:9.5px;line-height:1.35;padding:0 4px}
+
+  .people{min-height:0}
+  .people-bg{background-position:61% center}
+  .people-shade{background:linear-gradient(180deg,rgba(7,8,9,.74) 0%,rgba(7,8,9,.91) 65%,#070809 100%)}
+  .people-inner{min-height:0;grid-template-columns:1fr;gap:18px;padding:38px 0}
+  .people h2{font-size:2.3rem;line-height:.95}
+  .people p{font-size:12px;line-height:1.45}
+  .quote{justify-self:stretch;width:100%;padding:14px 15px;background:rgba(7,8,9,.68)}
+  .quote em{font-size:16px;line-height:1.25}
+
+  .cta{padding:25px 0 28px}
+  .cta .wrap{grid-template-columns:1fr;gap:15px}
+  .cta h2{font-size:23px;line-height:1.04}
+  .cta .btn{width:100%}
+
+  footer{padding-top:23px}
+  .footgrid{grid-template-columns:1fr 1fr;gap:20px 18px}
+  .footgrid > div:first-child{grid-column:1/-1}
+  .footgrid img{width:185px}
+  .footgrid p,.footgrid li{font-size:10.5px}
+  .footbottom{font-size:9.5px;line-height:1.45;gap:5px}
+  .modal{padding:14px}
+  .modal-card{padding:21px 18px;border-radius:14px}
+}
+@media(max-width:390px){
+  .brand img{width:154px}
+  .hero-photo,.hero-dark{height:230px}
+  .hero .wrap{padding-top:210px}
+  .hero h1{font-size:3rem}
+  .actions{grid-template-columns:1fr}
+  .trust strong{font-size:9px}
+  .card{grid-template-columns:37% 63%}
+  .body h3{font-size:14px}
+  .footgrid{grid-template-columns:1fr}
+  .footgrid > div:first-child{grid-column:auto}
+}
+
 </style>
-<!-- build: ACTUAL-HTML-FIX-V4-spacing-blend -->
+<!-- build: ACTUAL-HTML-FIX-V5-mobile-rebuild -->
 </head>
 <body>
 <header><div class="wrap nav"><a class="brand" href="#top"><img src="assets/header-wordmark.png" alt="Inselman Digital"></a><nav class="links" id="navlinks"><a href="#top">Home</a><a href="#work">Work</a><a href="#services">Services</a><a href="websites.html">Websites</a><a href="#process">Process</a><a href="#about">About</a><a href="cattle-handler.html">Cattle Handler</a></nav><button class="menu" id="menu">Menu</button><button class="navcta" data-contact>Start a Conversation →</button></div></header>
