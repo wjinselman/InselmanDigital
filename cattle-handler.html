@@ -28,6 +28,12 @@
 @media(max-width:900px){.hero-grid,.split,.product-film,.dual-grid{grid-template-columns:1fr}.product-stage{min-height:500px}.pillars,.grid3{grid-template-columns:1fr 1fr}.workflow{grid-template-columns:1fr 1fr}.film-visual{justify-self:center;width:min(100%,360px)}.navlinks a:not(.btn){display:none}.micro-proof{grid-template-columns:1fr}.desktop{width:88%}}
 @media(max-width:620px){.shell{width:min(100% - 22px,var(--max))}.hero{padding:48px 0}.hero-grid{gap:24px}.hero h1{font-size:clamp(3rem,15vw,4.7rem)}.product-stage{min-height:360px}.desktop{width:92%;top:3%}.phone{width:42%}.appscreen{min-height:235px;padding:15px}.appscreen h3{font-size:23px}.phone .appscreen{min-height:210px}.status{gap:5px}.status div{padding:8px}.status strong{font-size:17px}.rows .row:nth-child(n+3){display:none}.pillars,.grid3,.workflow{grid-template-columns:1fr}.section{padding:64px 0}.cta{padding:30px 22px}.actions .btn{width:100%}.brand span span{display:none}.film-copy h2{font-size:clamp(2.65rem,14vw,4.2rem)}.film-visual{width:min(100%,330px)}.film-frame{padding:7px;border-radius:28px}.film-frame video,.film-cover{border-radius:21px}.film-cover{inset:7px}.watch-cue{font-size:9px;padding:9px 13px}}
 </style>
+
+<style id="id-consent-style">
+.id-consent{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:9999;width:min(540px,calc(100% - 24px));display:flex;align-items:center;gap:12px;padding:10px 11px 10px 14px;border:1px solid rgba(255,255,255,.13);border-radius:12px;background:rgba(10,12,15,.94);box-shadow:0 14px 38px rgba(0,0,0,.34);backdrop-filter:blur(14px);color:#eee;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+.id-consent[hidden]{display:none}.id-consent-copy{min-width:0;flex:1;font-size:10.5px;line-height:1.35;color:#bbb}.id-consent-copy strong{color:#fff;font-size:11px}.id-consent-actions{display:flex;gap:6px;flex:0 0 auto}.id-consent button{appearance:none;border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:7px 9px;background:rgba(255,255,255,.055);color:#ddd;font:800 9px/1 Inter,ui-sans-serif,system-ui;cursor:pointer}.id-consent button[data-consent-accept]{background:#eaa23c;border-color:#eaa23c;color:#17110a}.id-privacy-choice{background:none!important;border:0!important;padding:0!important;color:#9b958d!important;text-decoration:underline;font-size:9px!important}
+@media(max-width:560px){.id-consent{bottom:8px;align-items:flex-start;gap:8px;padding:9px 9px 9px 11px}.id-consent-copy{font-size:9.5px}.id-consent-actions{gap:5px}.id-consent button{padding:7px 8px}}
+</style>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -300,6 +306,53 @@ document.querySelector('[data-close]')?.addEventListener('click',closeDemo);
 m?.addEventListener('click',e=>{if(e.target===m)closeDemo()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&m&&!m.hidden){closeDemo();return}if(e.key==='Tab'&&m&&!m.hidden){const focusable=[...m.querySelectorAll(demoFocusable)].filter(el=>el.offsetParent!==null);if(!focusable.length){e.preventDefault();return}const first=focusable[0],last=focusable[focusable.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}});
 document.querySelectorAll('[data-film-play]').forEach(b=>b.addEventListener('click',()=>{const v=b.parentElement.querySelector('video');b.hidden=true;v.play().catch(()=>{b.hidden=false})}));
+</script>
+
+<div class="id-consent" id="idConsent" hidden role="dialog" aria-label="Analytics preference" aria-live="polite">
+  <div class="id-consent-copy"><strong>Small cookie note.</strong> We use Google Analytics and Microsoft Clarity to understand what works. Non-essential analytics only load if you accept.</div>
+  <div class="id-consent-actions"><button type="button" data-consent-reject>Essential only</button><button type="button" data-consent-accept>Allow analytics</button></div>
+</div>
+
+<script id="id-consent-manager">
+(()=>{
+  const KEY='inselman-analytics-consent-v1';
+  const banner=document.getElementById('idConsent');
+  const body=document.body;
+  const gaId=(body.dataset.gaId||'').trim();
+  const clarityId=(body.dataset.clarityId||'').trim();
+  let loaded=false;
+
+  function loadAnalytics(){
+    if(loaded) return; loaded=true;
+    if(gaId){
+      const g=document.createElement('script');
+      g.async=true; g.src='https://www.googletagmanager.com/gtag/js?id='+encodeURIComponent(gaId);
+      document.head.appendChild(g);
+      window.dataLayer=window.dataLayer||[];
+      window.gtag=function(){dataLayer.push(arguments)};
+      gtag('js',new Date()); gtag('config',gaId,{anonymize_ip:true});
+    }
+    if(clarityId){
+      (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src='https://www.clarity.ms/tag/'+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,'clarity','script',clarityId);
+      try{window.clarity('consentv2',{ad_Storage:'denied',analytics_Storage:'granted'});}catch(e){}
+    }
+  }
+  function setChoice(value){
+    try{localStorage.setItem(KEY,value)}catch(e){}
+    banner.hidden=true;
+    if(value==='accepted') loadAnalytics();
+  }
+  let choice='';
+  try{choice=localStorage.getItem(KEY)||''}catch(e){}
+  if(choice==='accepted') loadAnalytics();
+  else if(choice!=='rejected') banner.hidden=false;
+  banner?.querySelector('[data-consent-accept]')?.addEventListener('click',()=>setChoice('accepted'));
+  banner?.querySelector('[data-consent-reject]')?.addEventListener('click',()=>setChoice('rejected'));
+  window.InselmanPrivacy={
+    reset(){try{localStorage.removeItem(KEY)}catch(e){}; banner.hidden=false;},
+    status(){try{return localStorage.getItem(KEY)||'unset'}catch(e){return'unset'}}
+  };
+})();
 </script>
 </body>
 </html>

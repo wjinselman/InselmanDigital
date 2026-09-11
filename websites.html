@@ -277,6 +277,12 @@ body:before{display:none}
 @media(max-width:920px){.web-hero-grid,.web-price{grid-template-columns:1fr}.web-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:620px){.web-hero{padding:54px 0 40px}.web-grid{grid-template-columns:1fr}.web-preview{padding:14px;border-radius:20px}.preview-body{padding:25px 21px}.preview-body h3{font-size:32px}}
 </style>
+
+<style id="id-consent-style">
+.id-consent{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:9999;width:min(540px,calc(100% - 24px));display:flex;align-items:center;gap:12px;padding:10px 11px 10px 14px;border:1px solid rgba(255,255,255,.13);border-radius:12px;background:rgba(10,12,15,.94);box-shadow:0 14px 38px rgba(0,0,0,.34);backdrop-filter:blur(14px);color:#eee;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+.id-consent[hidden]{display:none}.id-consent-copy{min-width:0;flex:1;font-size:10.5px;line-height:1.35;color:#bbb}.id-consent-copy strong{color:#fff;font-size:11px}.id-consent-actions{display:flex;gap:6px;flex:0 0 auto}.id-consent button{appearance:none;border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:7px 9px;background:rgba(255,255,255,.055);color:#ddd;font:800 9px/1 Inter,ui-sans-serif,system-ui;cursor:pointer}.id-consent button[data-consent-accept]{background:#eaa23c;border-color:#eaa23c;color:#17110a}.id-privacy-choice{background:none!important;border:0!important;padding:0!important;color:#9b958d!important;text-decoration:underline;font-size:9px!important}
+@media(max-width:560px){.id-consent{bottom:8px;align-items:flex-start;gap:8px;padding:9px 9px 9px 11px}.id-consent-copy{font-size:9.5px}.id-consent-actions{gap:5px}.id-consent button{padding:7px 8px}}
+</style>
 </head>
 <body>
 <div class="glow one"></div><div class="glow two"></div>
@@ -302,5 +308,52 @@ document.querySelector('[data-close]')?.addEventListener('click',closeModal);
 modal?.addEventListener('click',e=>{if(e.target===modal)closeModal()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!modal.hidden)closeModal()});
 const topbar=document.querySelector('.topbar');addEventListener('scroll',()=>topbar?.classList.toggle('scrolled',scrollY>12),{passive:true});
+</script>
+
+<div class="id-consent" id="idConsent" hidden role="dialog" aria-label="Analytics preference" aria-live="polite">
+  <div class="id-consent-copy"><strong>Small cookie note.</strong> We use Google Analytics and Microsoft Clarity to understand what works. Non-essential analytics only load if you accept.</div>
+  <div class="id-consent-actions"><button type="button" data-consent-reject>Essential only</button><button type="button" data-consent-accept>Allow analytics</button></div>
+</div>
+
+<script id="id-consent-manager">
+(()=>{
+  const KEY='inselman-analytics-consent-v1';
+  const banner=document.getElementById('idConsent');
+  const body=document.body;
+  const gaId=(body.dataset.gaId||'').trim();
+  const clarityId=(body.dataset.clarityId||'').trim();
+  let loaded=false;
+
+  function loadAnalytics(){
+    if(loaded) return; loaded=true;
+    if(gaId){
+      const g=document.createElement('script');
+      g.async=true; g.src='https://www.googletagmanager.com/gtag/js?id='+encodeURIComponent(gaId);
+      document.head.appendChild(g);
+      window.dataLayer=window.dataLayer||[];
+      window.gtag=function(){dataLayer.push(arguments)};
+      gtag('js',new Date()); gtag('config',gaId,{anonymize_ip:true});
+    }
+    if(clarityId){
+      (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src='https://www.clarity.ms/tag/'+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,'clarity','script',clarityId);
+      try{window.clarity('consentv2',{ad_Storage:'denied',analytics_Storage:'granted'});}catch(e){}
+    }
+  }
+  function setChoice(value){
+    try{localStorage.setItem(KEY,value)}catch(e){}
+    banner.hidden=true;
+    if(value==='accepted') loadAnalytics();
+  }
+  let choice='';
+  try{choice=localStorage.getItem(KEY)||''}catch(e){}
+  if(choice==='accepted') loadAnalytics();
+  else if(choice!=='rejected') banner.hidden=false;
+  banner?.querySelector('[data-consent-accept]')?.addEventListener('click',()=>setChoice('accepted'));
+  banner?.querySelector('[data-consent-reject]')?.addEventListener('click',()=>setChoice('rejected'));
+  window.InselmanPrivacy={
+    reset(){try{localStorage.removeItem(KEY)}catch(e){}; banner.hidden=false;},
+    status(){try{return localStorage.getItem(KEY)||'unset'}catch(e){return'unset'}}
+  };
+})();
 </script>
 </body></html>

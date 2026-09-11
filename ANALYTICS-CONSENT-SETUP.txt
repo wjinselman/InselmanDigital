@@ -1,0 +1,11 @@
+Inselman Digital analytics consent
+
+The consent banner is installed on every HTML page.
+
+IMPORTANT: The supplied website files did not contain Google Analytics or Microsoft Clarity project IDs/snippets, so no IDs were invented. To make the built-in consent manager load those services after consent, add these attributes to each page's <body> tag:
+
+<body data-ga-id="G-XXXXXXXXXX" data-clarity-id="XXXXXXXXXX">
+
+Do NOT also include unconditional GA/Clarity snippets elsewhere on the page, or they can fire before consent.
+
+Visitors can choose Essential only or Allow analytics. The choice is stored locally in the browser. For testing/resetting in the browser console: InselmanPrivacy.reset()
