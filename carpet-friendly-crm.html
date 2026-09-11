@@ -36,22 +36,28 @@ section.block{padding:86px 0;border-bottom:1px solid var(--line)}.split{display:
 <footer><div class="wrap foot"><img src="assets/inselman-digital-logo.png" alt="Inselman Digital"><span>© 2026 Inselman Digital · Built in Oklahoma</span></div></footer>
 
 <div class="id-consent" id="idConsent" hidden role="dialog" aria-label="Analytics preference" aria-live="polite">
-  <div class="id-consent-copy"><strong>Small cookie note.</strong> We use Google Analytics and Microsoft Clarity to understand what works. Non-essential analytics only load if you accept.</div>
+  <div class="id-consent-copy"><strong>Small cookie note.</strong> We use Google Analytics and Microsoft Clarity to understand what works. Analytics start automatically unless you choose essential only.</div>
   <div class="id-consent-actions"><button type="button" data-consent-reject>Essential only</button><button type="button" data-consent-accept>Allow analytics</button></div>
 </div>
 
 <script id="id-consent-manager">
 (()=>{
-  const KEY='inselman-analytics-consent-v1';
+  const KEY='inselman-analytics-consent-v2';
   const banner=document.getElementById('idConsent');
   const body=document.body;
   const gaId=(body.dataset.gaId||'').trim();
   const clarityId=(body.dataset.clarityId||'').trim();
   let loaded=false;
+  let autoTimer=null;
 
   function loadAnalytics(){
-    if(loaded) return; loaded=true;
+    if(loaded) return;
+    let choice='';
+    try{choice=localStorage.getItem(KEY)||''}catch(e){}
+    if(choice==='rejected') return;
+    loaded=true;
     if(gaId){
+      window['ga-disable-'+gaId]=false;
       const g=document.createElement('script');
       g.async=true; g.src='https://www.googletagmanager.com/gtag/js?id='+encodeURIComponent(gaId);
       document.head.appendChild(g);
@@ -64,20 +70,44 @@ section.block{padding:86px 0;border-bottom:1px solid var(--line)}.split{display:
       try{window.clarity('consentv2',{ad_Storage:'denied',analytics_Storage:'granted'});}catch(e){}
     }
   }
+
+  function rejectAnalytics(){
+    if(autoTimer){clearTimeout(autoTimer); autoTimer=null;}
+    if(gaId) window['ga-disable-'+gaId]=true;
+    try{if(window.clarity) window.clarity('consentv2',{ad_Storage:'denied',analytics_Storage:'denied'});}catch(e){}
+    try{
+      document.cookie.split(';').forEach(c=>{
+        const n=c.trim().split('=')[0];
+        if(n==='_ga'||n.startsWith('_ga_')||n==='_clck'||n==='_clsk') document.cookie=n+'=; Max-Age=0; path=/; SameSite=Lax';
+      });
+    }catch(e){}
+  }
+
   function setChoice(value){
     try{localStorage.setItem(KEY,value)}catch(e){}
     banner.hidden=true;
     if(value==='accepted') loadAnalytics();
+    else rejectAnalytics();
   }
+
   let choice='';
   try{choice=localStorage.getItem(KEY)||''}catch(e){}
-  if(choice==='accepted') loadAnalytics();
-  else if(choice!=='rejected') banner.hidden=false;
+  if(choice==='rejected'){
+    rejectAnalytics();
+  }else if(choice==='accepted'){
+    loadAnalytics();
+  }else{
+    banner.hidden=false;
+    // Short grace period: if the visitor does nothing, analytics load automatically.
+    // Choosing Essential only during or after this period stores an opt-out for future pages/visits.
+    autoTimer=setTimeout(loadAnalytics,3000);
+  }
+
   banner?.querySelector('[data-consent-accept]')?.addEventListener('click',()=>setChoice('accepted'));
   banner?.querySelector('[data-consent-reject]')?.addEventListener('click',()=>setChoice('rejected'));
   window.InselmanPrivacy={
-    reset(){try{localStorage.removeItem(KEY)}catch(e){}; banner.hidden=false;},
-    status(){try{return localStorage.getItem(KEY)||'unset'}catch(e){return'unset'}}
+    reset(){try{localStorage.removeItem(KEY)}catch(e){}; rejectAnalytics(); banner.hidden=false; autoTimer=setTimeout(loadAnalytics,3000);},
+    status(){try{return localStorage.getItem(KEY)||'default-analytics'}catch(e){return'default-analytics'}}
   };
 })();
 </script>

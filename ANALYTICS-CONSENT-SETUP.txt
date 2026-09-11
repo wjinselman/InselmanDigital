@@ -1,11 +1,20 @@
-Inselman Digital analytics consent
+INSELMAN DIGITAL — ANALYTICS / CONSENT SETUP
 
-The consent banner is installed on every HTML page.
+Behavior in this build:
+- Google Analytics and Microsoft Clarity load automatically after a 3-second grace period unless the visitor chooses "Essential only".
+- "Allow analytics" loads them immediately and remembers the choice.
+- "Essential only" stores an opt-out and disables future analytics loading on later pages/visits in the same browser.
+- The banner stays small and non-invasive.
 
-IMPORTANT: The supplied website files did not contain Google Analytics or Microsoft Clarity project IDs/snippets, so no IDs were invented. To make the built-in consent manager load those services after consent, add these attributes to each page's <body> tag:
+IMPORTANT COMPLIANCE NOTE:
+This is an OPT-OUT configuration, not prior opt-in consent. It is not appropriate by itself where prior consent is legally required (for example, many EEA/UK/Swiss visitors). If you want broader international compliance, use region-aware consent or opt-in-by-default for those visitors.
 
-<body data-ga-id="G-XXXXXXXXXX" data-clarity-id="XXXXXXXXXX">
+TRACKING IDS:
+Each page expects these attributes on the <body> tag:
+  data-ga-id="G-XXXXXXXXXX"
+  data-clarity-id="YOUR_CLARITY_PROJECT_ID"
 
-Do NOT also include unconditional GA/Clarity snippets elsewhere on the page, or they can fire before consent.
+Example:
+  <body data-ga-id="G-ABC1234567" data-clarity-id="abcd1234ef">
 
-Visitors can choose Essential only or Allow analytics. The choice is stored locally in the browser. For testing/resetting in the browser console: InselmanPrivacy.reset()
+If the IDs are blank, no analytics provider can load even when analytics are allowed/defaulted.
