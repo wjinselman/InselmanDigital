@@ -18,3 +18,8 @@ Example:
   <body data-ga-id="G-ABC1234567" data-clarity-id="abcd1234ef">
 
 If the IDs are blank, no analytics provider can load even when analytics are allowed/defaulted.
+
+
+CURRENT CONSENT MODEL
+---------------------
+The site uses a small opt-out notice. Analytics begin automatically after a short delay unless the visitor chooses Essential only. This is intentionally less intrusive, but it is not the most conservative prior-consent model for jurisdictions that require opt-in consent.
