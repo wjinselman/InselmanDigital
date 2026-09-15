@@ -1,0 +1,26 @@
+INSELMAN DIGITAL — STUDIO UPDATE
+September 15, 2026
+
+CHANGED
+- Rebuilt the homepage around custom software and the work clients can hire you to do.
+- Featured Cattle Handler, its paid deployment, and the supplied narrated video.
+- Clearly labeled RIGR and Station Handler as prototypes.
+- Simplified homepage, website-services, and CRM navigation.
+- Added concise services, process, and founder sections; removed repeated homepage messaging.
+- Replaced accumulated homepage layout overrides with a single responsive stylesheet.
+- Kept the ranch hero image, product pages, video, Firebase settings, and inquiry endpoint.
+- Improved homepage menu state and inquiry dialog keyboard focus behavior.
+
+CHECKED
+All HTML pages passed local link, asset, fragment, duplicate-ID, and JavaScript syntax checks.
+Browser preview was blocked from accessing the local server. Rendered desktop/mobile layout,
+video playback, and end-to-end form delivery have not been verified.
+
+DEPLOY
+This is the Inselman Digital marketing website package, not the Cattle Handler or RIGR app.
+Extract into your existing Inselman Digital website project, retaining that project's
+.firebaserc association. Use your normal Firebase Hosting deployment process and confirm
+the selected project is Inselman Digital before deploying. No deployment was performed here.
+
+After deployment, check the homepage on desktop and phone, Menu links, the video,
+and opening/closing the project inquiry dialog. Send a real inquiry when ready to verify delivery.
