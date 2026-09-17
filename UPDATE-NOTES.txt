@@ -1,9 +1,7 @@
-INSELMAN DIGITAL - LOCAL BUSINESS SHOWCASE
+INSELMAN DIGITAL - SHOWCASE IMAGE AND POSITION FIX
 
-Adds CarPET Friendly Solutions and Red Road Jiu Jitsu showcases to index.html and websites.html, with public-site previews, live links, and the existing inquiry form.
+Homepage: local website showcase now appears after Selected Work, including the Cattle Handler video, and before Services.
 
-Update package: copy all included files and the assets folder into your existing Inselman Digital site, replacing matching files. Deploy through your existing hosting setup. Keep your existing Firebase project selection (.firebaserc).
+Both homepage and website-services page: the two preview images are embedded directly in the page, so they do not depend on separate image uploads.
 
-Full-site package: complete supplied website with the showcase added. Existing video and page scripts preserved.
-
-Checked desktop and phone layouts, homepage inquiry form, duplicate HTML IDs, and unchanged page scripts. No changes to either featured business website or its accounts. Not deployed by this package.
+Copy the update files into your Inselman Digital site, replacing matching files, and deploy as usual. Preserve your existing Firebase project selection. Existing scripts, video, forms and other pages are unchanged.
