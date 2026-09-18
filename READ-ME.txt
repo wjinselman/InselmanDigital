@@ -1,0 +1,17 @@
+Inselman Digital — first pass
+
+Updated: index.html and websites.html.
+Preserved: homepage layout, imagery, black-and-gold identity, portfolio, product video, existing project pages, and published starting price.
+
+Changes
+- Introduces custom software and websites together.
+- Gives websites a navigation link and a primary service column.
+- Sharpens services, process, About, and contact copy.
+- Aligns the website services page and inquiry wording.
+- Refines website-page heading scale and primary button styling.
+
+Open index.html to review locally. The full public-page preview files are included. To apply this pass to the existing site, replace only index.html and websites.html; keep existing hosting configuration and other site files.
+
+Verified desktop homepage, narrow-screen homepage, mobile menu, inquiry dialog opening/closing on both edited pages, and local file references. Form submissions were not sent. The live site has not been changed.
+
+A client testimonial, founder photo, verified outcome figures, and ownership/support details can be added when supplied. None have been invented for this pass.
