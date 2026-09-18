@@ -1,0 +1,1 @@
+Built-in image edit: Remove all background to transparent alpha. Isolate only the complete main gold-edged cellphone; remove stray second device. Preserve main phone angle, proportions, screen UI and labels. No backdrop, border or additional objects.
