@@ -60,6 +60,10 @@ footer{padding:48px 0 24px}.footgrid{display:grid;grid-template-columns:1.2fr .8
 #services,#process,#support,#about{padding-top:56px;padding-bottom:56px}#services .section-head{margin-bottom:28px}#services .number{margin-bottom:16px}#process .process-grid{display:block}#process .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:32px}#process .step h3{font-size:21px}#process .step p{font-size:15px}#support .section-head{margin-bottom:12px}.support-faq summary{font-size:18px}section[id]{scroll-margin-top:90px}
 @media(max-width:700px){.ch-grid{grid-template-columns:1fr;gap:28px}.ch-spotlight{padding:44px 0}.ch-product img{height:300px}.ch-copy>p:not(.kicker){font-size:17px}.ch-testimonial blockquote{font-size:22px}#process .steps{grid-template-columns:1fr 1fr;gap:22px}#services,#process,#support,#about{padding:44px 0}}
 @media(max-width:380px){#process .steps{grid-template-columns:1fr}}
+</style><style id="ch-image-framing">
+/* Crop the neighboring device out of the homepage product image. */
+.ch-product img{width:207px;height:390px;object-fit:cover;object-position:right center}
+@media(max-width:700px){.ch-product img{width:159px;height:300px}}
 </style></head>
 <body>
 <header><div class="wrap nav"><a class="brand" href="#top"><img src="assets/inselman-digital-logo.png" alt=""><span>Inselman Digital</span></a><nav class="links" id="navlinks" aria-label="Main navigation"><a href="#work">Work</a><a href="websites.html">Websites</a><a href="#services">Services</a><a href="#about">About</a><a href="#contact">Contact</a></nav><button class="menu" id="menu" aria-expanded="false" aria-controls="navlinks">Menu</button><button class="navcta" data-contact>Discuss a project</button></div></header>
