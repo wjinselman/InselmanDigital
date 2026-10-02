@@ -1,25 +1,49 @@
-INSELMAN DIGITAL — ANALYTICS / CONSENT SETUP
+INSELMAN DIGITAL — ANALYTICS AND CONTACT SETUP
+Audited October 2, 2026. Changes are packaged, not deployed.
 
-Behavior in this build:
-- Google Analytics and Microsoft Clarity load automatically after a 3-second grace period unless the visitor chooses "Essential only".
-- "Allow analytics" loads them immediately and remembers the choice.
-- "Essential only" stores an opt-out and disables future analytics loading on later pages/visits in the same browser.
-- The banner stays small and non-invasive.
+Shared behavior now lives in id-site.js and id-site.css on every public page.
+GA4: G-G25PMCDVXQ. Microsoft Clarity: xjyb7pg6fq.
+Provider IDs are set in id-site.js; old body attributes are no longer used.
 
-IMPORTANT COMPLIANCE NOTE:
-This is an OPT-OUT configuration, not prior opt-in consent. It is not appropriate by itself where prior consent is legally required (for example, many EEA/UK/Swiss visitors). If you want broader international compliance, use region-aware consent or opt-in-by-default for those visitors.
+VISITOR PREFERENCES
+The existing opt-out model is preserved: analytics load after three seconds,
+unless the visitor chooses Essential only. Allow analytics loads immediately.
+Preferences persist under inselman-analytics-consent-v2. Footer preferences
+allow changing the choice. Rejecting after loading reloads the page to unload
+providers. This package does not establish legal compliance for every region.
 
-TRACKING IDS:
-Each page expects these attributes on the <body> tag:
-  data-ga-id="G-XXXXXXXXXX"
-  data-clarity-id="YOUR_CLARITY_PROJECT_ID"
+KEEP YOUR OWN VISITS OUT
+After deployment, open https://inselmandigital.com/?id_internal=1 once in EACH
+browser/device you use. A footer note confirms owner/testing mode. It persists
+in that browser until storage is cleared. If you use www, set it there too.
+Use ?id_internal=0 to turn owner exclusion off. Localhost, preview hostnames,
+and browsers exposing navigator.webdriver are automatically excluded.
+This excludes future activity; it cannot clean old visits out of past reports.
 
-Example:
-  <body data-ga-id="G-ABC1234567" data-clarity-id="abcd1234ef">
+EVENTS
+generate_lead: exactly one event after an HTTP-success response with an explicit
+FormSubmit success true or string "true". It means provider acceptance, not
+inbox delivery, a booked job, or payment.
+quote_submit_error: unconfirmed/failed/timeout submission; details retained.
+click_call, click_text, click_email: separate contact intentions, not completed
+conversations or leads. open_project_form, open_demo_contact, click_resume:
+additional interactions. Events go to GA4 and Clarity when analytics is enabled.
+Early events wait in memory for the existing grace period; refusal discards them.
+No custom event includes the visitor's form values. Form fields are masked in
+Clarity. Known legacy form query parameters are removed before tracking starts.
+Ad blockers, consent refusal, early exits and network failures can limit counts.
 
-If the IDs are blank, no analytics provider can load even when analytics are allowed/defaulted.
+AFTER DEPLOYMENT
+Confirm generate_lead is a key event in GA4 if desired. Confirm events in the
+actual property and Clarity project; account-side settings were not accessible.
+Compare customer inquiries separately from call/text clicks. Attribute booked
+jobs using your business records; no bookings integration exists in this site.
+Use Search Console for search queries/clicks and Business Profile Performance
+for off-site calls, website clicks and local discovery. Avoid conclusions from
+the previous mixed development/customer traffic or very small visitor samples.
 
-
-CURRENT CONSENT MODEL
----------------------
-The site uses a small opt-out notice. Analytics begin automatically after a short delay unless the visitor chooses Essential only. This is intentionally less intrusive, but it is not the most conservative prior-consent model for jurisdictions that require opt-in consent.
+FORM DELIVERY
+All three inquiry forms use the existing FormSubmit business endpoint. No
+recipient change. CAPTCHA and honeypot remain enabled. A 45-second timeout
+preserves fields and asks visitors to check by phone/text before retrying.
+No client-only code can guarantee exactly-once email delivery after a timeout.

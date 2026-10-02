@@ -39,11 +39,7 @@ footer{padding:48px 0 24px}.footgrid{display:grid;grid-template-columns:1.2fr .8
 </style>
 <!-- build: INSELMAN-DIGITAL-STUDIO-2026-09-15 -->
 
-<style id="id-consent-style">
-.id-consent{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:9999;width:min(540px,calc(100% - 24px));display:flex;align-items:center;gap:12px;padding:10px 11px 10px 14px;border:1px solid rgba(255,255,255,.13);border-radius:12px;background:rgba(10,12,15,.94);box-shadow:0 14px 38px rgba(0,0,0,.34);backdrop-filter:blur(14px);color:#eee;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
-.id-consent[hidden]{display:none}.id-consent-copy{min-width:0;flex:1;font-size:10.5px;line-height:1.35;color:#bbb}.id-consent-copy strong{color:#fff;font-size:11px}.id-consent-actions{display:flex;gap:6px;flex:0 0 auto}.id-consent button{appearance:none;border:1px solid rgba(255,255,255,.16);border-radius:8px;padding:7px 9px;background:rgba(255,255,255,.055);color:#ddd;font:800 9px/1 Inter,ui-sans-serif,system-ui;cursor:pointer}.id-consent button[data-consent-accept]{background:#eaa23c;border-color:#eaa23c;color:#17110a}.id-privacy-choice{background:none!important;border:0!important;padding:0!important;color:#9b958d!important;text-decoration:underline;font-size:9px!important}
-@media(max-width:560px){.id-consent{bottom:8px;align-items:flex-start;gap:8px;padding:9px 9px 9px 11px}.id-consent-copy{font-size:9.5px}.id-consent-actions{gap:5px}.id-consent button{padding:7px 8px}}
-</style>
+
 <link rel="stylesheet" href="local-work.css?v=1">
 <style>
 .hero h1{font-size:clamp(44px,4.8vw,68px)}
@@ -63,11 +59,13 @@ footer{padding:48px 0 24px}.footgrid{display:grid;grid-template-columns:1.2fr .8
 </style><style id="ch-phone-cutout">
 .ch-product img{width:auto;height:420px;max-width:100%;object-fit:contain;object-position:center;border:0;border-radius:0;background:transparent}
 @media(max-width:700px){.ch-product img{width:auto;height:330px}}
-</style></head>
+</style><link rel="stylesheet" href="id-site.css">
+<script defer src="id-site.js"></script>
+</head>
 <body data-ga-id="G-G25PMCDVXQ" data-clarity-id="xjyb7pg6fq">
 <header><div class="wrap nav"><a class="brand" href="#top"><img src="assets/inselman-digital-logo.png" alt=""><span>Inselman Digital</span></a><nav class="links" id="navlinks" aria-label="Main navigation"><a href="#work">Work</a><a href="websites.html">Websites</a><a href="#services">Services</a><a href="#about">About</a><a href="#contact">Contact</a></nav><button class="menu" id="menu" aria-expanded="false" aria-controls="navlinks">Menu</button><button class="navcta" data-contact>Discuss a project</button></div></header>
 <main id="top">
-<section class="hero"><div class="hero-photo" aria-hidden="true"></div><div class="wrap"><div class="hero-copy"><p class="kicker">Custom software &amp; websites · Oklahoma</p><h1>Custom software.<br>Custom websites.<br><span class="accent">Built around you.</span></h1><p class="copy">Websites that represent your business. Software that supports the way you work. Designed and developed around your goals, with direct access to the person building it.</p><div class="actions"><a class="btn primary" href="#work">See our work</a><button class="btn secondary" data-contact>Discuss a project</button></div><p class="hero-note"><a href="#local-websites" style="text-decoration:underline;text-underline-offset:5px">See our custom websites →</a></p><p class="hero-note">Work directly with Will Inselman, from the first conversation through launch and ongoing support.</p></div></div></section>
+<section class="hero"><div class="hero-photo" aria-hidden="true"></div><div class="wrap"><div class="hero-copy"><p class="kicker">Custom software &amp; websites · Oklahoma</p><h1>Custom software.<br>Custom websites.<br><span class="accent">Built around you.</span></h1><p class="copy">Websites that represent your business. Software that supports the way you work. Designed and developed around your goals, with direct access to the person building it.</p><div class="actions"><a class="btn primary" href="#work">See our work</a><button class="btn secondary" data-contact>Discuss a project</button></div><div class="id-quick-contact" aria-label="Call or text"><a href="tel:+15804654804">Call 580-465-4804</a><a href="sms:+15804654804?body=Hi%20Will%2C%20I%20would%20like%20to%20discuss%20a%20project.">Text Will</a></div><p class="hero-note"><a href="#local-websites" style="text-decoration:underline;text-underline-offset:5px">See our custom websites →</a></p><p class="hero-note">Work directly with Will Inselman, from the first conversation through launch and ongoing support.</p></div></div></section>
 
 <section class="section ch-spotlight" id="work"><div class="wrap ch-grid"><div class="ch-copy"><p class="kicker">Flagship project · Cattle Handler</p><h2>Built around<br>the working yard.</h2><p>Treatment records, medicine inventory, and yard reporting in one application. Built for Faulkner Cattle Company and deployed in a working cattle operation, with ongoing development and support.</p><figure class="ch-testimonial"><blockquote>“It’s a real game changer in the field!”</blockquote><figcaption>— Dustin, on Cattle Handler</figcaption></figure><a class="btn primary" href="cattle-handler.html">Explore Cattle Handler →</a></div><a class="ch-product" href="cattle-handler.html" aria-label="Explore the Cattle Handler application"><img src="assets/cattle-handler-phone-transparent.png" alt="Cattle Handler mobile interface with treatment entry, animal details, and yard navigation" width="973" height="1617" loading="lazy"><span>See the product &amp; walkthrough ↗</span></a></div></section><section class="local-work" id="local-websites" aria-labelledby="local-work-title"><div class="local-work-inner">
 <div class="local-work-heading"><div><p class="local-work-eyebrow">Built here. Working here.</p><h2 id="local-work-title">Different businesses.<br><span>Same attention to detail.</span></h2></div><p>Distinctive websites for a local service business and a Jiu Jitsu academy. Built around each brand, its customers, and a clear next step.</p></div>
@@ -84,90 +82,11 @@ footer{padding:48px 0 24px}.footgrid{display:grid;grid-template-columns:1.2fr .8
 <section class="cta" id="contact"><div class="wrap"><div><h2>What would you like to build?</h2><p>A better website, a practical software tool, or a Cattle Handler walkthrough. Tell me what you have in mind, and we’ll talk through the next step.</p></div><button class="btn" data-contact>Start a conversation →</button></div></section>
 </main>
 <footer><div class="wrap"><div class="footgrid"><div><strong>Inselman Digital</strong><p>Custom software and websites.<br>Built in Southern Oklahoma.</p></div><div><h4>Explore</h4><ul><li><a href="#work">Work</a></li><li><a href="#services">Services</a></li><li><a href="#about">About</a></li><li><a href="websites.html">Business websites</a></li></ul></div><div><h4>Let’s talk</h4><ul><li><a href="mailto:william@inselmandigital.com">william@inselmandigital.com</a></li><li><a href="tel:+15804654804">580-465-4804</a></li><li>Ardmore, Oklahoma</li></ul></div></div><div class="footbottom"><span>© 2026 Inselman Digital LLC</span><span>Serious software. Straight talk.</span></div></div></footer>
-<div class="modal" id="contactModal" hidden role="dialog" aria-modal="true" aria-labelledby="contactTitle"><div class="modal-card"><p class="kicker">Let’s discuss your project</p><h3 id="contactTitle">What would you like to build?</h3><p>Tell me about your business and the website or software you have in mind. I’ll review your request personally and reply from <strong>william@inselmandigital.com</strong> to discuss scope and next steps.</p><form class="quote-form" id="quoteForm"><div class="quote-grid"><div class="quote-field"><label for="qName">Your name *</label><input id="qName" name="name" autocomplete="name" required></div><div class="quote-field"><label for="qCompany">Company / organization</label><input id="qCompany" name="company" autocomplete="organization"></div><div class="quote-field"><label for="qEmail">Email *</label><input id="qEmail" name="email" type="email" autocomplete="email" required></div><div class="quote-field"><label for="qPhone">Phone</label><input id="qPhone" name="phone" type="tel" autocomplete="tel"></div><div class="quote-field full"><label for="qType">What are you looking to build?</label><select id="qType" name="project_type"><option value="Custom operational software">Custom operational software</option><option value="Internal workflow / dashboard">Internal workflow / dashboard</option><option value="Field / mobile application">Field / mobile application</option><option value="Sensor / hardware-connected software">Sensor / hardware-connected software</option><option value="Customer-facing web application">Customer-facing web application</option><option value="Business website">Business website</option><option value="Not sure yet" selected>Not sure yet</option></select></div><div class="quote-field full"><label for="qMessage">Tell me about your project *</label><textarea id="qMessage" name="message" required placeholder="A new website, a redesign, custom software, or a workflow you want to improve—give me the short version."></textarea></div><div class="quote-field full"><label for="qTimeline">Timing / deadline (optional)</label><input id="qTimeline" name="timeline" placeholder="Example: this quarter, before January, no hard deadline"></div></div><input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true"><div class="quote-actions"><button class="btn primary" type="submit" id="quoteSubmit">Send Project Request →</button><button class="btn secondary" type="button" data-close>Close</button></div><div class="quote-status" id="quoteStatus" role="status" aria-live="polite"></div><p class="quote-note">Prefer talking first? Call or text <a href="tel:+15804654804">580-465-4804</a>.</p></form></div></div>
-<script>
-const menu=document.getElementById('menu'),nav=document.getElementById('navlinks');menu?.addEventListener('click',()=>{const open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',String(open))});
-document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});nav?.classList.remove('open');menu?.setAttribute('aria-expanded','false')}}));
-const modal=document.getElementById('contactModal');document.querySelectorAll('[data-contact]').forEach(b=>b.addEventListener('click',()=>{modal.hidden=false;document.body.style.overflow='hidden';setTimeout(()=>document.getElementById('qName')?.focus(),60)}));let contactTrigger;document.querySelectorAll('[data-contact]').forEach(b=>b.addEventListener('click',()=>{contactTrigger=b}));function closeModal(){modal.hidden=true;document.body.style.overflow='';contactTrigger?.focus()}document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',closeModal));modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!modal.hidden)closeModal()});
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){nav?.classList.remove('open');menu?.setAttribute('aria-expanded','false')}if(e.key==='Tab'&&!modal.hidden){const items=[...modal.querySelectorAll('a[href],button,input,select,textarea')].filter(el=>!el.disabled&&el.tabIndex>=0);const first=items[0],last=items[items.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}});
-const quoteForm=document.getElementById('quoteForm');const quoteStatus=document.getElementById('quoteStatus');const quoteSubmit=document.getElementById('quoteSubmit');
-quoteForm?.addEventListener('submit',async(e)=>{e.preventDefault();quoteStatus.className='quote-status';quoteStatus.textContent='Sending…';quoteSubmit.disabled=true;quoteSubmit.textContent='Sending…';const fd=new FormData(quoteForm);const payload=Object.fromEntries(fd.entries());payload._subject='New Inselman Digital project request';payload._template='table';payload._captcha='true';payload._replyto=payload.email;try{const res=await fetch('https://formsubmit.co/ajax/william@inselmandigital.com',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)});const data=await res.json().catch(()=>({}));if(!res.ok||data.success===false)throw new Error(data.message||'Unable to send');quoteStatus.className='quote-status ok';quoteStatus.textContent='Sent. I’ll review this personally and reply as soon as I can.';quoteForm.reset();quoteSubmit.textContent='Sent ✓';setTimeout(()=>{quoteSubmit.textContent='Send Project Request →';quoteSubmit.disabled=false},2500)}catch(err){quoteStatus.className='quote-status err';quoteStatus.textContent='That did not send. Please call or text 580-465-4804, or try again in a moment.';quoteSubmit.disabled=false;quoteSubmit.textContent='Send Project Request →'}});
-</script>
+<div class="modal" id="contactModal" hidden role="dialog" aria-modal="true" aria-labelledby="contactTitle"><div class="modal-card"><p class="kicker">Let’s discuss your project</p><h3 id="contactTitle">What would you like to build?</h3><p>Tell me about your business and the website or software you have in mind. I’ll review your request personally and reply from <strong>william@inselmandigital.com</strong> to discuss scope and next steps.</p><form class="quote-form" id="quoteForm" method="post" action="https://formsubmit.co/william@inselmandigital.com"><div class="quote-grid" data-clarity-mask="true"><div class="quote-field"><label for="qName">Your name *</label><input id="qName" maxlength="120" name="name" autocomplete="name" required></div><div class="quote-field"><label for="qCompany">Company / organization</label><input id="qCompany" maxlength="180" name="company" autocomplete="organization"></div><div class="quote-field"><label for="qEmail">Email *</label><input id="qEmail" maxlength="254" name="email" type="email" autocomplete="email" required></div><div class="quote-field"><label for="qPhone">Phone</label><input id="qPhone" maxlength="40" name="phone" type="tel" autocomplete="tel"></div><div class="quote-field full"><label for="qType">What are you looking to build?</label><select id="qType" name="project_type"><option value="Custom operational software">Custom operational software</option><option value="Internal workflow / dashboard">Internal workflow / dashboard</option><option value="Field / mobile application">Field / mobile application</option><option value="Sensor / hardware-connected software">Sensor / hardware-connected software</option><option value="Customer-facing web application">Customer-facing web application</option><option value="Business website">Business website</option><option value="Not sure yet" selected>Not sure yet</option></select></div><div class="quote-field full"><label for="qMessage">Tell me about your project *</label><textarea id="qMessage" maxlength="5000" name="message" required placeholder="A new website, a redesign, custom software, or a workflow you want to improve—give me the short version."></textarea></div><div class="quote-field full"><label for="qTimeline">Timing / deadline (optional)</label><input id="qTimeline" maxlength="200" name="timeline" placeholder="Example: this quarter, before January, no hard deadline"></div></div><input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true"><div class="quote-actions"><button class="btn primary" type="submit" id="quoteSubmit">Send Project Request →</button><button class="btn secondary" type="button" data-close>Close</button></div><div class="quote-status" id="quoteStatus" role="status" aria-live="polite"></div><p class="quote-note">Prefer talking first? <a href="tel:+15804654804">Call 580-465-4804</a><a href="sms:+15804654804">Text Will</a></p></form></div></div>
 
-<div class="id-consent" id="idConsent" hidden role="dialog" aria-label="Analytics preference" aria-live="polite">
-  <div class="id-consent-copy"><strong>Small cookie note.</strong> We use Google Analytics and Microsoft Clarity to understand site performance. Analytics begin automatically after a short delay unless you choose Essential only.</div>
-  <div class="id-consent-actions"><button type="button" data-consent-reject>Essential only</button><button type="button" data-consent-accept>Allow analytics</button></div>
-</div>
 
-<script id="id-consent-manager">
-(()=>{
-  const KEY='inselman-analytics-consent-v2';
-  const banner=document.getElementById('idConsent');
-  const body=document.body;
-  const gaId=(body.dataset.gaId||'').trim();
-  const clarityId=(body.dataset.clarityId||'').trim();
-  let loaded=false;
-  let autoTimer=null;
 
-  function loadAnalytics(){
-    if(loaded) return;
-    let choice='';
-    try{choice=localStorage.getItem(KEY)||''}catch(e){}
-    if(choice==='rejected') return;
-    loaded=true;
-    if(gaId){
-      window['ga-disable-'+gaId]=false;
-      const g=document.createElement('script');
-      g.async=true; g.src='https://www.googletagmanager.com/gtag/js?id='+encodeURIComponent(gaId);
-      document.head.appendChild(g);
-      window.dataLayer=window.dataLayer||[];
-      window.gtag=function(){dataLayer.push(arguments)};
-      gtag('js',new Date()); gtag('config',gaId,{anonymize_ip:true});
-    }
-    if(clarityId){
-      (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src='https://www.clarity.ms/tag/'+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,'clarity','script',clarityId);
-      try{window.clarity('consentv2',{ad_Storage:'denied',analytics_Storage:'granted'});}catch(e){}
-    }
-  }
 
-  function rejectAnalytics(){
-    if(autoTimer){clearTimeout(autoTimer); autoTimer=null;}
-    if(gaId) window['ga-disable-'+gaId]=true;
-    try{if(window.clarity) window.clarity('consentv2',{ad_Storage:'denied',analytics_Storage:'denied'});}catch(e){}
-    try{
-      document.cookie.split(';').forEach(c=>{
-        const n=c.trim().split('=')[0];
-        if(n==='_ga'||n.startsWith('_ga_')||n==='_clck'||n==='_clsk') document.cookie=n+'=; Max-Age=0; path=/; SameSite=Lax';
-      });
-    }catch(e){}
-  }
 
-  function setChoice(value){
-    try{localStorage.setItem(KEY,value)}catch(e){}
-    banner.hidden=true;
-    if(value==='accepted') loadAnalytics();
-    else rejectAnalytics();
-  }
-
-  let choice='';
-  try{choice=localStorage.getItem(KEY)||''}catch(e){}
-  if(choice==='rejected'){
-    rejectAnalytics();
-  }else if(choice==='accepted'){
-    loadAnalytics();
-  }else{
-    banner.hidden=false;
-    // Short grace period: if the visitor does nothing, analytics load automatically.
-    // Choosing Essential only during or after this period stores an opt-out for future pages/visits.
-    autoTimer=setTimeout(loadAnalytics,3000);
-  }
-
-  banner?.querySelector('[data-consent-accept]')?.addEventListener('click',()=>setChoice('accepted'));
-  banner?.querySelector('[data-consent-reject]')?.addEventListener('click',()=>setChoice('rejected'));
-  window.InselmanPrivacy={
-    reset(){try{localStorage.removeItem(KEY)}catch(e){}; rejectAnalytics(); banner.hidden=false; autoTimer=setTimeout(loadAnalytics,3000);},
-    status(){try{return localStorage.getItem(KEY)||'default-analytics'}catch(e){return'default-analytics'}}
-  };
-})();
-</script>
+<aside class="id-consent" id="idConsent" hidden aria-label="Analytics preference"><div class="id-consent-copy"><strong>Small cookie note.</strong> We use Google Analytics and Microsoft Clarity to understand site performance. Analytics begin after a short delay unless you choose Essential only. You can change this in Analytics preferences.</div><div class="id-consent-actions"><button type="button" data-consent-reject>Essential only</button><button type="button" data-consent-accept>Allow analytics</button></div></aside>
 </body></html>
