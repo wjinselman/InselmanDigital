@@ -1,5 +1,26 @@
-Finished balanced Inselman Digital prototype
+INSELMAN DIGITAL — AUDITED WEBSITE
+October 2, 2026
 
-Preview only; not published.
-Compact Cattle Handler spotlight with product image, deployment description, Dustin quote, and a link to the dedicated product page. Full visual website showcases follow. Services and process are shorter, and support questions start collapsed. Other projects remain on other-work.html.
-Existing contact form connection retained. Checks do not include a live inquiry submission.
+This is the complete static website, including existing images, PDF and video.
+It has NOT been published. No build/install step is needed for the website.
+
+Extract the ZIP, then upload its CONTENTS into the existing website publishing
+root, replacing matching files. index.html must stay at that root, not inside
+an extra folder. Include id-site.js, id-site.css, privacy.html and sitemap.xml.
+Keep the existing domain and publishing configuration. The observed live site
+is served by GitHub Pages; firebase.json is retained from the source but is not
+evidence that the current site uses Firebase. Do not switch hosting providers.
+
+Source: wjinselman/InselmanDigital, commit
+2d100167a20113be52622fa0322df5c4b221fe0b. The original homepage matched live bytes.
+If the repository has changed since that commit, merge this update with newer
+work rather than replacing newer edits without review.
+
+Before deployment retain the rollback ZIP. After deployment verify the mobile
+menu, call/text links and an explicitly labeled inquiry. Check actual email
+arrival and production analytics separately. See ANALYTICS-CONSENT-SETUP.txt
+to exclude your own phone and computer from future customer analysis.
+
+ROLLBACK: restore the baseline ZIP contents. New id-site.js, id-site.css and
+privacy.html may then be removed; restored baseline pages do not reference them.
+Do not delete customer records or change business email settings.

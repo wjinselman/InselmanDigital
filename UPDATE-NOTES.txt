@@ -1,7 +1,7 @@
-INSELMAN DIGITAL - SHOWCASE IMAGE AND POSITION FIX
-
-Homepage: local website showcase now appears after Selected Work, including the Cattle Handler video, and before Services.
-
-Both homepage and website-services page: the two preview images are embedded directly in the page, so they do not depend on separate image uploads.
-
-Copy the update files into your Inselman Digital site, replacing matching files, and deploy as usual. Preserve your existing Firebase project selection. Existing scripts, video, forms and other pages are unchanged.
+AUDIT UPDATE — October 2, 2026
+Fixed website form falling back to GET, false submission success, data loss on
+failure, duplicate in-flight submits, mobile form styling and contact access.
+Added distinct lead/call/text/email events, owner/preview exclusion, shared
+analytics preferences, form masking, privacy page and corrected search metadata.
+All 18 automated regression checks passed. Browser fixture checks passed.
+See the separate audit report for evidence and account-access limitations.
