@@ -1,15 +1,5 @@
-.id-consent{position:fixed;left:50%;bottom:12px;transform:translateX(-50%);z-index:150;width:min(580px,calc(100% - 24px));box-sizing:border-box;display:flex;align-items:center;flex-wrap:wrap;gap:10px;padding:14px;border:1px solid #454545;border-radius:12px;background:#101216;color:#eee;box-shadow:0 12px 36px #0005;font:14px/1.45 system-ui,sans-serif}
-.id-consent[hidden]{display:none!important}.id-consent-copy{flex:1 1 250px}.id-consent-actions{display:flex;gap:8px;flex-wrap:wrap}
-.id-consent button,.id-privacy-controls button,.id-privacy-controls a{min-height:44px;padding:10px 12px;border:1px solid #686868;border-radius:7px;color:#eee;background:#20242a;font:inherit;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
-.id-consent button[data-consent-accept]{background:#eaa23c;border-color:#eaa23c;color:#17110a}
-.id-privacy-controls{padding:14px 20px;display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:10px;background:#0b0d10;color:#bbb;font:13px/1.5 system-ui,sans-serif}
-.id-quick-contact{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 0;font-size:15px}.id-quick-contact a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:9px 14px;border:1px solid #767676;border-radius:8px;color:inherit;text-decoration:none}
-.quote-note a{display:inline-flex;align-items:center;min-height:44px;margin-right:10px;text-decoration:underline}.quote-status{overflow-wrap:anywhere}
-.quote-form .hp{display:none!important}.quote-form input,.quote-form textarea,.quote-form select{font-size:16px}
-.quote-form :disabled{cursor:wait}
-.quote-form{width:100%;margin-top:18px;color:#eee}.quote-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.quote-field{display:flex;flex-direction:column;gap:7px;min-width:0}.quote-field label{display:block;font-size:14px;line-height:1.5;color:#ddd}.quote-field input,.quote-field select,.quote-field textarea{box-sizing:border-box;width:100%;min-width:0;min-height:46px;border:1px solid #68717d;border-radius:8px;padding:11px 12px;background:#151a22;color:#fff;font:16px/1.5 system-ui,sans-serif}.quote-field textarea{min-height:120px;resize:vertical}.quote-field input:focus,.quote-field select:focus,.quote-field textarea:focus{outline:2px solid #eaa23c;outline-offset:2px}.quote-field.full{grid-column:1/-1}.quote-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:18px}.quote-actions button{min-height:44px}.quote-status{margin-top:12px;font-size:15px;line-height:1.5}.quote-note{font-size:14px;line-height:1.6}
-@media(max-width:600px){.quote-grid{grid-template-columns:minmax(0,1fr)}.quote-field{grid-column:1/-1}}
-.modal-card{max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px);overflow-y:auto;overscroll-behavior:contain}
-.modal [data-close]{min-width:44px;min-height:44px}
-@media(max-width:560px){.id-consent{bottom:8px;padding:12px;gap:8px}.id-consent-copy{flex-basis:100%}.id-consent-actions{width:100%}.id-consent-actions button{flex:1}.id-quick-contact a{flex:0 1 auto}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}}
+
+.id-quick-contact{display:flex;flex-wrap:wrap;gap:10px;margin-top:15px}
+.id-quick-contact a{display:inline-flex;align-items:center;min-height:40px;padding:9px 13px;border:1px solid rgba(255,255,255,.22);border-radius:6px;color:#f6f3ed;font-size:14px;font-weight:700}
+.id-quick-contact a:hover{border-color:#f5bc65;color:#f5bc65}
+@media(max-width:700px){.id-quick-contact a{flex:1;justify-content:center}}
