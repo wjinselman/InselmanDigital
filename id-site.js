@@ -20,13 +20,14 @@
     if (pageUrl.searchParams.has(key)) { pageUrl.searchParams.delete(key); scrubbed = true; }
   });
   if (scrubbed) history.replaceState(history.state, '', pageUrl.pathname + pageUrl.search + pageUrl.hash);
-  let choice = read(consentKey) || '';
+  const savedChoice = read(consentKey);
+  let choice = ['accepted','rejected'].includes(savedChoice) ? savedChoice : '';
+  // Only an explicit saved acceptance authorizes analytics.
   let loaded = false;
-  let autoTimer;
   const queuedEvents = [];
   const allowedEvents = new Set(['generate_lead','quote_submit_error','open_project_form','open_demo_contact','click_call','click_text','click_email','click_demo','click_resume']);
   function track(name, details = {}) {
-    if (excluded || choice === 'rejected' || !allowedEvents.has(name)) return;
+    if (excluded || choice !== 'accepted' || !allowedEvents.has(name)) return;
     const safe = { page_path: location.pathname };
     for (const key of ['contact_method','placement','failure_type']) {
       if (typeof details[key] === 'string' && /^[a-z0-9_-]{1,40}$/i.test(details[key])) safe[key] = details[key];
@@ -35,7 +36,7 @@
     try { window.gtag('event', name, safe); window.clarity('event', name); } catch (_) { /* Contact still works if tracking is unavailable. */ }
   }
   function loadAnalytics() {
-    if (loaded || excluded || choice === 'rejected') return;
+    if (loaded || excluded || choice !== 'accepted') return;
     loaded = true;
     window['ga-disable-' + gaId] = false;
     window.dataLayer = window.dataLayer || [];
@@ -61,7 +62,7 @@
     if (banner) banner.hidden = !preferencesOpen || Boolean(document.querySelector('.modal:not([hidden])'));
   }
   function setChoice(value) {
-    choice=value; write(consentKey,value); preferencesOpen=false; clearTimeout(autoTimer); renderBanner();
+    choice=value; write(consentKey,value); preferencesOpen=false; renderBanner();
     if(value==='rejected')queuedEvents.length=0;
     if(value==='accepted') loadAnalytics();
     else if(loaded) {
@@ -80,13 +81,10 @@
   const privacy=document.createElement('a'); privacy.href='privacy.html'; privacy.textContent='Privacy'; preferences.appendChild(privacy);
   if(internal) { const note=document.createElement('span');note.textContent='Owner/testing mode — analytics excluded on this browser.';preferences.appendChild(note); }
   document.body.appendChild(preferences);
-  if(!excluded && choice!=='rejected') {
-    if(choice==='accepted') loadAnalytics();
-    else autoTimer=setTimeout(loadAnalytics,3000); // Preserve the site's documented opt-out model.
-  }
+  if(!excluded && choice==='accepted') loadAnalytics();
   renderBanner();
   document.querySelectorAll('.modal').forEach(modal=>new MutationObserver(renderBanner).observe(modal,{attributes:true,attributeFilter:['hidden']}));
-  window.InselmanPrivacy=Object.freeze({reset(){preferencesOpen=true;renderBanner();},status(){return excluded?'excluded':choice||'default-analytics';}});
+  window.InselmanPrivacy=Object.freeze({reset(){preferencesOpen=true;renderBanner();},status(){return excluded?'excluded':choice||'essential-only';}});
   window.InselmanAnalytics=Object.freeze({track,excluded,internal});
 
   const menu=document.getElementById('menu') || document.querySelector('button.menu');
@@ -103,7 +101,9 @@
   let contactTrigger,oldOverflow='';
   function closeContact() {
     if(!modal || modal.hidden)return;
-    modal.hidden=true;document.body.style.overflow=oldOverflow;contactTrigger?.focus({preventScroll:true});renderBanner();
+    modal.hidden=true;document.body.style.overflow=oldOverflow;
+    const returnTarget=contactTrigger?.getClientRects().length ? contactTrigger : menu;
+    returnTarget?.focus({preventScroll:true});renderBanner();
   }
   document.querySelectorAll('[data-contact]').forEach(button=>button.addEventListener('click',()=>{
     if(!modal)return;
