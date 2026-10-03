@@ -1,28 +1,38 @@
-
-.local-work{padding:72px 0;border-top:1px solid rgba(255,255,255,.12);background:#0b0e11}
-.local-work-inner{width:min(1240px,calc(100% - 64px));margin:auto}
-.local-work-heading{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:end;margin-bottom:36px}
-.local-work-eyebrow{margin:0 0 12px;color:#f5bc65;font-size:13px;font-weight:800;letter-spacing:.13em;text-transform:uppercase}
-.local-work-heading h2{margin:0;font-size:clamp(36px,4vw,54px);line-height:1.05}
-.local-work-heading h2 span{color:#f5bc65}
-.local-work-heading>p{margin:0;color:#b5b7b6;font-size:17px}
-.local-work-grid{display:grid;gap:26px}
-.local-project{display:grid;grid-template-columns:1fr 1fr;gap:34px;padding:28px;border:1px solid rgba(255,255,255,.13);border-radius:14px;background:#11161a}
-.local-preview{display:block;overflow:hidden;border-radius:10px;border:1px solid rgba(255,255,255,.14);background:#080a0c}
-.local-browser{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:9px 12px;background:#171c20;color:#aeb4b7;font-size:12px}
-.local-browser span:nth-child(2){overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.local-preview img{display:block;width:100%;height:auto;aspect-ratio:1265/712;object-fit:cover}
-.local-project-copy{align-self:center}
-.local-project-type{margin:0 0 9px;color:#f5bc65;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
-.local-project h3{margin:0 0 12px;font-size:30px}
-.local-project-copy>p{margin:0 0 16px;color:#b9bec1}
-.local-project ul{margin:0 0 18px;padding-left:20px;color:#c4c8ca}
-.local-project li{margin:7px 0}
-.local-project-link{display:inline-block;color:#f5bc65;font-weight:750;border-bottom:1px solid rgba(245,188,101,.45);padding-bottom:3px}
-@media(max-width:760px){
-  .local-work{padding:50px 0}
-  .local-work-inner{width:calc(100% - 40px)}
-  .local-work-heading,.local-project{grid-template-columns:1fr;gap:22px}
-  .local-project{padding:18px}
-  .local-project h3{font-size:25px}
+/* Inselman Digital local project showcase — restored polish */
+.local-work{position:relative;padding:78px 0 84px;border-top:1px solid var(--line);background:
+  radial-gradient(circle at 14% 18%,rgba(245,188,101,.055),transparent 30rem),
+  linear-gradient(180deg,#0b0e11 0%,#0d1114 100%);overflow:hidden}
+.local-work:before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(255,255,255,.018),transparent);opacity:.7}
+.local-work-inner{position:relative;width:min(var(--max),calc(100% - 64px));margin:auto}
+.local-work-heading{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(320px,.72fr);gap:72px;align-items:end;margin-bottom:38px}
+.local-work-eyebrow{margin:0 0 13px;color:var(--orange2);font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+.local-work-heading h2{margin:0;font-size:clamp(36px,4.2vw,56px);font-weight:600;line-height:1.03;letter-spacing:-.045em}
+.local-work-heading h2 span{color:var(--orange2)}
+.local-work-heading>p{max-width:470px;margin:0 0 5px;color:#b9bcba;font-size:17px;line-height:1.7}
+.local-work-grid{display:grid;gap:24px}
+.local-project{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(320px,.88fr);gap:36px;align-items:center;padding:24px;border:1px solid rgba(255,255,255,.11);border-radius:14px;background:linear-gradient(145deg,rgba(255,255,255,.035),rgba(255,255,255,.014));box-shadow:0 22px 56px rgba(0,0,0,.17);transition:border-color .2s ease,transform .2s ease,box-shadow .2s ease}
+.local-project:hover{transform:translateY(-2px);border-color:rgba(245,188,101,.28);box-shadow:0 28px 70px rgba(0,0,0,.24)}
+.local-preview{display:block;overflow:hidden;border:1px solid rgba(255,255,255,.14);border-radius:11px;background:#080a0c;box-shadow:0 18px 44px rgba(0,0,0,.28);transition:transform .2s ease,border-color .2s ease}
+.local-preview:hover{transform:translateY(-1px);border-color:rgba(245,188,101,.35)}
+.local-browser{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center;min-height:38px;padding:8px 12px;border-bottom:1px solid rgba(255,255,255,.08);background:#15191c;color:#919795;font-size:11px;line-height:1}
+.local-browser span:first-child{color:#777d7b;letter-spacing:.12em}.local-browser span:nth-child(2){overflow:hidden;color:#c2c6c3;text-overflow:ellipsis;white-space:nowrap}.local-browser span:last-child{color:var(--orange2);font-size:14px}
+.local-preview img{display:block;width:100%;height:auto;aspect-ratio:1265/712;object-fit:cover;background:#0a0c0f}
+.local-project-copy{padding:4px 10px 4px 2px}
+.local-project-type{margin:0 0 11px;color:var(--orange2);font-size:11px;font-weight:800;letter-spacing:.115em;text-transform:uppercase}
+.local-project h3{margin:0 0 13px;font-size:clamp(27px,2.6vw,36px);line-height:1.08}
+.local-project-copy>p{margin:0 0 17px;color:#b9bdbb;font-size:16px;line-height:1.68}
+.local-project ul{display:grid;gap:7px;margin:0 0 20px;padding:0;list-style:none;color:#d2d4d1;font-size:14px}
+.local-project li{position:relative;padding-left:18px}.local-project li:before{content:"";position:absolute;left:0;top:.68em;width:6px;height:6px;border-radius:50%;background:var(--orange2);box-shadow:0 0 12px rgba(245,188,101,.25)}
+.local-project-link{display:inline-flex;align-items:center;gap:6px;padding-bottom:4px;border-bottom:1px solid rgba(245,188,101,.45);color:var(--orange2);font-size:14px;font-weight:700;transition:border-color .2s ease,color .2s ease}
+.local-project-link:hover{border-color:var(--orange2);color:#ffd48f}
+@media(max-width:950px){
+  .local-work-heading{grid-template-columns:1fr;gap:18px}.local-work-heading>p{max-width:660px}
+  .local-project{grid-template-columns:1fr;gap:26px}.local-project-copy{padding:0 4px 7px}
 }
+@media(max-width:700px){
+  .local-work{padding:52px 0 58px}.local-work-inner{width:calc(100% - 40px)}
+  .local-work-heading{margin-bottom:25px}.local-work-heading h2{font-size:clamp(32px,9.8vw,44px)}.local-work-heading>p{font-size:16px}
+  .local-work-grid{gap:18px}.local-project{gap:20px;padding:14px;border-radius:11px}.local-preview{border-radius:9px}.local-browser{min-height:34px;padding:7px 10px;font-size:10px}
+  .local-project h3{font-size:27px}.local-project-copy>p{font-size:15px}.local-project ul{font-size:13px}.local-project-link{font-size:13px}
+}
+@media(prefers-reduced-motion:reduce){.local-project,.local-preview{transition:none}.local-project:hover,.local-preview:hover{transform:none}}
