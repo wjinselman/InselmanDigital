@@ -169,4 +169,74 @@ document.getElementById('year').textContent=new Date().getFullYear();const dialo
  });
  document.getElementById('privacy-settings').addEventListener('click',()=>{document.getElementById('idConsent').hidden=false;});
 })();
-</script></body></html>
+</script><style id="silverback-tech-style">
+#reading-depth{position:fixed;inset:0 0 auto;height:3px;z-index:100;pointer-events:none;background:#78dfff;box-shadow:0 0 12px #59cfff99;transform:scaleX(0);transform-origin:left}
+.menu-toggle{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:8px 13px;border:1px solid #8bdfff50;border-radius:5px;background:#11232d;color:#b9ecff;cursor:pointer;font-size:12px;letter-spacing:.08em}
+.menu-toggle svg{width:19px;height:19px}.menu-toggle:hover{background:#203c49}
+#tech-menu{inset:0 0 0 auto;margin:0;height:100dvh;max-height:100dvh;width:min(390px,92vw);max-width:92vw;padding:32px 28px;border:0;border-left:1px solid #8bdfff50;border-radius:0;background:linear-gradient(155deg,#182f3b,#0b141c 75%);color:#eef9ff;overflow-y:auto}
+#tech-menu[open]{animation:menu-enter .22s ease-out}#tech-menu::backdrop{background:#030a10b8}
+#tech-menu .menu-close{position:static;display:block;margin:0 0 34px auto;font-size:13px;border:1px solid #8bdfff50;border-radius:4px;min-height:44px;padding:8px 14px}
+#tech-menu h2{font-size:32px;margin-bottom:30px}#tech-menu .eyebrow{font-size:10px;margin-bottom:12px}
+#tech-menu nav{display:flex;flex-direction:column;align-items:stretch;gap:0}
+#tech-menu nav a{display:flex;align-items:center;justify-content:space-between;min-height:68px;border-top:1px solid #8bdfff26;font-size:19px;font-weight:600;transition:color .15s,background .15s;padding:10px 6px}
+#tech-menu nav a:hover,#tech-menu nav a[aria-current="location"]{color:#8bdfff;background:#8bdfff0b}
+#tech-menu nav small{font:10px monospace;color:#8bdfff;letter-spacing:.12em}#tech-menu .menu-contact{display:block;margin-top:30px;padding:15px;border:1px solid #8bdfff50;border-radius:4px;text-align:center;font-weight:bold;color:#a9e7ff}
+#tech-menu .menu-credit{display:block;margin-top:25px;font-size:11px;color:#adc1cb;letter-spacing:.04em}
+#link-lightning{position:fixed;pointer-events:none;z-index:90;display:none;width:400px;height:400px;contain:strict}
+@keyframes menu-enter{from{transform:translateX(100%)}to{transform:translateX(0)}}
+@media(max-width:1000px){header nav>a:not(.nav-phone){display:none}header nav{gap:12px}}
+@media(max-width:420px){header .nav{gap:8px}header .wordmark{font-size:19px}header nav{gap:8px}header nav .nav-phone{font-size:11px}.menu-toggle{padding:8px 10px}.menu-toggle span{display:none}}
+@media(prefers-reduced-motion:reduce){#tech-menu[open]{animation:none}}
+</style>
+<div id="reading-depth" aria-hidden="true"></div>
+<dialog id="tech-menu" aria-labelledby="tech-menu-title">
+<button class="menu-close" type="button" autofocus>Close menu ×</button>
+<p class="eyebrow">SILVERBACK / EXPLORE</p><h2 id="tech-menu-title">A stronger<br>connection.</h2>
+<nav aria-label="Section navigation">
+<a href="#main"><span>Back to top</span><small>00 ↗</small></a>
+<a href="#insulation"><span>Insulation</span><small>01 ↗</small></a>
+<a href="#process"><span>The process</span><small>02 ↗</small></a>
+<a href="#projects"><span>Project photos</span><small>03 ↗</small></a>
+<a href="#contact"><span>Get in touch</span><small>04 ↗</small></a>
+</nav>
+<a class="menu-contact" href="tel:+15809166482">Call Eric · 580-916-6482 ↗</a>
+<a class="menu-credit" href="https://inselmandigital.com/">Designed & maintained by Inselman Digital ↗</a>
+</dialog>
+<script id="silverback-tech">
+(()=>{'use strict';
+ const reduce=matchMedia('(prefers-reduced-motion: reduce)');
+ const menu=document.getElementById('tech-menu');
+ const toggle=document.createElement('button');toggle.type='button';toggle.className='menu-toggle';
+ toggle.setAttribute('aria-label','Open navigation menu');toggle.setAttribute('aria-controls','tech-menu');toggle.setAttribute('aria-expanded','false');
+ toggle.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 6h18M8 12h13M3 18h18"/></svg><span>MENU</span>';
+ document.querySelector('header nav').append(toggle);
+ let oldOverflow='';
+ toggle.addEventListener('click',()=>{oldOverflow=document.body.style.overflow;menu.showModal();document.body.style.overflow='hidden';toggle.setAttribute('aria-expanded','true')});
+ const close=()=>menu.close();menu.querySelector('.menu-close').addEventListener('click',close);
+ menu.addEventListener('close',()=>{document.body.style.overflow=oldOverflow;toggle.setAttribute('aria-expanded','false')});
+ menu.addEventListener('click',e=>{if(e.target===menu){const r=menu.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right)close()}});
+ menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{close();const href=a.getAttribute('href');if(href.startsWith('#')){const target=document.getElementById(href.slice(1));if(target){if(!target.hasAttribute('tabindex'))target.setAttribute('tabindex','-1');target.focus({preventScroll:true})}}}));
+ const bar=document.getElementById('reading-depth');let scrollFrame=0;
+ const update=()=>{scrollFrame=0;const d=document.documentElement;const max=d.scrollHeight-innerHeight;bar.style.transform='scaleX('+Math.max(0,Math.min(1,max>0?scrollY/max:0))+')'};
+ const schedule=()=>{if(!scrollFrame)scrollFrame=requestAnimationFrame(update)};
+ addEventListener('scroll',schedule,{passive:true});addEventListener('resize',schedule,{passive:true});addEventListener('load',schedule,{once:true});
+ if('ResizeObserver'in window)new ResizeObserver(schedule).observe(document.body);schedule();
+ if('IntersectionObserver'in window){const links=[...menu.querySelectorAll('nav a')];const observer=new IntersectionObserver(entries=>{for(const entry of entries)if(entry.isIntersecting){links.forEach(a=>{if(a.hash==='#'+entry.target.id)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current')})}},{rootMargin:'-10% 0px -60% 0px',threshold:0});['main','insulation','process','projects','contact'].forEach(id=>{const el=document.getElementById(id);if(el)observer.observe(el)})}
+ // Small on-demand canvas: no animation loop or GPU layer while idle.
+ let canvas,ctx,frame=0,last=-Infinity;
+ function stop(){cancelAnimationFrame(frame);frame=0;if(canvas){canvas.style.display='none';ctx.clearRect(0,0,400,400)}}
+ function path(x,y,angle,length){const points=[[x,y]],steps=9;for(let i=1;i<=steps;i++){const t=i/steps,jitter=(Math.random()-.5)*length*.19;points.push([x+Math.cos(angle)*length*t-Math.sin(angle)*jitter,y+Math.sin(angle)*length*t+Math.cos(angle)*jitter])}return points}
+ function flash(x,y){const now=performance.now();if(reduce.matches||document.hidden||now-last<650)return;last=now;
+ if(!canvas){canvas=document.createElement('canvas');canvas.id='link-lightning';canvas.setAttribute('aria-hidden','true');const dpr=Math.min(devicePixelRatio||1,1.5);canvas.width=canvas.height=400*dpr;ctx=canvas.getContext('2d');if(!ctx){canvas=null;return}ctx.scale(dpr,dpr);document.body.append(canvas)}
+ stop();canvas.style.left=(x-200)+'px';canvas.style.top=(y-200)+'px';canvas.style.display='block';
+ const branches=[];for(let i=0;i<3;i++){const angle=i*Math.PI*2/3+Math.random()*.7;const trunk=path(200,200,angle,100+Math.random()*70);branches.push(trunk);for(let j=0;j<2;j++){const p=trunk[3+j*2];branches.push(path(p[0],p[1],angle+(j?-.7:.7),35+Math.random()*40))}}
+ function draw(time){const age=time-now;if(age>=360||reduce.matches||document.hidden){stop();return}ctx.clearRect(0,0,400,400);const alpha=Math.pow(1-age/360,1.7);ctx.lineJoin='round';ctx.lineCap='round';
+ for(const [width,color,opacity] of [[12,'#1683ce',.07],[6,'#36c8ff',.2],[2.2,'#82eaff',.85],[.85,'#f3fdff',1]]){ctx.lineWidth=width;ctx.strokeStyle=color;ctx.globalAlpha=alpha*opacity;ctx.beginPath();for(const points of branches){ctx.moveTo(...points[0]);for(let i=1;i<points.length;i++)ctx.lineTo(...points[i])}ctx.stroke()}
+ frame=requestAnimationFrame(draw)}frame=requestAnimationFrame(draw)
+ }
+ document.addEventListener('click',e=>{const link=e.target.closest('a[href]');if(!link||e.defaultPrevented||e.ctrlKey||e.metaKey||e.shiftKey||e.altKey)return;const r=link.getBoundingClientRect();flash(e.detail?e.clientX:r.left+r.width/2,e.detail?e.clientY:r.top+r.height/2)},{passive:true});
+ document.addEventListener('visibilitychange',()=>{if(document.hidden)stop()});reduce.addEventListener('change',()=>{if(reduce.matches)stop()});
+})();
+</script>
+
+</body></html>
