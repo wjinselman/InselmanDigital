@@ -182,7 +182,7 @@ document.getElementById('year').textContent=new Date().getFullYear();const dialo
 #tech-menu nav a:hover,#tech-menu nav a[aria-current="location"]{color:#8bdfff;background:#8bdfff0b}
 #tech-menu nav small{font:10px monospace;color:#8bdfff;letter-spacing:.12em}#tech-menu .menu-contact{display:block;margin-top:30px;padding:15px;border:1px solid #8bdfff50;border-radius:4px;text-align:center;font-weight:bold;color:#a9e7ff}
 #tech-menu .menu-credit{display:block;margin-top:25px;font-size:11px;color:#adc1cb;letter-spacing:.04em}
-#link-lightning{position:fixed;pointer-events:none;z-index:90;display:none;width:400px;height:400px;contain:strict}
+#link-lightning{position:fixed;inset:0;margin:0;padding:0;border:0;width:100%;height:100%;max-width:none;max-height:none;background:transparent;pointer-events:none;z-index:2147483647;overflow:hidden;contain:strict}#link-lightning[hidden]{display:none}#link-lightning::backdrop{background:transparent;pointer-events:none}#link-lightning svg{display:block;pointer-events:none}@media(prefers-reduced-motion:reduce){#link-lightning{display:none!important}}
 @keyframes menu-enter{from{transform:translateX(100%)}to{transform:translateX(0)}}
 @media(max-width:1000px){header nav>a:not(.nav-phone){display:none}header nav{gap:12px}}
 @media(max-width:420px){header .nav{gap:8px}header .wordmark{font-size:19px}header nav{gap:8px}header nav .nav-phone{font-size:11px}.menu-toggle{padding:8px 10px}.menu-toggle span{display:none}}
@@ -222,20 +222,127 @@ document.getElementById('year').textContent=new Date().getFullYear();const dialo
  addEventListener('scroll',schedule,{passive:true});addEventListener('resize',schedule,{passive:true});addEventListener('load',schedule,{once:true});
  if('ResizeObserver'in window)new ResizeObserver(schedule).observe(document.body);schedule();
  if('IntersectionObserver'in window){const links=[...menu.querySelectorAll('nav a')];const observer=new IntersectionObserver(entries=>{for(const entry of entries)if(entry.isIntersecting){links.forEach(a=>{if(a.hash==='#'+entry.target.id)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current')})}},{rootMargin:'-10% 0px -60% 0px',threshold:0});['main','insulation','process','projects','contact'].forEach(id=>{const el=document.getElementById(id);if(el)observer.observe(el)})}
- // Small on-demand canvas: no animation loop or GPU layer while idle.
- let canvas,ctx,frame=0,last=-Infinity;
- function stop(){cancelAnimationFrame(frame);frame=0;if(canvas){canvas.style.display='none';ctx.clearRect(0,0,400,400)}}
- function path(x,y,angle,length){const points=[[x,y]],steps=9;for(let i=1;i<=steps;i++){const t=i/steps,jitter=(Math.random()-.5)*length*.19;points.push([x+Math.cos(angle)*length*t-Math.sin(angle)*jitter,y+Math.sin(angle)*length*t+Math.cos(angle)*jitter])}return points}
- function flash(x,y){const now=performance.now();if(reduce.matches||document.hidden||now-last<650)return;last=now;
- if(!canvas){canvas=document.createElement('canvas');canvas.id='link-lightning';canvas.setAttribute('aria-hidden','true');const dpr=Math.min(devicePixelRatio||1,1.5);canvas.width=canvas.height=400*dpr;ctx=canvas.getContext('2d');if(!ctx){canvas=null;return}ctx.scale(dpr,dpr);document.body.append(canvas)}
- stop();canvas.style.left=(x-200)+'px';canvas.style.top=(y-200)+'px';canvas.style.display='block';
- const branches=[];for(let i=0;i<3;i++){const angle=i*Math.PI*2/3+Math.random()*.7;const trunk=path(200,200,angle,100+Math.random()*70);branches.push(trunk);for(let j=0;j<2;j++){const p=trunk[3+j*2];branches.push(path(p[0],p[1],angle+(j?-.7:.7),35+Math.random()*40))}}
- function draw(time){const age=time-now;if(age>=360||reduce.matches||document.hidden){stop();return}ctx.clearRect(0,0,400,400);const alpha=Math.pow(1-age/360,1.7);ctx.lineJoin='round';ctx.lineCap='round';
- for(const [width,color,opacity] of [[12,'#1683ce',.07],[6,'#36c8ff',.2],[2.2,'#82eaff',.85],[.85,'#f3fdff',1]]){ctx.lineWidth=width;ctx.strokeStyle=color;ctx.globalAlpha=alpha*opacity;ctx.beginPath();for(const points of branches){ctx.moveTo(...points[0]);for(let i=1;i<points.length;i++)ctx.lineTo(...points[i])}ctx.stroke()}
- frame=requestAnimationFrame(draw)}frame=requestAnimationFrame(draw)
+ // On-demand SVG streak: bounded geometry, one animation, no idle work.
+ const ns='http://www.w3.org/2000/svg';
+ let layer,svg,frame=0,last=-Infinity;
+ function stop(){
+  cancelAnimationFrame(frame);frame=0;
+  if(layer){if(layer.hidePopover&&layer.matches(':popover-open'))layer.hidePopover();layer.hidden=true;svg.replaceChildren()}
  }
- document.addEventListener('click',e=>{const link=e.target.closest('a[href]');if(!link||e.defaultPrevented||e.ctrlKey||e.metaKey||e.shiftKey||e.altKey)return;const r=link.getBoundingClientRect();flash(e.detail?e.clientX:r.left+r.width/2,e.detail?e.clientY:r.top+r.height/2)},{passive:true});
- document.addEventListener('visibilitychange',()=>{if(document.hidden)stop()});reduce.addEventListener('change',()=>{if(reduce.matches)stop()});
+ function element(name,attrs){const el=document.createElementNS(ns,name);for(const [key,value] of Object.entries(attrs))el.setAttribute(key,value);return el}
+ function strike(x,y){
+  const now=performance.now();
+  if(reduce.matches||document.hidden||now-last<500)return;
+  last=now;stop();
+  if(!layer){
+   layer=document.createElement('div');layer.id='link-lightning';layer.setAttribute('aria-hidden','true');
+   if('showPopover'in layer)layer.setAttribute('popover','manual');
+   svg=element('svg',{width:'100%',height:'100%',focusable:'false'});layer.append(svg);document.body.append(layer);
+  }
+  const w=innerWidth,h=innerHeight;
+  x=Math.max(0,Math.min(w,x));y=Math.max(0,Math.min(h,y));
+  svg.setAttribute('viewBox',`0 0 ${w} ${h}`);
+  layer.hidden=false;queueMicrotask(()=>{if(!layer.hidden&&layer.showPopover)layer.showPopover()});
+  const start=Math.max(8,Math.min(w-8,x+(Math.random()-.5)*Math.min(w*.35,220)));
+  const count=Math.max(8,Math.min(42,Math.ceil(y/22)));
+  const points=[[start,0]];
+  for(let i=1;i<count;i++){
+   const t=i/count,envelope=Math.sin(Math.PI*t);
+   points.push([Math.max(2,Math.min(w-2,start+(x-start)*t+(Math.random()-.5)*Math.min(65,w*.14)*envelope)),y*t]);
+  }
+  points.push([x,y]);
+  const paths=[];
+  function add(points,branch=false,delay=0){
+   const d=points.map((p,i)=>(i?'L':'M')+p.join(',')).join(' ');
+   const group=element('g',{});
+   for(const [width,color,opacity] of (branch?[[3,'#38bfff',.18],[.8,'#b5f0ff',.65]]:[[9,'#1683ce',.09],[4,'#36c8ff',.3],[1.6,'#82eaff',.95],[.65,'#f3fdff',1]])){
+    group.append(element('path',{d,fill:'none',stroke:color,'stroke-width':width,opacity,'stroke-linejoin':'round','stroke-linecap':'round',pathLength:1,'stroke-dasharray':1,'stroke-dashoffset':1}));
+   }
+   svg.append(group);paths.push({group,delay});
+  }
+  add(points);
+  for(const fraction of [.3,.55,.75]){
+   const p=points[Math.floor(count*fraction)],direction=Math.random()<.5?-1:1;
+   add([p,[p[0]+direction*14,p[1]+8],[p[0]+direction*10,p[1]+18],[p[0]+direction*32,p[1]+30]],true,fraction*150);
+  }
+  function draw(time){
+   const age=time-now;
+   if(age>=480||reduce.matches||document.hidden){stop();return}
+   for(const {group,delay} of paths){
+    const progress=Math.max(0,Math.min(1,(age-delay)/170));
+    group.style.opacity=String(Math.pow(Math.max(0,1-Math.max(0,age-190)/290),1.5));
+    for(const path of group.children)path.style.strokeDashoffset=String(1-progress);
+   }
+   frame=requestAnimationFrame(draw);
+  }
+  frame=requestAnimationFrame(draw);
+ }
+ // Capture coordinates before menu/gallery handlers change the clicked element.
+ // Passive handling never delays navigation, calls, submissions, or other actions.
+ document.addEventListener('click',e=>{
+  const target=e.target instanceof Element?e.target.closest('a[href],button,input[type="button"],input[type="submit"],input[type="reset"],[role="button"]'):null;
+  if(!target||target.matches(':disabled')||target.closest('[inert],[aria-disabled="true"]')||e.ctrlKey||e.metaKey||e.shiftKey||e.altKey)return;
+  const r=target.getBoundingClientRect();
+  strike(e.detail?e.clientX:r.left+r.width/2,e.detail?e.clientY:r.top+r.height/2);
+ },{capture:true,passive:true});
+ document.addEventListener('visibilitychange',()=>{if(document.hidden)stop()});
+ addEventListener('pagehide',stop);addEventListener('resize',stop,{passive:true});
+ reduce.addEventListener('change',()=>{if(reduce.matches)stop()});
+
+})();
+</script>
+
+<style id="desktop-contact-style">
+#desktop-contact{width:min(420px,calc(100% - 32px));padding:28px;border:1px solid #8bdfff50;border-radius:12px;background:#11232d;color:#eef9ff}
+#desktop-contact h2{font-size:27px;margin:0 40px 12px 0}
+#desktop-contact p{font-size:14px;margin-bottom:16px}
+#desktop-contact .contact-dismiss{position:absolute;top:8px;right:10px;min-width:44px;min-height:44px}
+#desktop-contact label{display:block;font-size:12px;color:#b5c4c9;margin-bottom:5px}
+#desktop-contact input{display:block;box-sizing:border-box;width:100%;font:700 28px/1.4 Arial;color:#b9ecff;background:#09171e;border:1px solid #8bdfff50;border-radius:5px;padding:12px;letter-spacing:.01em}
+#desktop-contact .copy-number{position:static;margin-top:16px;width:100%;font-size:15px;background:#b9ecff;color:#0b222a;padding:12px;border-radius:5px;cursor:pointer}
+#desktop-contact .copy-status{min-height:24px;margin:10px 0 0;font-size:13px;color:#b9ecff}
+#desktop-contact input:focus-visible{outline:3px solid #84dcff;outline-offset:3px}
+</style>
+<dialog id="desktop-contact" aria-labelledby="desktop-contact-title" aria-describedby="desktop-contact-help">
+ <button class="contact-dismiss" type="button" aria-label="Close contact details">×</button>
+ <h2 id="desktop-contact-title">Contact Eric</h2>
+ <p id="desktop-contact-help">Call or text Eric from your phone, or copy his number.</p>
+ <label for="eric-phone-number">Eric’s phone number</label>
+ <input id="eric-phone-number" type="text" value="580-916-6482" readonly>
+ <button class="copy-number" type="button" autofocus>Copy number</button>
+ <p class="copy-status" role="status" aria-live="polite"></p>
+</dialog>
+<script id="desktop-contact-script">
+(()=>{
+ const contact=document.getElementById('desktop-contact');
+ const number=contact.querySelector('input');
+ const copy=contact.querySelector('.copy-number');
+ const status=contact.querySelector('.copy-status');
+ // Keep native phone links on mobile, including when a phone is in landscape.
+ const mobile=navigator.userAgentData?.mobile ?? /Android|iPhone|iPod|Mobile/i.test(navigator.userAgent);
+ document.addEventListener('click',event=>{
+  const link=event.target instanceof Element?event.target.closest('a[href]'):null;
+  if(mobile||!link||event.defaultPrevented||event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;
+  if(!/^(tel|sms):\+15809166482$/i.test(link.getAttribute('href')||''))return;
+  event.preventDefault();
+  status.textContent='';copy.textContent='Copy number';
+  if(!contact.open)contact.showModal();
+ });
+ contact.querySelector('.contact-dismiss').addEventListener('click',()=>contact.close());
+ contact.addEventListener('click',event=>{
+  if(event.target!==contact)return;
+  const r=contact.getBoundingClientRect();
+  if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)contact.close();
+ });
+ number.addEventListener('click',()=>number.select());
+ copy.addEventListener('click',async()=>{
+  try{
+   await navigator.clipboard.writeText(number.value);
+   if(contact.open){copy.textContent='Copied';status.textContent='Number copied.'}
+  }catch{
+   if(contact.open){copy.textContent='Copy number';number.focus();number.select();status.textContent='Select and copy the number above with Ctrl+C (⌘C on Mac).'}
+  }
+ });
 })();
 </script>
 
