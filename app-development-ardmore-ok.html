@@ -293,7 +293,7 @@ body:before{display:none}
 @media(max-width:560px){.id-consent{bottom:8px;align-items:flex-start;gap:8px;padding:9px 9px 9px 11px}.id-consent-copy{font-size:9.5px}.id-consent-actions{gap:5px}.id-consent button{padding:7px 8px}}
 </style>
 <style>.seo-service-links{display:flex;flex-wrap:wrap;gap:12px 24px;margin:24px 0}.seo-service-links a{text-decoration:underline;text-underline-offset:4px;font-weight:650}.seo-service-links a:focus-visible{outline:2px solid currentColor;outline-offset:5px}.seo-service-links a{overflow-wrap:anywhere}.seo-local-copy{max-width:760px}.seo-project-links a{text-decoration:underline;text-underline-offset:4px}</style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Service", "@id": "https://inselmandigital.com/app-development-ardmore-ok.html#service", "name": "Custom app and software development in Ardmore", "serviceType": "Custom desktop software and web application development", "url": "https://inselmandigital.com/app-development-ardmore-ok.html", "provider": {"@type": "Organization", "@id": "https://inselmandigital.com/#business", "name": "Inselman Digital LLC", "url": "https://inselmandigital.com/", "telephone": "+1-580-465-4804", "email": "william@inselmandigital.com"}, "areaServed": [{"@type": "City", "name": "Ardmore, Oklahoma"}, {"@type": "City", "name": "Lone Grove, Oklahoma"}, {"@type": "City", "name": "Wilson, Oklahoma"}, {"@type": "City", "name": "Dickson, Oklahoma"}, {"@type": "City", "name": "Healdton, Oklahoma"}, {"@type": "City", "name": "Sulphur, Oklahoma"}, {"@type": "City", "name": "Marietta, Oklahoma"}]}</script>
-</head>
+<style id="analytics-no-prompt">#idConsent,.id-privacy-choice,#privacy-settings{display:none!important}</style></head>
 <body>
 <div class="glow one"></div><div class="glow two"></div>
 <header class="topbar"><div class="shell nav"><a class="brand" href="index.html"><img src="assets/header-emblem-full.png" alt="Inselman Digital logo"><span><strong>Inselman Digital</strong><span>Custom Software Development</span></span></a><button class="menu" aria-expanded="false" aria-controls="navlinks">Menu</button><nav class="navlinks" id="navlinks"><a href="index.html#work">Work</a><a href="index.html#services">Services</a><a href="index.html#about">About</a><a href="index.html#contact">Contact</a></nav><button class="btn btn-primary nav-cta" data-contact>Discuss your app</button></div></header>
@@ -326,75 +326,5 @@ const topbar=document.querySelector('.topbar');addEventListener('scroll',()=>top
   <div class="id-consent-actions"><button type="button" data-consent-reject>Essential only</button><button type="button" data-consent-accept>Allow analytics</button></div>
 </div>
 
-<script id="id-consent-manager">
-(()=>{
-  const KEY='inselman-analytics-consent-v2';
-  const banner=document.getElementById('idConsent');
-  const body=document.body;
-  const gaId=(body.dataset.gaId||'').trim();
-  const clarityId=(body.dataset.clarityId||'').trim();
-  let loaded=false;
-  let autoTimer=null;
-
-  function loadAnalytics(){
-    if(loaded) return;
-    let choice='';
-    try{choice=localStorage.getItem(KEY)||''}catch(e){}
-    if(choice==='rejected') return;
-    loaded=true;
-    if(gaId){
-      window['ga-disable-'+gaId]=false;
-      const g=document.createElement('script');
-      g.async=true; g.src='https://www.googletagmanager.com/gtag/js?id='+encodeURIComponent(gaId);
-      document.head.appendChild(g);
-      window.dataLayer=window.dataLayer||[];
-      window.gtag=function(){dataLayer.push(arguments)};
-      gtag('js',new Date()); gtag('config',gaId,{anonymize_ip:true});
-    }
-    if(clarityId){
-      (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src='https://www.clarity.ms/tag/'+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,'clarity','script',clarityId);
-      try{window.clarity('consentv2',{ad_Storage:'denied',analytics_Storage:'granted'});}catch(e){}
-    }
-  }
-
-  function rejectAnalytics(){
-    if(autoTimer){clearTimeout(autoTimer); autoTimer=null;}
-    if(gaId) window['ga-disable-'+gaId]=true;
-    try{if(window.clarity) window.clarity('consentv2',{ad_Storage:'denied',analytics_Storage:'denied'});}catch(e){}
-    try{
-      document.cookie.split(';').forEach(c=>{
-        const n=c.trim().split('=')[0];
-        if(n==='_ga'||n.startsWith('_ga_')||n==='_clck'||n==='_clsk') document.cookie=n+'=; Max-Age=0; path=/; SameSite=Lax';
-      });
-    }catch(e){}
-  }
-
-  function setChoice(value){
-    try{localStorage.setItem(KEY,value)}catch(e){}
-    banner.hidden=true;
-    if(value==='accepted') loadAnalytics();
-    else rejectAnalytics();
-  }
-
-  let choice='';
-  try{choice=localStorage.getItem(KEY)||''}catch(e){}
-  if(choice==='rejected'){
-    rejectAnalytics();
-  }else if(choice==='accepted'){
-    loadAnalytics();
-  }else{
-    banner.hidden=false;
-    // Short grace period: if the visitor does nothing, analytics load automatically.
-    // Choosing Essential only during or after this period stores an opt-out for future pages/visits.
-    autoTimer=setTimeout(loadAnalytics,3000);
-  }
-
-  banner?.querySelector('[data-consent-accept]')?.addEventListener('click',()=>setChoice('accepted'));
-  banner?.querySelector('[data-consent-reject]')?.addEventListener('click',()=>setChoice('rejected'));
-  window.InselmanPrivacy={
-    reset(){try{localStorage.removeItem(KEY)}catch(e){}; rejectAnalytics(); banner.hidden=false; autoTimer=setTimeout(loadAnalytics,3000);},
-    status(){try{return localStorage.getItem(KEY)||'default-analytics'}catch(e){return'default-analytics'}}
-  };
-})();
-</script>
+<script src="id-analytics.js?v=20261029"></script>
 </body></html>

@@ -12,7 +12,8 @@
   if (pageUrl.searchParams.get('id_internal') === '0') write(ownerKey, '0');
   const internal = pageUrl.searchParams.get('id_internal') === '1' || (pageUrl.searchParams.get('id_internal') !== '0' && read(ownerKey) === '1');
   const production = ['inselmandigital.com', 'www.inselmandigital.com'].includes(location.hostname);
-  const excluded = internal || !production || navigator.webdriver === true;
+  const optedOut = read(consentKey) === 'rejected' || navigator.globalPrivacyControl === true || navigator.doNotTrack === '1';
+  const excluded = internal || !production || navigator.webdriver === true || optedOut;
   // Older website forms could fall back to GET. Remove their known fields from
   // the current history entry before initializing any page tracking.
   let scrubbed = false;
@@ -20,14 +21,11 @@
     if (pageUrl.searchParams.has(key)) { pageUrl.searchParams.delete(key); scrubbed = true; }
   });
   if (scrubbed) history.replaceState(history.state, '', pageUrl.pathname + pageUrl.search + pageUrl.hash);
-  const savedChoice = read(consentKey);
-  let choice = ['accepted','rejected'].includes(savedChoice) ? savedChoice : '';
-  // Only an explicit saved acceptance authorizes analytics.
   let loaded = false;
   const queuedEvents = [];
   const allowedEvents = new Set(['generate_lead','quote_submit_error','open_project_form','open_demo_contact','click_call','click_text','click_email','click_demo','click_resume']);
   function track(name, details = {}) {
-    if (excluded || choice !== 'accepted' || !allowedEvents.has(name)) return;
+    if (excluded || !allowedEvents.has(name)) return;
     const safe = { page_path: location.pathname };
     for (const key of ['contact_method','placement','failure_type']) {
       if (typeof details[key] === 'string' && /^[a-z0-9_-]{1,40}$/i.test(details[key])) safe[key] = details[key];
@@ -36,12 +34,12 @@
     try { window.gtag('event', name, safe); window.clarity('event', name); } catch (_) { /* Contact still works if tracking is unavailable. */ }
   }
   function loadAnalytics() {
-    if (loaded || excluded || choice !== 'accepted') return;
+    if (loaded || excluded) return;
     loaded = true;
     window['ga-disable-' + gaId] = false;
     window.dataLayer = window.dataLayer || [];
     window.gtag = function () { window.dataLayer.push(arguments); };
-    window.gtag('consent','default',{analytics_storage:'granted',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
+    window.gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
     window.gtag('js', new Date());
     const clean = new URL(location.origin + location.pathname);
     ['utm_source','utm_medium','utm_campaign'].forEach(key => {
@@ -50,41 +48,20 @@
     });
     window.gtag('config',gaId,{page_location:clean.href,page_referrer:document.referrer.split('?')[0].split('#')[0],allow_google_signals:false,allow_ad_personalization_signals:false});
     window.clarity = window.clarity || function () { (window.clarity.q=window.clarity.q||[]).push(arguments); };
-    window.clarity('consentv2',{analytics_Storage:'granted',ad_Storage:'denied'});
+    window.clarity('consentv2',{analytics_Storage:'denied',ad_Storage:'denied'});
     for (const src of ['https://www.googletagmanager.com/gtag/js?id='+gaId,'https://www.clarity.ms/tag/'+clarityId]) {
       const script=document.createElement('script'); script.async=true; script.src=src; document.head.appendChild(script);
     }
     queuedEvents.splice(0).forEach(({name,safe})=>track(name,safe));
   }
-  const banner = document.getElementById('idConsent');
-  let preferencesOpen = !choice && !excluded;
-  function renderBanner() {
-    if (banner) banner.hidden = !preferencesOpen || Boolean(document.querySelector('.modal:not([hidden])'));
-  }
-  function setChoice(value) {
-    choice=value; write(consentKey,value); preferencesOpen=false; renderBanner();
-    if(value==='rejected')queuedEvents.length=0;
-    if(value==='accepted') loadAnalytics();
-    else if(loaded) {
-      window['ga-disable-'+gaId]=true;
-      try { window.gtag('consent','update',{analytics_storage:'denied'}); window.clarity('consentv2',{analytics_Storage:'denied',ad_Storage:'denied'}); } catch (_) {}
-      // A full reload unloads providers so even cookieless recording stops.
-      location.reload();
-    }
-  }
-  banner?.querySelector('[data-consent-accept]')?.addEventListener('click',()=>setChoice('accepted'));
-  banner?.querySelector('[data-consent-reject]')?.addEventListener('click',()=>setChoice('rejected'));
+  function renderBanner() {} // Retained for existing modal callers; no analytics prompt.
+  document.getElementById('idConsent')?.setAttribute('hidden', '');
   const preferences=document.createElement('div'); preferences.className='id-privacy-controls';
-  const settings=document.createElement('button'); settings.type='button'; settings.textContent='Analytics preferences';
-  settings.addEventListener('click',()=>{preferencesOpen=true;renderBanner();banner?.querySelector('button')?.focus();});
-  if(!excluded) preferences.appendChild(settings);
-  const privacy=document.createElement('a'); privacy.href='privacy.html'; privacy.textContent='Privacy'; preferences.appendChild(privacy);
+  const privacy=document.createElement('a'); privacy.href='/privacy.html'; privacy.textContent='Privacy'; preferences.appendChild(privacy);
   if(internal) { const note=document.createElement('span');note.textContent='Owner/testing mode — analytics excluded on this browser.';preferences.appendChild(note); }
   document.body.appendChild(preferences);
-  if(!excluded && choice==='accepted') loadAnalytics();
-  renderBanner();
-  document.querySelectorAll('.modal').forEach(modal=>new MutationObserver(renderBanner).observe(modal,{attributes:true,attributeFilter:['hidden']}));
-  window.InselmanPrivacy=Object.freeze({reset(){preferencesOpen=true;renderBanner();},status(){return excluded?'excluded':choice||'essential-only';}});
+  loadAnalytics();
+  window.InselmanPrivacy=Object.freeze({reset(){},status(){return excluded?'excluded':'cookieless';}});
   window.InselmanAnalytics=Object.freeze({track,excluded,internal});
 
   const menu=document.getElementById('menu') || document.querySelector('button.menu');
