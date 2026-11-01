@@ -1,0 +1,36 @@
+.presence-hero .wrap{min-height:800px;padding-top:90px;padding-bottom:90px}
+.presence-hero .hero-copy{width:62%;max-width:740px}
+.presence-hero h1{font-size:clamp(46px,5.3vw,76px);line-height:1.06;letter-spacing:-.055em}
+.presence-hero .copy{max-width:600px;font-size:19px;line-height:1.7}
+.presence-hero .actions .btn{gap:24px;border-radius:10px}
+.hero-discuss{background:none;border:0;padding:12px 0;color:var(--text);font-size:15px;font-weight:600;min-height:48px}
+.hero-discuss:hover{color:var(--orange2)}
+.business-paths{position:relative;padding:64px 0 76px;border-top:1px solid var(--line);background:linear-gradient(180deg,#111619,#0b0e11)}
+.paths-intro{display:grid;grid-template-columns:1.1fr .9fr;column-gap:72px;align-items:end;margin-bottom:32px}
+.paths-intro .kicker{grid-column:1/-1;margin-bottom:14px;font-size:11px}
+.paths-intro h2{font-size:clamp(30px,3.3vw,44px);margin:0}
+.paths-intro>p:last-child{max-width:460px;margin:0;font-size:16px}
+.paths-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.path-card{min-width:0;padding:32px 34px 0;border:1px solid #ffffff20;border-radius:16px;background:linear-gradient(140deg,#1b2125,#111619);overflow:hidden;display:flex;flex-direction:column}
+.path-heading{display:flex;align-items:center;justify-content:space-between;margin-bottom:21px}
+.path-number{color:var(--orange2);font-size:11px;font-weight:700;letter-spacing:.12em}
+.path-symbol{font-size:26px;color:var(--orange2);font-weight:400}
+.path-card h3{font-size:34px;letter-spacing:-.035em;margin-bottom:16px}
+.path-card>p{font-size:16px;line-height:1.7;max-width:490px}
+.path-card ul{list-style:none;margin:10px 0 28px;padding:0;display:grid;gap:18px}
+.path-card li{padding-left:20px;position:relative}
+.path-card li:before{content:'+';position:absolute;left:0;color:var(--orange2)}
+.path-card li strong{display:block;font-size:15px;font-weight:600;color:var(--text)}
+.path-card li span{display:block;color:var(--muted);font-size:14px;line-height:1.55;margin-top:3px}
+.path-card>.btn{margin-top:auto;border-color:#e9a74466;color:var(--orange2);border-radius:9px;gap:16px;justify-content:space-between;font-size:14px}
+.path-card>.btn:hover{background:#e9a74412;border-color:var(--orange2)}
+.path-card>.path-note{font-size:12px;margin:11px 0 25px;color:#aeb4b6}
+.path-proof{display:grid;grid-template-columns:110px 1fr;gap:18px;align-items:center;padding:22px 0;border-top:1px solid #ffffff17}
+.path-proof img{width:110px;height:76px;object-fit:cover;border:1px solid #ffffff20;border-radius:6px}
+.path-proof.app-proof img{object-fit:contain;background:#0b1013;padding:3px}
+.path-proof span{font-size:9px;letter-spacing:.12em;color:#a9b0b2;font-weight:700;display:block;margin-bottom:4px}
+.path-proof a{font-size:14px;font-weight:650;line-height:1.4;display:block}
+.path-proof a:hover{color:var(--orange2)}
+.path-proof p{font-size:12px;margin:4px 0 0;line-height:1.5}
+@media(max-width:1000px){.presence-hero .hero-copy{width:70%}.path-card{padding:26px 24px 0}.paths-intro{gap:18px 32px}.path-proof{grid-template-columns:80px 1fr;gap:12px}.path-proof img{width:80px;height:65px}.path-card h3{font-size:29px}}
+@media(max-width:700px){.presence-hero .wrap{min-height:0;padding-top:215px;padding-bottom:36px}.presence-hero .hero-copy{width:100%}.presence-hero h1{font-size:clamp(37px,9.5vw,56px)}.presence-hero .copy{font-size:16px;line-height:1.65}.presence-hero .hero-note{font-size:13px}.presence-hero .actions{gap:8px}.presence-hero .actions .btn{flex:auto;justify-content:center}.hero-discuss{align-self:center}.business-paths{padding:38px 0 44px}.paths-intro{display:block;margin-bottom:24px}.paths-intro h2{font-size:32px;margin-bottom:16px}.paths-intro>p:last-child{font-size:15px}.paths-grid{grid-template-columns:1fr;gap:20px}.path-card{padding:24px 22px 0}.path-card h3{font-size:30px}.path-card>p{font-size:15px}.path-card>.btn{font-size:13px;gap:10px}.path-card ul{gap:15px;margin-bottom:24px}.path-proof{grid-template-columns:85px 1fr}.path-proof img{width:85px}.path-number{font-size:10px}.paths-intro .kicker{line-height:1.6}}
