@@ -1,0 +1,22 @@
+/* Scoped pricing preview: separate recurring care from one-time builds. */
+.package-grid.pricing-preview-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-top:32px;align-items:stretch}
+.pricing-preview-grid .package-card{display:flex;flex-direction:column;min-width:0;padding:32px;border:1px solid #ffffff29;border-radius:14px;background:#11171a;box-shadow:none}
+.pricing-preview-grid .package-card.featured{border-color:#e9a74480;background:linear-gradient(145deg,#26231c,#11171a)}
+.pricing-preview-grid .package-tag{color:var(--orange2);font-size:12px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;margin:0 0 18px}
+.pricing-preview-grid h3{font-size:28px;line-height:1.17;margin:0 0 20px}
+.pricing-preview-grid .package-price{font-size:44px;font-weight:700;line-height:1.15;color:var(--text);margin:0 0 16px}
+.pricing-preview-grid .package-price small{display:block;font-size:14px;font-weight:400;color:var(--muted);margin-top:8px}
+.pricing-preview-grid .package-term{font-size:14px;line-height:1.65;margin:0 0 22px;padding-bottom:22px;border-bottom:1px solid var(--line);color:#c8c9c5}
+.pricing-preview-grid ul{list-style:none;padding:0;margin:0 0 22px;color:#dddcd6}
+.pricing-preview-grid li{position:relative;padding-left:23px;margin:0 0 12px;font-size:15px;line-height:1.6}
+.pricing-preview-grid li:before{content:'✓';position:absolute;left:0;color:var(--orange2)}
+.pricing-preview-grid .scope-note{font-size:13px;line-height:1.65;color:#bdc0bb;padding-top:16px;border-top:1px solid var(--line);margin:0 0 24px}
+.pricing-preview-grid .btn{margin-top:auto;width:100%;min-height:48px;white-space:normal;text-align:center}
+.plan-boundaries{margin-top:28px;padding:26px 0;border-bottom:1px solid var(--line)}
+.plan-boundaries h3{font-size:21px;letter-spacing:-.02em}.plan-boundaries p,.plan-boundaries li{font-size:14px;line-height:1.75;max-width:980px;color:#bfc2bd}.plan-boundaries .text-link{font-size:14px}
+.standalone-build{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:40px;align-items:center;padding:34px;margin-top:36px;border:1px solid var(--line);border-radius:14px;background:#ffffff03}
+.standalone-build h3{font-size:30px;line-height:1.2}.standalone-build p{max-width:760px;font-size:15px}.standalone-build p:last-child{margin-bottom:0}.standalone-build .kicker{font-size:11px;margin-bottom:14px}.standalone-build .btn{white-space:normal;text-align:center}.standalone-build strong{color:var(--text)}
+@media(max-width:760px){.package-grid.pricing-preview-grid{grid-template-columns:1fr;gap:20px}.pricing-preview-grid .package-card{padding:26px}.pricing-preview-grid h3{font-size:26px}.standalone-build{grid-template-columns:1fr;gap:24px;padding:26px}.standalone-build h3{font-size:27px}.standalone-build .btn{width:100%}.plan-boundaries{padding-top:10px}}
+
+@media(min-width:1050px){.package-grid.pricing-preview-grid.three-options{grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}.three-options .package-card{padding:28px}.three-options .package-card h3{min-height:66px;font-size:27px}.three-options .package-card .package-tag{min-height:40px}}
+@media(min-width:761px) and (max-width:1049px){.package-grid.pricing-preview-grid.three-options{grid-template-columns:1fr}.three-options .package-card{max-width:none}}
