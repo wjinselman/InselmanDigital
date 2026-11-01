@@ -94,7 +94,32 @@ footer{padding:48px 0 24px}.footgrid{display:grid;grid-template-columns:1.2fr .8
 @media(min-width:1600px){.desktop-brand-watermark{display:block;position:fixed;right:20px;top:50%;transform:translateY(-50%);width:clamp(130px,calc((100vw - 1240px)/2 - 50px),460px);pointer-events:none;z-index:2;opacity:.065;mask-image:radial-gradient(ellipse,black 35%,transparent 73%);-webkit-mask-image:radial-gradient(ellipse,black 35%,transparent 73%)}.desktop-brand-watermark img{display:block;width:100%;height:auto;filter:grayscale(1) sepia(.8);}}
 </style><link rel="stylesheet" href="presence-preview.css">
 <link rel="stylesheet" href="flow-preview.css?v=20261101">
-<link rel="stylesheet" href="pricing-preview.css"><style>.plan-boundaries .occasional-work{display:flex;align-items:center;justify-content:space-between;gap:28px;padding:26px 28px;margin:0 0 32px;border:1px solid #efb65d70;border-left:4px solid #efb65d;border-radius:12px;background:#efb65d09}.plan-boundaries .occasional-work h3{margin:0 0 8px;color:#f3f0e9;font-size:22px;line-height:1.3}.plan-boundaries .occasional-work p{margin:0;font-size:15px}.occasional-work .btn{flex-shrink:0}@media(max-width:700px){.plan-boundaries .occasional-work{flex-direction:column;align-items:stretch;gap:20px;padding:22px 20px}.plan-boundaries .occasional-work h3{font-size:21px}.occasional-work .btn{width:100%}}</style></head>
+<link rel="stylesheet" href="pricing-preview.css"><style>.plan-boundaries .occasional-work{display:flex;align-items:center;justify-content:space-between;gap:28px;padding:26px 28px;margin:0 0 32px;border:1px solid #efb65d70;border-left:4px solid #efb65d;border-radius:12px;background:#efb65d09}.plan-boundaries .occasional-work h3{margin:0 0 8px;color:#f3f0e9;font-size:22px;line-height:1.3}.plan-boundaries .occasional-work p{margin:0;font-size:15px}.occasional-work .btn{flex-shrink:0}@media(max-width:700px){.plan-boundaries .occasional-work{flex-direction:column;align-items:stretch;gap:20px;padding:22px 20px}.plan-boundaries .occasional-work h3{font-size:21px}.occasional-work .btn{width:100%}}</style><style id="homepage-sunset-highlights">
+/* Keep desktop identity visible in narrower preview windows. */
+.id-reading-progress{height:3px}
+@media(min-width:1100px) and (max-width:1599px){
+.desktop-brand-watermark{display:block;position:fixed;right:32px;top:50%;transform:translateY(-50%);width:clamp(260px,24vw,360px);pointer-events:none;z-index:2;opacity:.06;mask-image:radial-gradient(ellipse,black 35%,transparent 73%);-webkit-mask-image:radial-gradient(ellipse,black 35%,transparent 73%)}
+.desktop-brand-watermark img{width:100%;height:auto;filter:grayscale(1) sepia(.8)}
+.id-section-rail{display:block;position:fixed;left:3px;top:50%;transform:translateY(-50%);z-index:90;width:22px}
+.id-section-rail .rail-caption{display:none}.id-section-rail ol{list-style:none;margin:0;padding:0}
+.id-section-rail a{display:flex;align-items:center;width:22px;height:36px;overflow:hidden;white-space:nowrap;color:transparent;font:600 12px system-ui;border-radius:6px;gap:10px}
+.id-section-rail a:before{content:'';flex:0 0 6px;height:6px;margin-left:7px;border:1px solid #8a9295;border-radius:50%;background:#11161a}
+.id-section-rail a[aria-current=location]:before{background:#f5bc65;border-color:#f5bc65;box-shadow:0 0 8px #f5bc6555}
+.id-section-rail a:hover,.id-section-rail a:focus-visible{width:140px;background:#11161a;color:#f5bc65;box-shadow:0 4px 16px #0006}
+}
+/* Decorative sunset accents; existing content, spacing, and grids stay intact. */
+#business-paths{background:radial-gradient(ellipse at 82% 0%,rgba(230,151,64,.10),transparent 62%),#0e1215}
+#local-websites{background:radial-gradient(ellipse 620px 340px at 0% 12%,rgba(239,164,73,.075),transparent 75%)}
+#contact.cta{position:relative;isolation:isolate;overflow:hidden;background:radial-gradient(ellipse at 100% 0%,rgba(246,186,92,.17),transparent 58%),linear-gradient(115deg,#261c17,#121519 72%);color:var(--text);box-shadow:inset 0 1px rgba(245,188,101,.27),inset 0 -1px rgba(245,188,101,.16)}
+#contact.cta:before{content:"";position:absolute;z-index:-1;pointer-events:none;width:250px;height:250px;right:-70px;top:-145px;border:1px solid rgba(245,188,101,.19);border-radius:50%;background:radial-gradient(circle at 45% 35%,rgba(245,188,101,.10),rgba(245,188,101,.02) 70%)}
+#contact.cta p{color:#c8c0b6}
+#contact .contact-options>.btn{background:linear-gradient(110deg,#f0aa54,#f5c477);color:#17120c;border-color:#f5bc65}
+#contact .contact-options>a{color:#ded3c3}
+#contact .contact-options .phone-action{color:#f5d6a4;background:#ffffff04;border-color:#f5bc6555}
+#contact .contact-options .phone-action:hover{background:#f5bc6518;border-color:#f5bc6599}
+@media(max-width:700px){#business-paths{background:radial-gradient(ellipse at 100% 0%,rgba(230,151,64,.08),transparent 55%),#0e1215}#local-websites{background:radial-gradient(ellipse 320px 250px at 0% 4%,rgba(239,164,73,.07),transparent 75%)}#contact.cta:before{width:180px;height:180px;right:-70px;top:-100px}}
+</style>
+</head>
 <body data-ga-id="G-G25PMCDVXQ" data-clarity-id="xjyb7pg6fq">
 <a class="skip-link" href="#top">Skip to content</a><header><div class="wrap nav"><a class="brand" href="#top"><img src="assets/inselman-digital-logo.png" alt=""><span>Inselman Digital</span></a><nav class="links" id="navlinks" aria-label="Main navigation"><a href="#work">Work</a><a href="#business-paths">Online presence</a><a href="app-development-ardmore-ok.html">Custom apps</a><a href="#about">About</a><a href="#contact">Contact</a></nav><button class="menu" id="menu" aria-expanded="false" aria-controls="navlinks">Menu</button><button class="navcta" data-contact>Discuss a project</button></div></header>
 <main id="top" tabindex="-1">
