@@ -1,8 +1,8 @@
 (() => {
   const definitions = [
     ['top','Home'],['business-paths','What we do'],['local-websites','Work'],
-    ['website-packages','Packages'],['services','Services'],['cattle-handler','Apps'],
-    ['process','Process'],['support','Support'],['about','About'],['contact','Contact']
+    ['website-packages','Packages'],
+    ['process','Process'],['about','About'],['support','Support'],['contact','Contact']
   ];
   const entries = definitions.map(([id,label]) => ({id,label,target:document.getElementById(id)})).filter(entry=>entry.target);
   if (!entries.length || document.querySelector('.id-section-rail')) return;

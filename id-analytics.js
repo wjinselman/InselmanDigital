@@ -23,7 +23,7 @@
   if (scrubbed) history.replaceState(history.state, '', pageUrl.pathname + pageUrl.search + pageUrl.hash);
   let loaded = false;
   const queuedEvents = [];
-  const allowedEvents = new Set(['generate_lead','quote_submit_error','open_project_form','open_demo_contact','click_call','click_text','click_email','click_demo','click_resume']);
+  const allowedEvents = new Set(['generate_lead','quote_submit_error','open_project_form','open_demo_contact','click_contact','click_call','click_text','click_email','click_demo','click_resume']);
   function track(name, details = {}) {
     if (excluded || !allowedEvents.has(name)) return;
     const safe = { page_path: location.pathname };
@@ -70,7 +70,8 @@
     // Silverback pages already have their own contact event handlers.
     if(/(?:silverback|metal-building-spray-foam)\.html$/.test(location.pathname))return;
     const href=el.getAttribute('href')||'';
-    if(href.startsWith('tel:'))track('click_call',{contact_method:'phone'});
+    if(href === '#contact')track('click_contact',{contact_method:'section',placement:el.closest('header')?'header':el.closest('footer')?'footer':'page'});
+    else if(href.startsWith('tel:'))track('click_call',{contact_method:'phone'});
     else if(href.startsWith('sms:'))track('click_text',{contact_method:'sms'});
     else if(href.startsWith('mailto:'))track('click_email',{contact_method:'email'});
   });
