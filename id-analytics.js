@@ -23,11 +23,11 @@
   if (scrubbed) history.replaceState(history.state, '', pageUrl.pathname + pageUrl.search + pageUrl.hash);
   let loaded = false;
   const queuedEvents = [];
-  const allowedEvents = new Set(['generate_lead','quote_submit_error','open_project_form','open_demo_contact','click_contact','click_call','click_text','click_email','click_demo','click_resume']);
+  const allowedEvents = new Set(['generate_lead','quote_submit_error','open_project_form','open_demo_contact','click_contact','click_call','click_text','click_email','click_demo','click_resume','click_package_website_1500','click_package_care_299','click_package_managed_599']);
   function track(name, details = {}) {
     if (excluded || !allowedEvents.has(name)) return;
     const safe = { page_path: location.pathname };
-    for (const key of ['contact_method','placement','failure_type']) {
+    for (const key of ['contact_method','placement','failure_type','package_id']) {
       if (typeof details[key] === 'string' && /^[a-z0-9_-]{1,40}$/i.test(details[key])) safe[key] = details[key];
     }
     if (!loaded) { if (queuedEvents.length < 30) queuedEvents.push({name,safe}); return; }
@@ -66,6 +66,13 @@
 
   window.InselmanLead=(name,method)=>track(name,{contact_method:method});
   document.addEventListener('click',event=>{
+    const packageButton=event.target.closest('a[data-package],button[data-package]');
+    if(packageButton){
+      const packageId=packageButton.getAttribute('data-package');
+      if(['website_1500','care_299','managed_599'].includes(packageId)){
+        track('click_package_'+packageId,{package_id:packageId,placement:'pricing_card'});
+      }
+    }
     const el=event.target.closest('a[href]'); if(!el)return;
     // Silverback pages already have their own contact event handlers.
     if(/(?:silverback|metal-building-spray-foam)\.html$/.test(location.pathname))return;
